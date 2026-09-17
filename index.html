@@ -4,28 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>全国病院MAP</title>
-<link rel="preconnect" href="https://unpkg.com">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 <style>
-:root{--paper:#f4f3ef;--ink:#171717;--muted:#73736f;--line:#d8d6cf;--panel:#fbfaf7;--accent:#202b33;--hospital:#202b33;--bedded:#715f4a;--clinic:#9a968b}
-*{box-sizing:border-box} html,body{margin:0;height:100%;font-family:"Atkinson Hyperlegible","Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
-body{overflow:hidden}.app{display:grid;grid-template-columns:360px 1fr;height:100dvh}.side{position:relative;z-index:500;background:rgba(251,250,247,.97);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
-.head{padding:22px 22px 16px;border-bottom:1px solid var(--line)}.eyebrow{font-size:10px;letter-spacing:.18em;color:var(--muted);font-weight:700}.title{font-size:24px;letter-spacing:-.03em;margin:4px 0 2px;font-weight:700}.sub{font-size:11px;color:var(--muted);line-height:1.5}
-.controls{padding:14px 16px;border-bottom:1px solid var(--line);display:grid;gap:9px}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-select,input{width:100%;border:1px solid var(--line);background:white;color:var(--ink);border-radius:3px;padding:10px 11px;font-size:13px;outline:none}
-input:focus,select:focus{border-color:#9a9993}.types{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.typebtn{border:1px solid var(--line);background:transparent;padding:8px 4px;border-radius:3px;font-size:11px;cursor:pointer}.typebtn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.statusline{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}.statusline input{width:auto}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.metric{background:var(--panel);padding:12px 14px}.metric b{display:block;font-size:17px}.metric span{font-size:9px;color:var(--muted);letter-spacing:.08em}
-.listhead{padding:12px 16px 8px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted)}.list{overflow:auto;flex:1;padding:0 10px 16px}
-.card{padding:12px 8px;border-top:1px solid var(--line);cursor:pointer}.card:hover{background:#f0efea}.card h3{font-size:13px;margin:0 0 5px;line-height:1.35}.card p{font-size:10px;color:var(--muted);margin:2px 0;line-height:1.4}.badge{display:inline-block;font-size:9px;padding:2px 5px;border:1px solid var(--line);margin-right:4px;border-radius:2px}.badge.care{border-color:#697b67;background:#eef1eb;color:#31412f}.badge.home{border-color:#6b647c;background:#f0edf4;color:#383143}.homewarn{font-size:10px;color:#8a5b45;line-height:1.4}
-.mapwrap{position:relative;min-width:0}.map{height:100%;width:100%;background:#e9e8e3}.coverage{position:absolute;z-index:450;right:16px;top:16px;background:rgba(251,250,247,.94);border:1px solid var(--line);padding:9px 11px;font-size:10px;line-height:1.4;max-width:260px}.coverage strong{font-size:12px}
-.empty{padding:28px 16px;color:var(--muted);font-size:12px;line-height:1.7}
-.pin{width:13px;height:13px;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.35)}.pin.hospital{background:var(--hospital);border-radius:2px}.pin.bedded{background:var(--bedded);border-radius:50%}.pin.clinic{background:var(--clinic);border-radius:50%;width:10px;height:10px}
-.leaflet-popup-content{font-family:inherit;min-width:230px}.pop h3{font-size:14px;margin:0 0 7px}.pop p{font-size:11px;color:#555;margin:4px 0;line-height:1.45}.pop a{color:#293943}
-.mobileToggle{display:none}
-@media(max-width:760px){.app{grid-template-columns:1fr}.side{position:absolute;left:0;top:0;bottom:0;width:min(88vw,360px);transform:translateX(-100%);transition:.22s ease;box-shadow:8px 0 30px rgba(0,0,0,.14)}.side.open{transform:none}.mobileToggle{display:block;position:absolute;z-index:700;left:12px;top:12px;border:1px solid var(--line);background:rgba(251,250,247,.96);padding:9px 11px;border-radius:3px;font-size:12px}.coverage{top:12px;right:12px;max-width:52vw}.mapwrap{height:100dvh}}
+:root{
+  --paper:#f3f2ee;--ink:#171817;--muted:#74766f;--line:#d7d6cf;--panel:#fbfaf7;--accent:#24333b;
+  --hospital:#21618c;--bedded:#c46a2b;--clinic:#4e7d5b;--care:#677b56;--home:#64587b;
+}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:"Atkinson Hyperlegible","Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+body{overflow:hidden}.app{display:grid;grid-template-columns:390px 1fr;height:100dvh}.side{position:relative;z-index:500;background:rgba(251,250,247,.98);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.head{padding:19px 20px 14px;border-bottom:1px solid var(--line)}.eyebrow{font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:700}.title{font-size:24px;letter-spacing:-.035em;margin:4px 0 3px;font-weight:720}.sub{font-size:10px;color:var(--muted);line-height:1.55}
+.controls{padding:12px 14px;border-bottom:1px solid var(--line);display:grid;gap:8px;overflow:auto;max-height:52vh}.row{display:grid;grid-template-columns:1fr 1fr;gap:7px}.prefrow{grid-template-columns:1fr 72px}
+select,input,button{font:inherit}select,input{width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:9px 10px;font-size:12px;outline:none}input:focus,select:focus{border-color:#919790;box-shadow:0 0 0 2px rgba(75,90,80,.06)}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:9px 10px;font-size:11px;cursor:pointer}.btn:hover{background:#f1f0eb}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.quick{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}.quickbtn{border:1px solid var(--line);background:#fff;padding:9px 4px;border-radius:4px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.01em}.quickbtn.on{color:white}.quickbtn.home.on{background:var(--home);border-color:var(--home)}.quickbtn.care.on{background:var(--care);border-color:var(--care)}.quickbtn.pin.on{background:var(--accent);border-color:var(--accent)}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.typebtn{border:1px solid var(--line);background:white;padding:8px 4px;border-radius:4px;font-size:10px;cursor:pointer;font-weight:650}.typebtn.active[data-type="病院"]{background:var(--hospital);color:white;border-color:var(--hospital)}.typebtn.active[data-type="有床診療所"]{background:var(--bedded);color:white;border-color:var(--bedded)}.typebtn.active[data-type="無床診療所"]{background:var(--clinic);color:white;border-color:var(--clinic)}
+.statusrow{display:flex;align-items:center;justify-content:space-between;gap:8px}.statusline{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}.statusline input{width:auto}.reset{border:0;background:transparent;color:var(--muted);font-size:10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.sectionnote{font-size:9px;color:var(--muted);line-height:1.45}.homewarn{font-size:9px;color:#8a5b45;line-height:1.4}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.metric{background:var(--panel);padding:10px 10px}.metric b{display:block;font-size:15px}.metric span{font-size:8px;color:var(--muted);letter-spacing:.07em}
+.listhead{padding:10px 14px 7px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted)}.list{overflow:auto;flex:1;padding:0 10px 16px}.card{padding:11px 7px;border-top:1px solid var(--line);cursor:pointer}.card:hover{background:#f0efea}.card h3{font-size:12.5px;margin:0 0 5px;line-height:1.35}.card p{font-size:9.5px;color:var(--muted);margin:2px 0;line-height:1.45}
+.badge{display:inline-block;font-size:8.5px;padding:2px 5px;border:1px solid var(--line);margin:0 3px 3px 0;border-radius:2px;background:#fff}.badge.care{border-color:#879779;background:#eef2e9;color:#31412f}.badge.home{border-color:#857b96;background:#f0edf4;color:#383143}.badge.year{border-color:#aaa79d;background:#f4f2ec;color:#55564f}.badge.hospital{border-color:var(--hospital);color:var(--hospital)}.badge.bedded{border-color:var(--bedded);color:#8d451d}.badge.clinic{border-color:var(--clinic);color:#315c3e}
+.mapwrap{position:relative;min-width:0}.map{height:100%;width:100%;background:#e9e8e3}.coverage{position:absolute;z-index:450;right:14px;top:14px;background:rgba(251,250,247,.95);border:1px solid var(--line);padding:9px 11px;font-size:9.5px;line-height:1.45;max-width:285px}.coverage strong{font-size:11px}.legend{position:absolute;z-index:450;right:14px;bottom:14px;background:rgba(251,250,247,.95);border:1px solid var(--line);padding:8px 10px;font-size:9px;line-height:1.7}.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}.legend .h{background:var(--hospital)}.legend .b{background:var(--bedded)}.legend .c{background:var(--clinic)}
+.empty{padding:26px 14px;color:var(--muted);font-size:11px;line-height:1.7}.pin{border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.38)}.pin.hospital{width:15px;height:15px;background:var(--hospital);border-radius:3px}.pin.bedded{width:13px;height:13px;background:var(--bedded);border-radius:50%}.pin.clinic{width:11px;height:11px;background:var(--clinic);border-radius:50%}
+.leaflet-popup-content{font-family:inherit;min-width:240px}.pop h3{font-size:14px;margin:0 0 7px}.pop p{font-size:10.5px;color:#555;margin:4px 0;line-height:1.45}.pop a{color:#293943}.mobileToggle{display:none}
+@media(max-width:760px){.app{grid-template-columns:1fr}.side{position:absolute;left:0;top:0;bottom:0;width:min(91vw,390px);transform:translateX(-100%);transition:.22s ease;box-shadow:8px 0 30px rgba(0,0,0,.14)}.side.open{transform:none}.mobileToggle{display:block;position:absolute;z-index:700;left:12px;top:12px;border:1px solid var(--line);background:rgba(251,250,247,.97);padding:9px 11px;border-radius:4px;font-size:11px}.coverage{top:12px;right:12px;max-width:58vw}.legend{bottom:12px;right:12px}.mapwrap{height:100dvh}.controls{max-height:58vh}}
 </style>
 </head>
 <body>
@@ -33,87 +36,135 @@ input:focus,select:focus{border-color:#9a9993}.types{display:grid;grid-template-
 <aside class="side" id="side">
   <div class="head"><div class="eyebrow">NATIONAL MEDICAL FACILITY INDEX</div><div class="title">全国病院MAP</div><div class="sub">厚生局 2026.09 / 医療情報ネット 2026.06<br>地域包括診療 2026.08.25 / 在宅施設基準 2026.08–09</div></div>
   <div class="controls">
-    <select id="pref"><option value="">都道府県を選択</option></select>
-    <input id="q" placeholder="施設名・住所・開設者・診療科">
-    <div class="row">
-      <select id="dept"><option value="">診療科：すべて</option></select>
-      <select id="group"><option value="">領域：すべて</option></select>
-    </div>
-    <select id="regionalCare">
-      <option value="">地域包括診療：すべて</option>
-      <option value="any">地域包括診療料・加算 取得施設</option>
-      <option value="addition">地域包括診療加算</option>
-      <option value="fee">地域包括診療料</option>
-      <option value="both">両方取得</option>
-    </select>
-    <select id="homeCare">
-      <option value="">在宅施設基準：すべて</option>
-      <option value="any">在宅系施設基準あり</option>
-      <option value="支援診1">在支診1</option><option value="支援診2ア">在支診2ア</option><option value="支援診2イ">在支診2イ</option><option value="支援診3">在支診3</option>
-      <option value="支援病1">在支病1</option><option value="支援病2">在支病2</option><option value="支援病3">在支病3</option>
-      <option value="在充診">在充診</option><option value="在充病">在充病</option>
-      <option value="在診実1">在診実1</option><option value="在診実2">在診実2</option><option value="在病実1">在病実1</option><option value="在病実2">在病実2</option>
-      <option value="在後病">在宅療養後方支援病院</option><option value="介保連">介護保険施設等連携往診加算</option><option value="在宅DX">在宅医療DX</option>
-    </select>
+    <div class="row prefrow"><select id="pref"><option value="">都道府県を選択</option></select><button id="prefGo" class="btn primary">表示</button></div>
+    <input id="q" placeholder="施設名・住所・開設者・診療科・指定年">
+    <input id="deptText" list="deptList" placeholder="診療科で絞り込み（例：整形外科）"><datalist id="deptList"></datalist>
+    <div class="row"><select id="group"><option value="">診療領域：すべて</option></select><select id="ageMin"><option value="">保険指定年数：すべて</option><option value="10">指定から10年以上</option><option value="20">20年以上</option><option value="30">30年以上</option><option value="50">50年以上</option><option value="70">70年以上</option></select></div>
+    <select id="sort"><option value="name">並び替え：施設名</option><option value="designation_old">保険指定年：古い順</option><option value="designation_new">保険指定年：新しい順</option><option value="beds_desc">病床数：多い順</option><option value="departments_desc">診療科数：多い順</option><option value="department_name">診療科名順</option></select>
+    <div class="quick"><button id="toggleHome" class="quickbtn home">在宅 OFF</button><button id="toggleRegional" class="quickbtn care">地域包括 OFF</button><button id="togglePins" class="quickbtn pin on">ピン CLUSTER</button></div>
+    <div class="row"><select id="homeCare"><option value="">在宅：詳細区分すべて</option><option value="支援診1">在支診1</option><option value="支援診2ア">在支診2ア</option><option value="支援診2イ">在支診2イ</option><option value="支援診3">在支診3</option><option value="支援病1">在支病1</option><option value="支援病2">在支病2</option><option value="支援病3">在支病3</option><option value="在充診">在充診</option><option value="在充病">在充病</option><option value="在診実1">在診実1</option><option value="在診実2">在診実2</option><option value="在病実1">在病実1</option><option value="在病実2">在病実2</option><option value="在後病">在宅療養後方支援病院</option><option value="介保連">介保連</option><option value="在宅DX">在宅DX</option></select><select id="regionalCare"><option value="">地域包括：詳細すべて</option><option value="addition">地域包括診療加算</option><option value="fee">地域包括診療料</option><option value="both">両方取得</option></select></div>
+    <div class="types"><button class="typebtn active" data-type="病院">● 病院</button><button class="typebtn active" data-type="有床診療所">● 有床診療所</button><button class="typebtn active" data-type="無床診療所">● 無床診療所</button></div>
+    <div class="statusrow"><label class="statusline"><input id="current" type="checkbox" checked> 現存施設のみ</label><button class="reset" id="resetFilters">条件をリセット</button></div>
+    <div class="sectionnote">※「古い順」「指定から○年以上」は実開設年ではなく、厚生局の<strong>保険医療機関指定年月日</strong>を基準にしています。</div>
     <div id="homeDataNotice" class="homewarn"></div>
-    <div class="types">
-      <button class="typebtn active" data-type="病院">病院</button>
-      <button class="typebtn active" data-type="有床診療所">有床</button>
-      <button class="typebtn active" data-type="無床診療所">無床</button>
-    </div>
-    <label class="statusline"><input id="current" type="checkbox" checked> 現存施設のみ表示</label>
   </div>
-  <div class="metrics"><div class="metric"><b id="mTotal">—</b><span>MASTER</span></div><div class="metric"><b id="mMapped">—</b><span>MAPPED</span></div><div class="metric"><b id="mShown">—</b><span>SHOWN</span></div></div>
+  <div class="metrics"><div class="metric"><b id="mTotal">—</b><span>MASTER</span></div><div class="metric"><b id="mMapped">—</b><span>MAPPED</span></div><div class="metric"><b id="mShown">—</b><span>SHOWN</span></div><div class="metric"><b id="mOld">—</b><span>指定50Y+</span></div></div>
   <div class="listhead"><span>FACILITIES</span><span id="listNote">都道府県を選択</span></div>
-  <div class="list" id="list"><div class="empty">都道府県を選ぶと、該当地域の施設データだけを読み込みます。全国約10万件を一括読込しないため、スマートフォンでも軽く動く構成です。</div></div>
+  <div class="list" id="list"><div class="empty">都道府県を選択してください。ローカルHTMLでもGitHub Pagesでも動くよう、都道府県データはJSON fetchではなくJSデータとして読み込みます。</div></div>
 </aside>
-<main class="mapwrap"><button class="mobileToggle" id="mobileToggle">MENU</button><div id="map" class="map"></div><div class="coverage" id="coverage"><strong>80,660 / 97,393</strong><br>公式施設座標で表示できる施設。未一致は次工程で住所ジオコーディング。</div></main>
+<main class="mapwrap"><button class="mobileToggle" id="mobileToggle">MENU</button><div id="map" class="map"></div><div class="coverage" id="coverage"><strong>全国病院MAP</strong><br>都道府県を選択してください。</div><div class="legend"><div><i class="h"></i>病院</div><div><i class="b"></i>有床診療所</div><div><i class="c"></i>無床診療所</div></div></main>
 </div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="data/index.js"></script>
 <script>
+'use strict';
+const REFERENCE_DATE=new Date('2026-09-01T00:00:00+09:00');
+const meta=window.__INDEX__;
+window.__PREF_STORE__=window.__PREF_STORE__||{};
+const $=id=>document.getElementById(id);
+const esc=s=>(s??'').toString().replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const COLORS={'病院':'#21618c','有床診療所':'#c46a2b','無床診療所':'#4e7d5b'};
+let data=[],shown=[],listItems=[],activeTypes=new Set(['病院','有床診療所','無床診療所']);
+let homeOnly=false,regionalOnly=false,pinMode='cluster',markerById=new Map();
+
 const map=L.map('map',{zoomControl:false,preferCanvas:true}).setView([37.35,137.2],5);
 L.control.zoom({position:'bottomright'}).addTo(map);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-const clusters=L.markerClusterGroup({chunkedLoading:true,disableClusteringAtZoom:15,showCoverageOnHover:false,maxClusterRadius:42});
+const clusters=L.markerClusterGroup({chunkedLoading:true,disableClusteringAtZoom:15,showCoverageOnHover:false,maxClusterRadius:40});
+const individual=L.layerGroup();
 map.addLayer(clusters);
-let meta=null,data=[],shown=[],activeTypes=new Set(['病院','有床診療所','無床診療所']);
-const $=id=>document.getElementById(id);
-const esc=s=>(s??'').toString().replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function icon(type){let c=type==='病院'?'hospital':type==='有床診療所'?'bedded':'clinic';return L.divIcon({className:'',html:`<div class="pin ${c}"></div>`,iconSize:[14,14],iconAnchor:[7,7]})}
+const canvasRenderer=L.canvas({padding:.45});
+
+function pinClass(type){return type==='病院'?'hospital':type==='有床診療所'?'bedded':'clinic'}
+function clusterIcon(type){const c=pinClass(type);return L.divIcon({className:'',html:`<div class="pin ${c}"></div>`,iconSize:[16,16],iconAnchor:[8,8]})}
 function careLabel(v){return v==='both'?'地域包括：加算＋診療料':v==='addition'?'地域包括診療加算':v==='fee'?'地域包括診療料':''}
 function homeLabel(x){return (x.homeCareLabels||[]).join(' / ')}
-function popup(x){const cb=careLabel(x.regionalCare),hb=homeLabel(x);return `<div class="pop"><h3>${esc(x.name)}</h3>${cb?`<p><span class="badge care">${esc(cb)}</span></p>`:''}${hb?`<p><span class="badge home">${esc(hb)}</span></p>`:''}<p>${esc(x.type)}${x.beds?` ・ ${x.beds}床`:''}<br>${esc(x.address)}</p><p>${esc(x.departments.slice(0,8).join(' / '))}</p>${x.founder?`<p>開設者：${esc(x.founder)}</p>`:''}${x.manager?`<p>管理者：${esc(x.manager)}</p>`:''}${x.url?`<p><a href="${esc(x.url)}" target="_blank" rel="noopener">医療機関サイト ↗</a></p>`:''}</div>`}
-function render(){
-  clusters.clearLayers();
-  const q=$('q').value.trim().toLowerCase(),dept=$('dept').value,group=$('group').value,care=$('regionalCare').value,home=$('homeCare').value,current=$('current').checked;
-  shown=data.filter(x=>{
-    if(!activeTypes.has(x.type))return false;if(current&&x.status!=='現存')return false;if(dept&&!x.departments.includes(dept))return false;if(group&&!x.groups.includes(group))return false;
-    if(care==='any'&&!x.regionalCare)return false;if(care&&care!=='any'&&x.regionalCare!==care)return false;if(home==='any'&&!x.homeCareAny)return false;if(home&&home!=='any'&&!(x.homeCareLabels||[]).includes(home))return false;
-    if(q){const hay=[x.name,x.address,x.founder,x.manager,...x.departments,...x.groups].join(' ').toLowerCase();if(!hay.includes(q))return false}return true
+function designationDate(x){if(!x.designated)return null;const d=new Date(x.designated+'T00:00:00+09:00');return Number.isNaN(d.getTime())?null:d}
+function designationYears(x){const d=designationDate(x);if(!d)return null;let y=REFERENCE_DATE.getFullYear()-d.getFullYear();const md=REFERENCE_DATE.getMonth()*100+REFERENCE_DATE.getDate(),dd=d.getMonth()*100+d.getDate();if(md<dd)y--;return Math.max(0,y)}
+function designationLabel(x){const d=designationDate(x),y=designationYears(x);return d?`${d.getFullYear()}年指定${y!==null?`・${y}年`:''}`:''}
+function typeBadge(type){const c=pinClass(type);return `<span class="badge ${c}">${esc(type)}</span>`}
+function popup(x){const cb=careLabel(x.regionalCare),hb=homeLabel(x),yb=designationLabel(x);return `<div class="pop"><h3>${esc(x.name)}</h3><p>${typeBadge(x.type)}${x.beds?`<span class="badge">${x.beds}床</span>`:''}${yb?`<span class="badge year">${esc(yb)}</span>`:''}</p>${cb?`<p><span class="badge care">${esc(cb)}</span></p>`:''}${hb?`<p><span class="badge home">${esc(hb)}</span></p>`:''}<p>${esc(x.address)}</p><p>${esc((x.departments||[]).slice(0,10).join(' / '))}</p>${x.founder?`<p>開設者：${esc(x.founder)}</p>`:''}${x.manager?`<p>管理者：${esc(x.manager)}</p>`:''}${x.designated?`<p>保険医療機関指定：${esc(x.designated)}</p>`:''}${x.url?`<p><a href="${esc(x.url)}" target="_blank" rel="noopener">医療機関サイト ↗</a></p>`:''}</div>`}
+
+function updateQuickButtons(){
+  const h=$('toggleHome'),r=$('toggleRegional'),p=$('togglePins');
+  h.classList.toggle('on',homeOnly);h.textContent=`在宅 ${homeOnly?'ON':'OFF'}`;h.setAttribute('aria-pressed',homeOnly);
+  r.classList.toggle('on',regionalOnly);r.textContent=`地域包括 ${regionalOnly?'ON':'OFF'}`;r.setAttribute('aria-pressed',regionalOnly);
+  p.classList.add('on');p.textContent=pinMode==='cluster'?'ピン CLUSTER':'ピン INDIVIDUAL';
+}
+function departmentMatch(x,q){if(!q)return true;const v=q.trim().toLowerCase();return (x.departments||[]).some(d=>d.toLowerCase().includes(v))}
+function sortList(items){
+  const mode=$('sort').value,arr=[...items],year=x=>designationDate(x)?.getTime()??null;
+  const ja=(a,b)=>(a||'').localeCompare(b||'','ja');
+  arr.sort((a,b)=>{
+    if(mode==='designation_old'){const A=year(a),B=year(b);return A===null?1:B===null?-1:A-B||ja(a.name,b.name)}
+    if(mode==='designation_new'){const A=year(a),B=year(b);return A===null?1:B===null?-1:B-A||ja(a.name,b.name)}
+    if(mode==='beds_desc')return (b.beds||0)-(a.beds||0)||ja(a.name,b.name);
+    if(mode==='departments_desc')return (b.departments?.length||0)-(a.departments?.length||0)||ja(a.name,b.name);
+    if(mode==='department_name'){const A=[...(a.departments||[])].sort((x,y)=>ja(x,y))[0]||'￿',B=[...(b.departments||[])].sort((x,y)=>ja(x,y))[0]||'￿';return ja(A,B)||ja(a.name,b.name)}
+    return ja(a.name,b.name);
+  });return arr;
+}
+function filterData(){
+  const q=$('q').value.trim().toLowerCase(),dept=$('deptText').value,group=$('group').value,age=parseInt($('ageMin').value||'0',10),care=$('regionalCare').value,home=$('homeCare').value,current=$('current').checked;
+  return data.filter(x=>{
+    if(!activeTypes.has(x.type))return false;
+    if(current&&x.status!=='現存')return false;
+    if(!departmentMatch(x,dept))return false;
+    if(group&&!(x.groups||[]).includes(group))return false;
+    const yrs=designationYears(x);if(age&&(yrs===null||yrs<age))return false;
+    if(regionalOnly&&!x.regionalCare)return false;
+    if(care&&x.regionalCare!==care)return false;
+    if(homeOnly&&!x.homeCareAny)return false;
+    if(home&&!(x.homeCareLabels||[]).includes(home))return false;
+    if(q){const hay=[x.name,x.address,x.founder,x.manager,x.designated,...(x.departments||[]),...(x.groups||[]),...(x.homeCareLabels||[])].join(' ').toLowerCase();if(!hay.includes(q))return false}
+    return true;
   });
-  const markers=[];
-  shown.forEach(x=>{const m=L.marker([x.lat,x.lng],{icon:icon(x.type),title:x.name}).bindPopup(popup(x));m._facility=x;markers.push(m)});
-  clusters.addLayers(markers);
-  $('mShown').textContent=shown.length.toLocaleString('ja-JP');
-  $('listNote').textContent=shown.length>200?`上位200件 / ${shown.length.toLocaleString()}件`:`${shown.length.toLocaleString()}件`;
+}
+function makeClusterMarker(x){const m=L.marker([x.lat,x.lng],{icon:clusterIcon(x.type),title:x.name}).bindPopup(popup(x));m._facility=x;return m}
+function makeIndividualMarker(x){const m=L.circleMarker([x.lat,x.lng],{renderer:canvasRenderer,radius:x.type==='病院'?5.4:x.type==='有床診療所'?4.5:3.8,color:'#fff',weight:1,fillColor:COLORS[x.type],fillOpacity:.9}).bindPopup(popup(x));m._facility=x;return m}
+function drawPins(items){
+  clusters.clearLayers();individual.clearLayers();markerById.clear();
+  if(map.hasLayer(clusters))map.removeLayer(clusters);if(map.hasLayer(individual))map.removeLayer(individual);
+  if(pinMode==='cluster'){
+    const markers=items.map(x=>{const m=makeClusterMarker(x);markerById.set(x.id,m);return m});clusters.addLayers(markers);map.addLayer(clusters);
+  }else{
+    const markers=items.map(x=>{const m=makeIndividualMarker(x);markerById.set(x.id,m);return m});markers.forEach(m=>m.addTo(individual));map.addLayer(individual);
+  }
+}
+function focusFacility(x){map.setView([x.lat,x.lng],16);const m=markerById.get(x.id);if(!m)return;if(pinMode==='cluster')clusters.zoomToShowLayer(m,()=>m.openPopup());else m.openPopup()}
+function render(){
+  shown=filterData();listItems=sortList(shown);drawPins(shown);
+  $('mShown').textContent=shown.length.toLocaleString('ja-JP');$('mOld').textContent=shown.filter(x=>(designationYears(x)??-1)>=50).length.toLocaleString('ja-JP');
+  $('listNote').textContent=listItems.length>300?`上位300 / ${listItems.length.toLocaleString()}件`:`${listItems.length.toLocaleString()}件`;
   const list=$('list');list.innerHTML='';
-  shown.slice(0,200).forEach(x=>{const d=document.createElement('div');d.className='card';const cb=careLabel(x.regionalCare),hb=homeLabel(x);d.innerHTML=`<h3>${esc(x.name)}</h3><p><span class="badge">${esc(x.type)}</span>${x.beds?`<span class="badge">${x.beds}床</span>`:''}${cb?`<span class="badge care">${esc(cb)}</span>`:''}${hb?`<span class="badge home">${esc(hb)}</span>`:''}</p><p>${esc(x.address)}</p><p>${esc(x.departments.slice(0,5).join(' / '))}</p>`;d.onclick=()=>{map.setView([x.lat,x.lng],16);for(const l of clusters.getLayers()){if(l._facility?.id===x.id){clusters.zoomToShowLayer(l,()=>l.openPopup());break}}};list.appendChild(d)});
+  listItems.slice(0,300).forEach(x=>{const d=document.createElement('div');d.className='card';const cb=careLabel(x.regionalCare),hb=homeLabel(x),yb=designationLabel(x);d.innerHTML=`<h3>${esc(x.name)}</h3><p>${typeBadge(x.type)}${x.beds?`<span class="badge">${x.beds}床</span>`:''}${yb?`<span class="badge year">${esc(yb)}</span>`:''}${cb?`<span class="badge care">${esc(cb)}</span>`:''}${hb?`<span class="badge home">${esc(hb)}</span>`:''}</p><p>${esc(x.address)}</p><p>${esc((x.departments||[]).slice(0,6).join(' / '))}</p>`;d.onclick=()=>focusFacility(x);list.appendChild(d)});
   if(!shown.length)list.innerHTML='<div class="empty">条件に合う施設がありません。</div>';
 }
+function loadPrefScript(code){return new Promise((resolve,reject)=>{if(window.__PREF_STORE__[code])return resolve(window.__PREF_STORE__[code]);const s=document.createElement('script');s.src=`data/prefsjs/${code}.js`;s.onload=()=>resolve(window.__PREF_STORE__[code]||[]);s.onerror=()=>reject(new Error('都道府県データを読み込めません'));document.head.appendChild(s)})}
 async function loadPref(code){
-  clusters.clearLayers();data=[];$('list').innerHTML='<div class="empty">読み込み中…</div>';
-  if(!code){map.setView([37.35,137.2],5);$('mTotal').textContent='—';$('mMapped').textContent='—';$('mShown').textContent='—';return}
-  const p=meta.prefectures.find(x=>x.code===code);
-  data=await fetch(`data/prefs/${code}.json`).then(r=>r.json());
-  $('mTotal').textContent=p.total.toLocaleString();$('mMapped').textContent=p.mapped.toLocaleString();
-  $('coverage').innerHTML=`<strong>${p.name} ${p.mapped.toLocaleString()} / ${p.total.toLocaleString()}</strong><br>公式座標カバー率 ${(p.coverage*100).toFixed(1)}%`;
-  render(); if(data.length){const b=L.latLngBounds(data.map(x=>[x.lat,x.lng]));map.fitBounds(b.pad(.08))}
+  clusters.clearLayers();individual.clearLayers();data=[];shown=[];$('list').innerHTML='<div class="empty">読み込み中…</div>';
+  if(!code){map.setView([37.35,137.2],5);$('mTotal').textContent='—';$('mMapped').textContent='—';$('mShown').textContent='—';$('mOld').textContent='—';$('coverage').innerHTML='<strong>全国病院MAP</strong><br>都道府県を選択してください。';return}
+  const p=meta.prefectures.find(x=>x.code===code);if(!p){$('list').innerHTML='<div class="empty">都道府県情報が見つかりません。</div>';return}
+  try{data=await loadPrefScript(code)}catch(e){$('list').innerHTML=`<div class="empty">${esc(e.message)}。ZIPを展開したフォルダ構成を保ったまま index.html を開いてください。</div>`;return}
+  $('mTotal').textContent=p.total.toLocaleString();$('mMapped').textContent=p.mapped.toLocaleString();$('coverage').innerHTML=`<strong>${p.name} ${p.mapped.toLocaleString()} / ${p.total.toLocaleString()}</strong><br>公式座標カバー率 ${(p.coverage*100).toFixed(1)}%${p.homeCareSourceDate?`<br>在宅施設基準 ${p.homeCareSourceDate}`:''}`;
+  $('homeDataNotice').textContent=p.homeCareData?'':'この都道府県の在宅施設基準データは未収集です。';render();if(data.length){const b=L.latLngBounds(data.map(x=>[x.lat,x.lng]));map.fitBounds(b.pad(.06))}
 }
-fetch('data/index.json').then(r=>r.json()).then(x=>{meta=x;const ps=$('pref');x.prefectures.forEach(p=>ps.add(new Option(`${p.name}  ${p.mapped.toLocaleString()}件`,p.code)));x.departments.forEach(d=>$('dept').add(new Option(`${d.name} (${d.count.toLocaleString()})`,d.name)));x.groups.forEach(g=>$('group').add(new Option(`${g.name} (${g.count.toLocaleString()})`,g.name)));});
-$('pref').onchange=e=>loadPref(e.target.value);$('q').oninput=render;$('dept').onchange=render;$('group').onchange=render;$('regionalCare').onchange=render;$('homeCare').onchange=render;$('current').onchange=render;
-document.querySelectorAll('.typebtn').forEach(b=>b.onclick=()=>{b.classList.toggle('active');b.classList.contains('active')?activeTypes.add(b.dataset.type):activeTypes.delete(b.dataset.type);render()});
-$('mobileToggle').onclick=()=>$('side').classList.toggle('open');
-map.on('click',()=>{if(innerWidth<=760)$('side').classList.remove('open')});
+function resetFilters(){
+  $('q').value='';$('deptText').value='';$('group').value='';$('ageMin').value='';$('sort').value='name';$('regionalCare').value='';$('homeCare').value='';$('current').checked=true;homeOnly=false;regionalOnly=false;activeTypes=new Set(['病院','有床診療所','無床診療所']);document.querySelectorAll('.typebtn').forEach(b=>b.classList.add('active'));updateQuickButtons();render();
+}
+function init(){
+  if(!meta){$('list').innerHTML='<div class="empty">index.js が読み込めません。フォルダ構成を確認してください。</div>';return}
+  const ps=$('pref');meta.prefectures.forEach(p=>ps.add(new Option(`${p.name}  ${p.mapped.toLocaleString()}件`,p.code)));
+  const dl=$('deptList');meta.departments.forEach(d=>{const o=document.createElement('option');o.value=d.name;o.label=`${d.count.toLocaleString()}施設`;dl.appendChild(o)});
+  meta.groups.forEach(g=>$('group').add(new Option(`${g.name} (${g.count.toLocaleString()})`,g.name)));
+  updateQuickButtons();
+}
+init();
+$('pref').onchange=e=>loadPref(e.target.value);$('prefGo').onclick=()=>loadPref($('pref').value);$('q').oninput=render;$('deptText').oninput=render;$('group').onchange=render;$('ageMin').onchange=render;$('sort').onchange=render;$('current').onchange=render;
+$('regionalCare').onchange=()=>{if($('regionalCare').value)regionalOnly=true;updateQuickButtons();render()};$('homeCare').onchange=()=>{if($('homeCare').value)homeOnly=true;updateQuickButtons();render()};
+$('toggleHome').onclick=()=>{homeOnly=!homeOnly;if(!homeOnly)$('homeCare').value='';updateQuickButtons();render()};$('toggleRegional').onclick=()=>{regionalOnly=!regionalOnly;if(!regionalOnly)$('regionalCare').value='';updateQuickButtons();render()};$('togglePins').onclick=()=>{pinMode=pinMode==='cluster'?'individual':'cluster';updateQuickButtons();drawPins(shown)};
+document.querySelectorAll('.typebtn').forEach(b=>b.onclick=()=>{b.classList.toggle('active');b.classList.contains('active')?activeTypes.add(b.dataset.type):activeTypes.delete(b.dataset.type);render()});$('resetFilters').onclick=resetFilters;
+$('mobileToggle').onclick=()=>$('side').classList.toggle('open');map.on('click',()=>{if(innerWidth<=760)$('side').classList.remove('open')});
 </script>
 </body></html>

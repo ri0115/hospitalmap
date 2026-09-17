@@ -1,0 +1,26 @@
+全国病院MAP HTML v05 QA
+
+[PASS] 都道府県メタデータ: 47都道府県
+[PASS] 都道府県別JSデータ: 47ファイル
+[PASS] JSON fetch依存: なし
+[PASS] index.html JavaScript syntax: node --check 合格
+[PASS] 東京データ読込: 11,252 mapped facilities
+[PASS] 東京 在宅系: 1,829 mapped facilities
+[PASS] 東京 地域包括: 453 mapped facilities
+[PASS] 東京 整形外科: 1,692 mapped facilities
+[PASS] 東京 保険指定1976年以前: 250 mapped facilities
+
+実装機能
+- 都道府県選択: onchange + 表示ボタンの二系統
+- 病院/有床診療所/無床診療所: 青/オレンジ/緑
+- ピン: CLUSTER / INDIVIDUAL 切替
+- 在宅 ON/OFF
+- 地域包括 ON/OFF
+- 詳細在宅区分、詳細地域包括区分
+- 診療科部分一致フィルター
+- 保険指定から10/20/30/50/70年以上フィルター
+- 並び替え: 施設名、指定年古い/新しい、病床数、診療科数、診療科名
+- 指定50年以上件数表示
+
+注意
+保険医療機関指定年月日は実開設年月日ではありません。
