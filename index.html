@@ -3,168 +3,248 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>全国病院MAP</title>
+<title>全国病院MAP LITE</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 <style>
-:root{
-  --paper:#f3f2ee;--ink:#171817;--muted:#74766f;--line:#d7d6cf;--panel:#fbfaf7;--accent:#24333b;
-  --hospital:#21618c;--bedded:#c46a2b;--clinic:#4e7d5b;--care:#677b56;--home:#64587b;
-}
-*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:"Atkinson Hyperlegible","Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
-body{overflow:hidden}.app{display:grid;grid-template-columns:390px 1fr;height:100dvh}.side{position:relative;z-index:500;background:rgba(251,250,247,.98);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
-.head{padding:19px 20px 14px;border-bottom:1px solid var(--line)}.eyebrow{font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:700}.title{font-size:24px;letter-spacing:-.035em;margin:4px 0 3px;font-weight:720}.sub{font-size:10px;color:var(--muted);line-height:1.55}
-.controls{padding:12px 14px;border-bottom:1px solid var(--line);display:grid;gap:8px;overflow:auto;max-height:52vh}.row{display:grid;grid-template-columns:1fr 1fr;gap:7px}.prefrow{grid-template-columns:1fr 72px}
-select,input,button{font:inherit}select,input{width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:9px 10px;font-size:12px;outline:none}input:focus,select:focus{border-color:#919790;box-shadow:0 0 0 2px rgba(75,90,80,.06)}
-.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:9px 10px;font-size:11px;cursor:pointer}.btn:hover{background:#f1f0eb}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.quick{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}.quickbtn{border:1px solid var(--line);background:#fff;padding:9px 4px;border-radius:4px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.01em}.quickbtn.on{color:white}.quickbtn.home.on{background:var(--home);border-color:var(--home)}.quickbtn.care.on{background:var(--care);border-color:var(--care)}.quickbtn.pin.on{background:var(--accent);border-color:var(--accent)}
-.types{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.typebtn{border:1px solid var(--line);background:white;padding:8px 4px;border-radius:4px;font-size:10px;cursor:pointer;font-weight:650}.typebtn.active[data-type="病院"]{background:var(--hospital);color:white;border-color:var(--hospital)}.typebtn.active[data-type="有床診療所"]{background:var(--bedded);color:white;border-color:var(--bedded)}.typebtn.active[data-type="無床診療所"]{background:var(--clinic);color:white;border-color:var(--clinic)}
-.statusrow{display:flex;align-items:center;justify-content:space-between;gap:8px}.statusline{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}.statusline input{width:auto}.reset{border:0;background:transparent;color:var(--muted);font-size:10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.sectionnote{font-size:9px;color:var(--muted);line-height:1.45}.homewarn{font-size:9px;color:#8a5b45;line-height:1.4}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.metric{background:var(--panel);padding:10px 10px}.metric b{display:block;font-size:15px}.metric span{font-size:8px;color:var(--muted);letter-spacing:.07em}
-.listhead{padding:10px 14px 7px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted)}.list{overflow:auto;flex:1;padding:0 10px 16px}.card{padding:11px 7px;border-top:1px solid var(--line);cursor:pointer}.card:hover{background:#f0efea}.card h3{font-size:12.5px;margin:0 0 5px;line-height:1.35}.card p{font-size:9.5px;color:var(--muted);margin:2px 0;line-height:1.45}
-.badge{display:inline-block;font-size:8.5px;padding:2px 5px;border:1px solid var(--line);margin:0 3px 3px 0;border-radius:2px;background:#fff}.badge.care{border-color:#879779;background:#eef2e9;color:#31412f}.badge.home{border-color:#857b96;background:#f0edf4;color:#383143}.badge.year{border-color:#aaa79d;background:#f4f2ec;color:#55564f}.badge.hospital{border-color:var(--hospital);color:var(--hospital)}.badge.bedded{border-color:var(--bedded);color:#8d451d}.badge.clinic{border-color:var(--clinic);color:#315c3e}
-.mapwrap{position:relative;min-width:0}.map{height:100%;width:100%;background:#e9e8e3}.coverage{position:absolute;z-index:450;right:14px;top:14px;background:rgba(251,250,247,.95);border:1px solid var(--line);padding:9px 11px;font-size:9.5px;line-height:1.45;max-width:285px}.coverage strong{font-size:11px}.legend{position:absolute;z-index:450;right:14px;bottom:14px;background:rgba(251,250,247,.95);border:1px solid var(--line);padding:8px 10px;font-size:9px;line-height:1.7}.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}.legend .h{background:var(--hospital)}.legend .b{background:var(--bedded)}.legend .c{background:var(--clinic)}
-.empty{padding:26px 14px;color:var(--muted);font-size:11px;line-height:1.7}.pin{border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.38)}.pin.hospital{width:15px;height:15px;background:var(--hospital);border-radius:3px}.pin.bedded{width:13px;height:13px;background:var(--bedded);border-radius:50%}.pin.clinic{width:11px;height:11px;background:var(--clinic);border-radius:50%}
-.leaflet-popup-content{font-family:inherit;min-width:240px}.pop h3{font-size:14px;margin:0 0 7px}.pop p{font-size:10.5px;color:#555;margin:4px 0;line-height:1.45}.pop a{color:#293943}.mobileToggle{display:none}
-@media(max-width:760px){.app{grid-template-columns:1fr}.side{position:absolute;left:0;top:0;bottom:0;width:min(91vw,390px);transform:translateX(-100%);transition:.22s ease;box-shadow:8px 0 30px rgba(0,0,0,.14)}.side.open{transform:none}.mobileToggle{display:block;position:absolute;z-index:700;left:12px;top:12px;border:1px solid var(--line);background:rgba(251,250,247,.97);padding:9px 11px;border-radius:4px;font-size:11px}.coverage{top:12px;right:12px;max-width:58vw}.legend{bottom:12px;right:12px}.mapwrap{height:100dvh}.controls{max-height:58vh}}
+:root{--paper:#f3f2ee;--ink:#171817;--muted:#73766f;--line:#d7d6cf;--panel:#fbfaf7;--accent:#273840;--hospital:#236a96;--bedded:#c56b2e;--clinic:#4e805d;--home:#685b80;--care:#687d57}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:"Atkinson Hyperlegible","Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--paper)}body{overflow:hidden}
+.app{display:grid;grid-template-columns:380px 1fr;height:100dvh}.side{z-index:20;background:rgba(251,250,247,.99);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.head{padding:16px 18px 11px;border-bottom:1px solid var(--line)}.eyebrow{font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:700}.title{font-size:23px;margin:3px 0;font-weight:740;letter-spacing:-.035em}.sub{font-size:9.5px;color:var(--muted);line-height:1.5}
+.controls{padding:10px 12px;border-bottom:1px solid var(--line);display:grid;gap:7px;overflow:auto;max-height:54vh}.row{display:grid;grid-template-columns:1fr 1fr;gap:6px}.prefrow{grid-template-columns:1fr 66px}
+select,input,button{font:inherit}select,input{width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:8px 9px;font-size:11px}.btn{border:1px solid var(--line);background:#fff;border-radius:4px;padding:8px;font-size:10px;cursor:pointer}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.quick{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}.quickbtn{border:1px solid var(--line);background:white;padding:8px 3px;border-radius:4px;font-size:10px;font-weight:700;cursor:pointer}.quickbtn.on{color:white}.quickbtn.home.on{background:var(--home);border-color:var(--home)}.quickbtn.care.on{background:var(--care);border-color:var(--care)}.quickbtn.pin.on{background:var(--accent);border-color:var(--accent)}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.typebtn{border:1px solid var(--line);background:#fff;padding:7px 3px;border-radius:4px;font-size:9.5px;font-weight:700;cursor:pointer}.typebtn.active[data-type="病院"]{background:var(--hospital);color:#fff;border-color:var(--hospital)}.typebtn.active[data-type="有床診療所"]{background:var(--bedded);color:#fff;border-color:var(--bedded)}.typebtn.active[data-type="無床診療所"]{background:var(--clinic);color:#fff;border-color:var(--clinic)}
+.note{font-size:9px;color:var(--muted);line-height:1.45}.status{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted)}.status input{width:auto}.reset{border:0;background:none;text-decoration:underline;color:var(--muted);font-size:9px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}.metric{background:var(--panel);padding:8px}.metric b{display:block;font-size:14px}.metric span{font-size:7.5px;color:var(--muted)}.listhead{padding:8px 12px 5px;display:flex;justify-content:space-between;font-size:9px;color:var(--muted)}.list{flex:1;overflow:auto;padding:0 8px 12px}.card{border-top:1px solid var(--line);padding:9px 6px;cursor:pointer}.card h3{font-size:12px;margin:0 0 4px}.card p{font-size:9px;color:var(--muted);margin:2px 0;line-height:1.4}
+.badge{display:inline-block;padding:2px 5px;margin:0 3px 3px 0;border:1px solid var(--line);border-radius:2px;font-size:8px;background:#fff}.badge.h{border-color:var(--hospital);color:var(--hospital)}.badge.b{border-color:var(--bedded);color:#8e451d}.badge.c{border-color:var(--clinic);color:#315e3e}.badge.home{border-color:#887d98;background:#f0edf4}.badge.care{border-color:#859978;background:#eef2e9}.badge.year{background:#f4f2ec}
+.mapwrap{position:relative;min-width:0}#map{height:100%;background:#e8e8e3}.overlay{position:absolute;z-index:800;right:12px;top:12px;background:rgba(251,250,247,.95);border:1px solid var(--line);padding:8px 10px;font-size:9px;line-height:1.45;max-width:280px}.legend{position:absolute;z-index:800;right:12px;bottom:12px;background:rgba(251,250,247,.95);border:1px solid var(--line);padding:7px 9px;font-size:9px;line-height:1.7}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.maperr{position:absolute;z-index:850;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--line);padding:14px;max-width:330px;font-size:10px;line-height:1.6;display:none}
+.mobile{display:none}.empty{padding:20px 10px;font-size:10px;color:var(--muted);line-height:1.6}
+@media(max-width:760px){.app{grid-template-columns:1fr}.side{position:absolute;left:0;top:0;bottom:0;width:min(91vw,380px);transform:translateX(-100%);transition:.2s;box-shadow:8px 0 30px rgba(0,0,0,.12)}.side.open{transform:none}.mobile{display:block;position:absolute;z-index:900;left:10px;top:10px;border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:4px}.controls{max-height:59vh}}
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="side" id="side">
-  <div class="head"><div class="eyebrow">NATIONAL MEDICAL FACILITY INDEX</div><div class="title">全国病院MAP</div><div class="sub">厚生局 2026.09 / 医療情報ネット 2026.06<br>地域包括診療 2026.08.25 / 在宅施設基準 2026.08–09</div></div>
-  <div class="controls">
-    <div class="row prefrow"><select id="pref"><option value="">都道府県を選択</option></select><button id="prefGo" class="btn primary">表示</button></div>
-    <input id="q" placeholder="施設名・住所・開設者・診療科・指定年">
-    <input id="deptText" list="deptList" placeholder="診療科で絞り込み（例：整形外科）"><datalist id="deptList"></datalist>
-    <div class="row"><select id="group"><option value="">診療領域：すべて</option></select><select id="ageMin"><option value="">保険指定年数：すべて</option><option value="10">指定から10年以上</option><option value="20">20年以上</option><option value="30">30年以上</option><option value="50">50年以上</option><option value="70">70年以上</option></select></div>
-    <select id="sort"><option value="name">並び替え：施設名</option><option value="designation_old">保険指定年：古い順</option><option value="designation_new">保険指定年：新しい順</option><option value="beds_desc">病床数：多い順</option><option value="departments_desc">診療科数：多い順</option><option value="department_name">診療科名順</option></select>
-    <div class="quick"><button id="toggleHome" class="quickbtn home">在宅 OFF</button><button id="toggleRegional" class="quickbtn care">地域包括 OFF</button><button id="togglePins" class="quickbtn pin on">ピン CLUSTER</button></div>
-    <div class="row"><select id="homeCare"><option value="">在宅：詳細区分すべて</option><option value="支援診1">在支診1</option><option value="支援診2ア">在支診2ア</option><option value="支援診2イ">在支診2イ</option><option value="支援診3">在支診3</option><option value="支援病1">在支病1</option><option value="支援病2">在支病2</option><option value="支援病3">在支病3</option><option value="在充診">在充診</option><option value="在充病">在充病</option><option value="在診実1">在診実1</option><option value="在診実2">在診実2</option><option value="在病実1">在病実1</option><option value="在病実2">在病実2</option><option value="在後病">在宅療養後方支援病院</option><option value="介保連">介保連</option><option value="在宅DX">在宅DX</option></select><select id="regionalCare"><option value="">地域包括：詳細すべて</option><option value="addition">地域包括診療加算</option><option value="fee">地域包括診療料</option><option value="both">両方取得</option></select></div>
-    <div class="types"><button class="typebtn active" data-type="病院">● 病院</button><button class="typebtn active" data-type="有床診療所">● 有床診療所</button><button class="typebtn active" data-type="無床診療所">● 無床診療所</button></div>
-    <div class="statusrow"><label class="statusline"><input id="current" type="checkbox" checked> 現存施設のみ</label><button class="reset" id="resetFilters">条件をリセット</button></div>
-    <div class="sectionnote">※「古い順」「指定から○年以上」は実開設年ではなく、厚生局の<strong>保険医療機関指定年月日</strong>を基準にしています。</div>
-    <div id="homeDataNotice" class="homewarn"></div>
-  </div>
-  <div class="metrics"><div class="metric"><b id="mTotal">—</b><span>MASTER</span></div><div class="metric"><b id="mMapped">—</b><span>MAPPED</span></div><div class="metric"><b id="mShown">—</b><span>SHOWN</span></div><div class="metric"><b id="mOld">—</b><span>指定50Y+</span></div></div>
-  <div class="listhead"><span>FACILITIES</span><span id="listNote">都道府県を選択</span></div>
-  <div class="list" id="list"><div class="empty">都道府県を選択してください。ローカルHTMLでもGitHub Pagesでも動くよう、都道府県データはJSON fetchではなくJSデータとして読み込みます。</div></div>
-</aside>
-<main class="mapwrap"><button class="mobileToggle" id="mobileToggle">MENU</button><div id="map" class="map"></div><div class="coverage" id="coverage"><strong>全国病院MAP</strong><br>都道府県を選択してください。</div><div class="legend"><div><i class="h"></i>病院</div><div><i class="b"></i>有床診療所</div><div><i class="c"></i>無床診療所</div></div></main>
+<div class="head"><div class="eyebrow">NATIONAL MEDICAL FACILITY INDEX / LITE</div><div class="title">全国病院MAP</div><div class="sub">都道府県はHTML内に固定済み。データは選択時だけ読み込みます。</div></div>
+<div class="controls">
+<div class="row prefrow">
+<select id="pref"><option value="">都道府県を選択</option>
+<option value="01">北海道</option>
+<option value="02">青森県</option>
+<option value="03">岩手県</option>
+<option value="04">宮城県</option>
+<option value="05">秋田県</option>
+<option value="06">山形県</option>
+<option value="07">福島県</option>
+<option value="08">茨城県</option>
+<option value="09">栃木県</option>
+<option value="10">群馬県</option>
+<option value="11">埼玉県</option>
+<option value="12">千葉県</option>
+<option value="13">東京都</option>
+<option value="14">神奈川県</option>
+<option value="15">新潟県</option>
+<option value="16">富山県</option>
+<option value="17">石川県</option>
+<option value="18">福井県</option>
+<option value="19">山梨県</option>
+<option value="20">長野県</option>
+<option value="21">岐阜県</option>
+<option value="22">静岡県</option>
+<option value="23">愛知県</option>
+<option value="24">三重県</option>
+<option value="25">滋賀県</option>
+<option value="26">京都府</option>
+<option value="27">大阪府</option>
+<option value="28">兵庫県</option>
+<option value="29">奈良県</option>
+<option value="30">和歌山県</option>
+<option value="31">鳥取県</option>
+<option value="32">島根県</option>
+<option value="33">岡山県</option>
+<option value="34">広島県</option>
+<option value="35">山口県</option>
+<option value="36">徳島県</option>
+<option value="37">香川県</option>
+<option value="38">愛媛県</option>
+<option value="39">高知県</option>
+<option value="40">福岡県</option>
+<option value="41">佐賀県</option>
+<option value="42">長崎県</option>
+<option value="43">熊本県</option>
+<option value="44">大分県</option>
+<option value="45">宮崎県</option>
+<option value="46">鹿児島県</option>
+<option value="47">沖縄県</option>
+</select><button id="prefGo" class="btn primary">表示</button></div>
+<input id="q" placeholder="施設名・住所・開設者・管理者">
+<input id="deptText" list="deptList" placeholder="診療科（例：整形外科）"><datalist id="deptList"></datalist>
+<div class="row"><select id="group"><option value="">診療領域：すべて</option><option value="内科系">内科系</option>
+<option value="外科系">外科系</option>
+<option value="整形・MSK">整形・MSK</option>
+<option value="小児">小児</option>
+<option value="産婦人科">産婦人科</option>
+<option value="精神・心療">精神・心療</option>
+<option value="眼科">眼科</option>
+<option value="耳鼻咽喉科">耳鼻咽喉科</option>
+<option value="皮膚科">皮膚科</option>
+<option value="泌尿器科">泌尿器科</option>
+<option value="画像・放射線">画像・放射線</option>
+<option value="麻酔・疼痛">麻酔・疼痛</option>
+<option value="救急">救急</option></select><select id="ageMin"><option value="">指定年数：すべて</option><option value="10">10年以上</option><option value="20">20年以上</option><option value="30">30年以上</option><option value="50">50年以上</option><option value="70">70年以上</option></select></div>
+<select id="sort"><option value="name">並び替え：施設名</option><option value="old">保険指定：古い順</option><option value="new">保険指定：新しい順</option><option value="beds">病床数：多い順</option><option value="depts">診療科数：多い順</option><option value="deptname">診療科名順</option></select>
+<div class="quick"><button id="toggleHome" class="quickbtn home">在宅 OFF</button><button id="toggleCare" class="quickbtn care">地域包括 OFF</button><button id="togglePins" class="quickbtn pin on">ピン ON</button></div>
+<div class="row"><select id="homeDetail"><option value="">在宅詳細：すべて</option><option value="支援診1">支援診1</option><option value="支援診2ア">支援診2ア</option><option value="支援診2イ">支援診2イ</option><option value="支援診3">支援診3</option><option value="支援病1">支援病1</option><option value="支援病2">支援病2</option><option value="支援病3">支援病3</option><option value="在充診">在充診</option><option value="在充病">在充病</option><option value="在診実1">在診実1</option><option value="在診実2">在診実2</option><option value="在病実1">在病実1</option><option value="在病実2">在病実2</option><option value="在後病">在後病</option><option value="介保連">介保連</option><option value="在宅DX">在宅DX</option></select><select id="careDetail"><option value="">地域包括：すべて</option><option value="1">診療加算</option><option value="2">診療料</option><option value="3">両方</option></select></div>
+<div class="types"><button class="typebtn active" data-type="0">● 病院</button><button class="typebtn active" data-type="1">● 有床診療所</button><button class="typebtn active" data-type="2">● 無床診療所</button></div>
+<div class="status"><label><input id="current" type="checkbox" checked> 現存のみ</label><button class="reset" id="reset">条件リセット</button></div>
+<div class="note">※「古い順」「○年以上」は実開設年ではなく、厚生局の<strong>保険医療機関指定年月日</strong>です。</div>
 </div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-<script src="data/index.js"></script>
+<div class="metrics"><div class="metric"><b id="mMaster">—</b><span>MASTER</span></div><div class="metric"><b id="mMapped">—</b><span>MAPPED</span></div><div class="metric"><b id="mShown">—</b><span>SHOWN</span></div><div class="metric"><b id="mOld">—</b><span>指定50Y+</span></div></div>
+<div class="listhead"><span>FACILITIES</span><span id="listNote">都道府県を選択</span></div>
+<div class="list" id="list"><div class="empty">都道府県を選択してください。</div></div>
+</aside>
+<main class="mapwrap"><button class="mobile" id="mobile">MENU</button><div id="map"></div><div class="overlay" id="overlay"><strong>全国病院MAP LITE</strong><br>都道府県を選択してください。</div><div class="legend"><div><span class="dot" style="background:var(--hospital)"></span>病院</div><div><span class="dot" style="background:var(--bedded)"></span>有床診療所</div><div><span class="dot" style="background:var(--clinic)"></span>無床診療所</div></div><div class="maperr" id="maperr">地図ライブラリを読み込めませんでした。都道府県・検索・一覧は利用できます。ネットワーク環境を確認してください。</div></main>
+</div>
 <script>
-'use strict';
-const REFERENCE_DATE=new Date('2026-09-01T00:00:00+09:00');
-const meta=window.__INDEX__;
-window.__PREF_STORE__=window.__PREF_STORE__||{};
+window.__HOSP_CHUNK__={};
+const PREF_META={"01":{"name":"北海道","total":3248,"mapped":2525,"coverage":0.7774014778325123,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d01"},"02":{"name":"青森県","total":703,"mapped":598,"coverage":0.8506401137980085,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d02"},"03":{"name":"岩手県","total":745,"mapped":690,"coverage":0.9261744966442953,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d02"},"04":{"name":"宮城県","total":1554,"mapped":1394,"coverage":0.8970398970398971,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d03"},"05":{"name":"秋田県","total":627,"mapped":602,"coverage":0.960127591706539,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d02"},"06":{"name":"山形県","total":741,"mapped":715,"coverage":0.9649122807017544,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d02"},"07":{"name":"福島県","total":1167,"mapped":1022,"coverage":0.8757497857754927,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d04"},"08":{"name":"茨城県","total":1566,"mapped":1322,"coverage":0.8441890166028098,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d01"},"09":{"name":"栃木県","total":1287,"mapped":956,"coverage":0.7428127428127428,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"10":{"name":"群馬県","total":1390,"mapped":1265,"coverage":0.9100719424460432,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"11":{"name":"埼玉県","total":4361,"mapped":3551,"coverage":0.8142627837651915,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d01"},"12":{"name":"千葉県","total":3718,"mapped":2888,"coverage":0.7767616998386229,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d01"},"13":{"name":"東京都","total":13954,"mapped":11252,"coverage":0.806363766661889,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d03"},"14":{"name":"神奈川県","total":6818,"mapped":5499,"coverage":0.8065415077735406,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d05"},"15":{"name":"新潟県","total":1322,"mapped":1147,"coverage":0.867624810892587,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"16":{"name":"富山県","total":693,"mapped":632,"coverage":0.911976911976912,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"17":{"name":"石川県","total":780,"mapped":540,"coverage":0.6923076923076923,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"18":{"name":"福井県","total":510,"mapped":476,"coverage":0.9333333333333333,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"19":{"name":"山梨県","total":644,"mapped":593,"coverage":0.9208074534161491,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"20":{"name":"長野県","total":1391,"mapped":1267,"coverage":0.9108554996405464,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"21":{"name":"岐阜県","total":1380,"mapped":1318,"coverage":0.9550724637681159,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"22":{"name":"静岡県","total":2439,"mapped":2280,"coverage":0.9348093480934809,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d01"},"23":{"name":"愛知県","total":5212,"mapped":4279,"coverage":0.8209900230237912,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d05"},"24":{"name":"三重県","total":1311,"mapped":1224,"coverage":0.9336384439359268,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"25":{"name":"滋賀県","total":993,"mapped":906,"coverage":0.9123867069486404,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"26":{"name":"京都府","total":2378,"mapped":1158,"coverage":0.48696383515559294,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"27":{"name":"大阪府","total":8854,"mapped":7440,"coverage":0.8402981703185001,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d05"},"28":{"name":"兵庫県","total":5028,"mapped":3362,"coverage":0.6686555290373906,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d01"},"29":{"name":"奈良県","total":1117,"mapped":924,"coverage":0.8272157564905999,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"30":{"name":"和歌山県","total":941,"mapped":884,"coverage":0.9394261424017003,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"31":{"name":"鳥取県","total":430,"mapped":353,"coverage":0.8209302325581396,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d02"},"32":{"name":"島根県","total":581,"mapped":528,"coverage":0.9087779690189329,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d02"},"33":{"name":"岡山県","total":1408,"mapped":1268,"coverage":0.9005681818181818,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d04"},"34":{"name":"広島県","total":2383,"mapped":2107,"coverage":0.8841796055392362,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d01"},"35":{"name":"山口県","total":1083,"mapped":1002,"coverage":0.925207756232687,"homeCareData":true,"homeCareSourceDate":"2026-08-01","chunk":"d04"},"36":{"name":"徳島県","total":652,"mapped":621,"coverage":0.9524539877300614,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"37":{"name":"香川県","total":749,"mapped":713,"coverage":0.951935914552737,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"38":{"name":"愛媛県","total":1065,"mapped":1010,"coverage":0.9483568075117371,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"39":{"name":"高知県","total":506,"mapped":472,"coverage":0.932806324110672,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"40":{"name":"福岡県","total":4536,"mapped":4245,"coverage":0.9358465608465608,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d03"},"41":{"name":"佐賀県","total":662,"mapped":633,"coverage":0.9561933534743202,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"},"42":{"name":"長崎県","total":1157,"mapped":1072,"coverage":0.9265341400172861,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"43":{"name":"熊本県","total":1366,"mapped":1287,"coverage":0.9421669106881405,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"44":{"name":"大分県","total":917,"mapped":821,"coverage":0.8953107960741549,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d05"},"45":{"name":"宮崎県","total":837,"mapped":722,"coverage":0.8626045400238949,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d03"},"46":{"name":"鹿児島県","total":1270,"mapped":812,"coverage":0.6393700787401575,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d04"},"47":{"name":"沖縄県","total":919,"mapped":285,"coverage":0.3101196953210011,"homeCareData":true,"homeCareSourceDate":"2026-09-01","chunk":"d02"}};
+const HOME_LABELS=["支援診1", "支援診2ア", "支援診2イ", "支援診3", "支援病1", "支援病2", "支援病3", "在充診", "在充病", "在診実1", "在診実2", "在病実1", "在病実2", "在後病", "介保連", "在宅DX"];
+const HOME_BIT={"支援診1":1,"支援診2ア":2,"支援診2イ":4,"支援診3":8,"支援病1":16,"支援病2":32,"支援病3":64,"在充診":128,"在充病":256,"在診実1":512,"在診実2":1024,"在病実1":2048,"在病実2":4096,"在後病":8192,"介保連":16384,"在宅DX":32768};
+const GROUP_RULES=[["内科系","内科|心療内科|脳神経内科"],["外科系","外科"],["整形・MSK","整形外科|リハビリテーション科|リウマチ科"],["小児","小児科"],["産婦人科","産婦人科|産科|婦人科"],["精神・心療","精神科|心療内科|神経科"],["眼科","眼科"],["耳鼻咽喉科","耳鼻咽喉科"],["皮膚科","皮膚科|美容皮膚科"],["泌尿器科","泌尿器科"],["画像・放射線","放射線"],["麻酔・疼痛","麻酔科|ペインクリニック"],["救急","救急科"]];
+const TYPE_NAMES=["病院","有床診療所","無床診療所"];
+const CARE_NAMES=["","地域包括診療加算","地域包括診療料","加算＋診療料"];
+const COLORS=["#236a96","#c56b2e","#4e805d"];
+const REF_DATE=new Date("2026-09-01T00:00:00+09:00");
 const $=id=>document.getElementById(id);
-const esc=s=>(s??'').toString().replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const COLORS={'病院':'#21618c','有床診療所':'#c46a2b','無床診療所':'#4e7d5b'};
-let data=[],shown=[],listItems=[],activeTypes=new Set(['病院','有床診療所','無床診療所']);
-let homeOnly=false,regionalOnly=false,pinMode='cluster',markerById=new Map();
+const esc=s=>(s??"").toString().replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+let data=[],shown=[],activeTypes=new Set([0,1,2]),homeOnly=false,careOnly=false,pinsOn=true;
+let map=null,mapLayer=null,mapReady=false,currentChunk=null;
 
-const map=L.map('map',{zoomControl:false,preferCanvas:true}).setView([37.35,137.2],5);
-L.control.zoom({position:'bottomright'}).addTo(map);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-const clusters=L.markerClusterGroup({chunkedLoading:true,disableClusteringAtZoom:15,showCoverageOnHover:false,maxClusterRadius:40});
-const individual=L.layerGroup();
-map.addLayer(clusters);
-const canvasRenderer=L.canvas({padding:.45});
-
-function pinClass(type){return type==='病院'?'hospital':type==='有床診療所'?'bedded':'clinic'}
-function clusterIcon(type){const c=pinClass(type);return L.divIcon({className:'',html:`<div class="pin ${c}"></div>`,iconSize:[16,16],iconAnchor:[8,8]})}
-function careLabel(v){return v==='both'?'地域包括：加算＋診療料':v==='addition'?'地域包括診療加算':v==='fee'?'地域包括診療料':''}
-function homeLabel(x){return (x.homeCareLabels||[]).join(' / ')}
-function designationDate(x){if(!x.designated)return null;const d=new Date(x.designated+'T00:00:00+09:00');return Number.isNaN(d.getTime())?null:d}
-function designationYears(x){const d=designationDate(x);if(!d)return null;let y=REFERENCE_DATE.getFullYear()-d.getFullYear();const md=REFERENCE_DATE.getMonth()*100+REFERENCE_DATE.getDate(),dd=d.getMonth()*100+d.getDate();if(md<dd)y--;return Math.max(0,y)}
-function designationLabel(x){const d=designationDate(x),y=designationYears(x);return d?`${d.getFullYear()}年指定${y!==null?`・${y}年`:''}`:''}
-function typeBadge(type){const c=pinClass(type);return `<span class="badge ${c}">${esc(type)}</span>`}
-function popup(x){const cb=careLabel(x.regionalCare),hb=homeLabel(x),yb=designationLabel(x);return `<div class="pop"><h3>${esc(x.name)}</h3><p>${typeBadge(x.type)}${x.beds?`<span class="badge">${x.beds}床</span>`:''}${yb?`<span class="badge year">${esc(yb)}</span>`:''}</p>${cb?`<p><span class="badge care">${esc(cb)}</span></p>`:''}${hb?`<p><span class="badge home">${esc(hb)}</span></p>`:''}<p>${esc(x.address)}</p><p>${esc((x.departments||[]).slice(0,10).join(' / '))}</p>${x.founder?`<p>開設者：${esc(x.founder)}</p>`:''}${x.manager?`<p>管理者：${esc(x.manager)}</p>`:''}${x.designated?`<p>保険医療機関指定：${esc(x.designated)}</p>`:''}${x.url?`<p><a href="${esc(x.url)}" target="_blank" rel="noopener">医療機関サイト ↗</a></p>`:''}</div>`}
-
-function updateQuickButtons(){
-  const h=$('toggleHome'),r=$('toggleRegional'),p=$('togglePins');
-  h.classList.toggle('on',homeOnly);h.textContent=`在宅 ${homeOnly?'ON':'OFF'}`;h.setAttribute('aria-pressed',homeOnly);
-  r.classList.toggle('on',regionalOnly);r.textContent=`地域包括 ${regionalOnly?'ON':'OFF'}`;r.setAttribute('aria-pressed',regionalOnly);
-  p.classList.add('on');p.textContent=pinMode==='cluster'?'ピン CLUSTER':'ピン INDIVIDUAL';
+function decodePref(c){
+  const dept=c.d;
+  return c.r.map(a=>({
+    id:a[0],name:a[1],lat:a[2],lng:a[3],type:a[4],current:!!a[5],beds:a[6],
+    departments:a[7].map(i=>dept[i]),address:a[8],phone:a[9],founder:a[10],manager:a[11],
+    designated:a[12],url:a[13],care:a[14],homeMask:a[15]
+  }));
 }
-function departmentMatch(x,q){if(!q)return true;const v=q.trim().toLowerCase();return (x.departments||[]).some(d=>d.toLowerCase().includes(v))}
-function sortList(items){
-  const mode=$('sort').value,arr=[...items],year=x=>designationDate(x)?.getTime()??null;
-  const ja=(a,b)=>(a||'').localeCompare(b||'','ja');
-  arr.sort((a,b)=>{
-    if(mode==='designation_old'){const A=year(a),B=year(b);return A===null?1:B===null?-1:A-B||ja(a.name,b.name)}
-    if(mode==='designation_new'){const A=year(a),B=year(b);return A===null?1:B===null?-1:B-A||ja(a.name,b.name)}
-    if(mode==='beds_desc')return (b.beds||0)-(a.beds||0)||ja(a.name,b.name);
-    if(mode==='departments_desc')return (b.departments?.length||0)-(a.departments?.length||0)||ja(a.name,b.name);
-    if(mode==='department_name'){const A=[...(a.departments||[])].sort((x,y)=>ja(x,y))[0]||'￿',B=[...(b.departments||[])].sort((x,y)=>ja(x,y))[0]||'￿';return ja(A,B)||ja(a.name,b.name)}
-    return ja(a.name,b.name);
-  });return arr;
+function homeLabels(x){let a=[];for(let i=0;i<HOME_LABELS.length;i++)if(x.homeMask&(1<<i))a.push(HOME_LABELS[i]);return a}
+function homeHas(x,label){return !!(x.homeMask&HOME_BIT[label])}
+function dateObj(n){if(!n)return null;const s=String(n).padStart(8,"0");const d=new Date(`${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}T00:00:00+09:00`);return isNaN(d)?null:d}
+function yearsSince(x){const d=dateObj(x.designated);if(!d)return null;let y=REF_DATE.getFullYear()-d.getFullYear();if(REF_DATE.getMonth()<d.getMonth()||(REF_DATE.getMonth()==d.getMonth()&&REF_DATE.getDate()<d.getDate()))y--;return y}
+function designatedText(x){const d=dateObj(x.designated),y=yearsSince(x);return d?`${d.getFullYear()}年指定${y!==null?`・${y}年`:""}`:""}
+function groupHas(x,g){if(!g)return true;const r=GROUP_RULES.find(a=>a[0]===g);if(!r)return true;const keys=r[1].split("|");return x.departments.some(d=>keys.some(k=>d.includes(k)))}
+function badgeType(t){return `<span class="badge ${t===0?"h":t===1?"b":"c"}">${TYPE_NAMES[t]}</span>`}
+function cardHTML(x){const hs=homeLabels(x),dt=designatedText(x);return `<h3>${esc(x.name)}</h3><p>${badgeType(x.type)}${x.beds?`<span class="badge">${x.beds}床</span>`:""}${dt?`<span class="badge year">${esc(dt)}</span>`:""}${x.care?`<span class="badge care">${CARE_NAMES[x.care]}</span>`:""}${hs.length?`<span class="badge home">${esc(hs.slice(0,3).join(" / "))}</span>`:""}</p><p>${esc(x.address)}</p><p>${esc(x.departments.slice(0,6).join(" / "))}</p>`}
+function popupHTML(x){const hs=homeLabels(x),dt=designatedText(x);return `<div style="font:12px system-ui;min-width:240px"><b style="font-size:14px">${esc(x.name)}</b><p>${badgeType(x.type)}${dt?`<span class="badge year">${esc(dt)}</span>`:""}</p>${x.care?`<p>地域包括：${CARE_NAMES[x.care]}</p>`:""}${hs.length?`<p>在宅：${esc(hs.join(" / "))}</p>`:""}<p>${esc(x.address)}</p><p>${esc(x.departments.slice(0,10).join(" / "))}</p>${x.founder?`<p>開設者：${esc(x.founder)}</p>`:""}${x.manager?`<p>管理者：${esc(x.manager)}</p>`:""}${x.phone?`<p>${esc(x.phone)}</p>`:""}${x.url?`<p><a target="_blank" rel="noopener" href="${esc(x.url)}">医療機関サイト ↗</a></p>`:""}</div>`}
+
+function initMap(){
+  if(typeof L==="undefined"){$("maperr").style.display="block";return}
+  try{
+    map=L.map("map",{zoomControl:true,preferCanvas:true}).setView([37.4,137.3],5);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"&copy; OpenStreetMap"}).addTo(map);
+    mapLayer=L.layerGroup().addTo(map);mapReady=true;
+    map.on("moveend zoomend",drawMap);
+  }catch(e){$("maperr").style.display="block"}
 }
+function drawMap(){
+  if(!mapReady||!mapLayer)return;mapLayer.clearLayers();if(!pinsOn||!shown.length)return;
+  const b=map.getBounds().pad(.08),visible=shown.filter(x=>b.contains([x.lat,x.lng])),z=map.getZoom();
+  const useIndividual=(z>=13&&visible.length<=1800)||(visible.length<=450);
+  if(useIndividual){
+    for(const x of visible.slice(0,1800)){
+      const r=x.type===0?5.2:x.type===1?4.4:3.6;
+      L.circleMarker([x.lat,x.lng],{radius:r,color:"#fff",weight:1,fillColor:COLORS[x.type],fillOpacity:.9})
+        .bindPopup(popupHTML(x),{maxWidth:330}).addTo(mapLayer);
+    }
+    return;
+  }
+  const cell=z<8?58:z<10?48:z<12?40:34,buckets=new Map();
+  for(const x of visible){
+    const p=map.latLngToContainerPoint([x.lat,x.lng]),k=`${Math.floor(p.x/cell)}:${Math.floor(p.y/cell)}`;
+    let v=buckets.get(k);if(!v){v={n:0,lat:0,lng:0,t:[0,0,0],one:x};buckets.set(k,v)}
+    v.n++;v.lat+=x.lat;v.lng+=x.lng;v.t[x.type]++;v.one=x;
+  }
+  for(const v of buckets.values()){
+    if(v.n===1){
+      const x=v.one;L.circleMarker([x.lat,x.lng],{radius:x.type===0?5:4,color:"#fff",weight:1,fillColor:COLORS[x.type],fillOpacity:.9}).bindPopup(popupHTML(x),{maxWidth:330}).addTo(mapLayer);
+    }else{
+      const dominant=v.t.indexOf(Math.max(...v.t)),r=Math.min(18,7+Math.log2(v.n)*2);
+      L.circleMarker([v.lat/v.n,v.lng/v.n],{radius:r,color:"#fff",weight:1.5,fillColor:COLORS[dominant],fillOpacity:.82})
+       .bindTooltip(`${v.n.toLocaleString()}施設`,{direction:"top"})
+       .on("click",()=>map.setView([v.lat/v.n,v.lng/v.n],Math.min(15,map.getZoom()+2))).addTo(mapLayer);
+    }
+  }
+}
+
 function filterData(){
-  const q=$('q').value.trim().toLowerCase(),dept=$('deptText').value,group=$('group').value,age=parseInt($('ageMin').value||'0',10),care=$('regionalCare').value,home=$('homeCare').value,current=$('current').checked;
+  const q=$("q").value.trim().toLowerCase(),dept=$("deptText").value.trim().toLowerCase(),g=$("group").value;
+  const age=parseInt($("ageMin").value||"0"),home=$("homeDetail").value,care=parseInt($("careDetail").value||"0");
   return data.filter(x=>{
-    if(!activeTypes.has(x.type))return false;
-    if(current&&x.status!=='現存')return false;
-    if(!departmentMatch(x,dept))return false;
-    if(group&&!(x.groups||[]).includes(group))return false;
-    const yrs=designationYears(x);if(age&&(yrs===null||yrs<age))return false;
-    if(regionalOnly&&!x.regionalCare)return false;
-    if(care&&x.regionalCare!==care)return false;
-    if(homeOnly&&!x.homeCareAny)return false;
-    if(home&&!(x.homeCareLabels||[]).includes(home))return false;
-    if(q){const hay=[x.name,x.address,x.founder,x.manager,x.designated,...(x.departments||[]),...(x.groups||[]),...(x.homeCareLabels||[])].join(' ').toLowerCase();if(!hay.includes(q))return false}
+    if(!activeTypes.has(x.type))return false;if($("current").checked&&!x.current)return false;
+    if(dept&&!x.departments.some(d=>d.toLowerCase().includes(dept)))return false;
+    if(g&&!groupHas(x,g))return false;
+    const y=yearsSince(x);if(age&&(y===null||y<age))return false;
+    if(homeOnly&&!x.homeMask)return false;if(home&&!homeHas(x,home))return false;
+    if(careOnly&&!x.care)return false;if(care&&x.care!==care)return false;
+    if(q){const hay=[x.name,x.address,x.founder,x.manager,...x.departments,...homeLabels(x)].join(" ").toLowerCase();if(!hay.includes(q))return false}
     return true;
   });
 }
-function makeClusterMarker(x){const m=L.marker([x.lat,x.lng],{icon:clusterIcon(x.type),title:x.name}).bindPopup(popup(x));m._facility=x;return m}
-function makeIndividualMarker(x){const m=L.circleMarker([x.lat,x.lng],{renderer:canvasRenderer,radius:x.type==='病院'?5.4:x.type==='有床診療所'?4.5:3.8,color:'#fff',weight:1,fillColor:COLORS[x.type],fillOpacity:.9}).bindPopup(popup(x));m._facility=x;return m}
-function drawPins(items){
-  clusters.clearLayers();individual.clearLayers();markerById.clear();
-  if(map.hasLayer(clusters))map.removeLayer(clusters);if(map.hasLayer(individual))map.removeLayer(individual);
-  if(pinMode==='cluster'){
-    const markers=items.map(x=>{const m=makeClusterMarker(x);markerById.set(x.id,m);return m});clusters.addLayers(markers);map.addLayer(clusters);
-  }else{
-    const markers=items.map(x=>{const m=makeIndividualMarker(x);markerById.set(x.id,m);return m});markers.forEach(m=>m.addTo(individual));map.addLayer(individual);
-  }
+function sortData(a){
+  const mode=$("sort").value,ja=(x,y)=>(x||"").localeCompare(y||"","ja"),dt=x=>x.designated||0;
+  return [...a].sort((x,y)=>mode==="old"?(dt(x)||99999999)-(dt(y)||99999999)||ja(x.name,y.name):mode==="new"?(dt(y)||0)-(dt(x)||0)||ja(x.name,y.name):mode==="beds"?(y.beds||0)-(x.beds||0)||ja(x.name,y.name):mode==="depts"?(y.departments.length-x.departments.length)||ja(x.name,y.name):mode==="deptname"?ja([...x.departments].sort()[0],[...y.departments].sort()[0])||ja(x.name,y.name):ja(x.name,y.name));
 }
-function focusFacility(x){map.setView([x.lat,x.lng],16);const m=markerById.get(x.id);if(!m)return;if(pinMode==='cluster')clusters.zoomToShowLayer(m,()=>m.openPopup());else m.openPopup()}
 function render(){
-  shown=filterData();listItems=sortList(shown);drawPins(shown);
-  $('mShown').textContent=shown.length.toLocaleString('ja-JP');$('mOld').textContent=shown.filter(x=>(designationYears(x)??-1)>=50).length.toLocaleString('ja-JP');
-  $('listNote').textContent=listItems.length>300?`上位300 / ${listItems.length.toLocaleString()}件`:`${listItems.length.toLocaleString()}件`;
-  const list=$('list');list.innerHTML='';
-  listItems.slice(0,300).forEach(x=>{const d=document.createElement('div');d.className='card';const cb=careLabel(x.regionalCare),hb=homeLabel(x),yb=designationLabel(x);d.innerHTML=`<h3>${esc(x.name)}</h3><p>${typeBadge(x.type)}${x.beds?`<span class="badge">${x.beds}床</span>`:''}${yb?`<span class="badge year">${esc(yb)}</span>`:''}${cb?`<span class="badge care">${esc(cb)}</span>`:''}${hb?`<span class="badge home">${esc(hb)}</span>`:''}</p><p>${esc(x.address)}</p><p>${esc((x.departments||[]).slice(0,6).join(' / '))}</p>`;d.onclick=()=>focusFacility(x);list.appendChild(d)});
-  if(!shown.length)list.innerHTML='<div class="empty">条件に合う施設がありません。</div>';
+  shown=filterData();const list=sortData(shown);
+  $("mShown").textContent=shown.length.toLocaleString();$("mOld").textContent=shown.filter(x=>(yearsSince(x)??-1)>=50).length.toLocaleString();
+  $("listNote").textContent=`${Math.min(120,list.length)} / ${list.length.toLocaleString()}件`;
+  const el=$("list");el.innerHTML="";
+  for(const x of list.slice(0,120)){const d=document.createElement("div");d.className="card";d.innerHTML=cardHTML(x);d.onclick=()=>{if(mapReady){map.setView([x.lat,x.lng],15);L.popup({maxWidth:330}).setLatLng([x.lat,x.lng]).setContent(popupHTML(x)).openOn(map)}};el.appendChild(d)}
+  if(!list.length)el.innerHTML='<div class="empty">条件に合う施設がありません。</div>';
+  drawMap();
 }
-function loadPrefScript(code){return new Promise((resolve,reject)=>{if(window.__PREF_STORE__[code])return resolve(window.__PREF_STORE__[code]);const s=document.createElement('script');s.src=`data/prefsjs/${code}.js`;s.onload=()=>resolve(window.__PREF_STORE__[code]||[]);s.onerror=()=>reject(new Error('都道府県データを読み込めません'));document.head.appendChild(s)})}
+function buildDeptList(){
+  const set=new Set();data.forEach(x=>x.departments.forEach(d=>set.add(d)));const dl=$("deptList");dl.innerHTML="";[...set].sort((a,b)=>a.localeCompare(b,"ja")).forEach(d=>{const o=document.createElement("option");o.value=d;dl.appendChild(o)})
+}
+function loadChunk(cid){return new Promise((resolve,reject)=>{
+  if(window.__HOSP_CHUNK__[cid])return resolve(window.__HOSP_CHUNK__[cid]);
+  const s=document.createElement("script");s.src=`${cid}.js`;s.onload=()=>resolve(window.__HOSP_CHUNK__[cid]);s.onerror=()=>reject(new Error("データファイルを読み込めません"));document.head.appendChild(s);
+})}
 async function loadPref(code){
-  clusters.clearLayers();individual.clearLayers();data=[];shown=[];$('list').innerHTML='<div class="empty">読み込み中…</div>';
-  if(!code){map.setView([37.35,137.2],5);$('mTotal').textContent='—';$('mMapped').textContent='—';$('mShown').textContent='—';$('mOld').textContent='—';$('coverage').innerHTML='<strong>全国病院MAP</strong><br>都道府県を選択してください。';return}
-  const p=meta.prefectures.find(x=>x.code===code);if(!p){$('list').innerHTML='<div class="empty">都道府県情報が見つかりません。</div>';return}
-  try{data=await loadPrefScript(code)}catch(e){$('list').innerHTML=`<div class="empty">${esc(e.message)}。ZIPを展開したフォルダ構成を保ったまま index.html を開いてください。</div>`;return}
-  $('mTotal').textContent=p.total.toLocaleString();$('mMapped').textContent=p.mapped.toLocaleString();$('coverage').innerHTML=`<strong>${p.name} ${p.mapped.toLocaleString()} / ${p.total.toLocaleString()}</strong><br>公式座標カバー率 ${(p.coverage*100).toFixed(1)}%${p.homeCareSourceDate?`<br>在宅施設基準 ${p.homeCareSourceDate}`:''}`;
-  $('homeDataNotice').textContent=p.homeCareData?'':'この都道府県の在宅施設基準データは未収集です。';render();if(data.length){const b=L.latLngBounds(data.map(x=>[x.lat,x.lng]));map.fitBounds(b.pad(.06))}
+  if(!code){data=[];shown=[];$("list").innerHTML='<div class="empty">都道府県を選択してください。</div>';return}
+  const pm=PREF_META[code];$("list").innerHTML='<div class="empty">読み込み中…</div>';
+  try{
+    const chunk=await loadChunk(pm.chunk),c=chunk[code];data=decodePref(c);buildDeptList();
+    $("mMaster").textContent=pm.total.toLocaleString();$("mMapped").textContent=pm.mapped.toLocaleString();
+    $("overlay").innerHTML=`<strong>${pm.name}</strong><br>${pm.mapped.toLocaleString()} / ${pm.total.toLocaleString()}施設・座標率 ${(pm.coverage*100).toFixed(1)}%${pm.homeCareSourceDate?`<br>在宅基準 ${pm.homeCareSourceDate}`:""}`;
+    render();
+    if(mapReady&&data.length){const b=L.latLngBounds(data.map(x=>[x.lat,x.lng]));map.fitBounds(b.pad(.05))}
+    if(currentChunk&&currentChunk!==pm.chunk)delete window.__HOSP_CHUNK__[currentChunk];currentChunk=pm.chunk;
+  }catch(e){$("list").innerHTML=`<div class="empty">${esc(e.message)}。ZIP展開後、index.htmlとdXX.jsを同じ場所に置いてください。</div>`}
 }
-function resetFilters(){
-  $('q').value='';$('deptText').value='';$('group').value='';$('ageMin').value='';$('sort').value='name';$('regionalCare').value='';$('homeCare').value='';$('current').checked=true;homeOnly=false;regionalOnly=false;activeTypes=new Set(['病院','有床診療所','無床診療所']);document.querySelectorAll('.typebtn').forEach(b=>b.classList.add('active'));updateQuickButtons();render();
+function updateQuick(){
+  $("toggleHome").classList.toggle("on",homeOnly);$("toggleHome").textContent=`在宅 ${homeOnly?"ON":"OFF"}`;
+  $("toggleCare").classList.toggle("on",careOnly);$("toggleCare").textContent=`地域包括 ${careOnly?"ON":"OFF"}`;
+  $("togglePins").classList.toggle("on",pinsOn);$("togglePins").textContent=`ピン ${pinsOn?"ON":"OFF"}`;
 }
-function init(){
-  if(!meta){$('list').innerHTML='<div class="empty">index.js が読み込めません。フォルダ構成を確認してください。</div>';return}
-  const ps=$('pref');meta.prefectures.forEach(p=>ps.add(new Option(`${p.name}  ${p.mapped.toLocaleString()}件`,p.code)));
-  const dl=$('deptList');meta.departments.forEach(d=>{const o=document.createElement('option');o.value=d.name;o.label=`${d.count.toLocaleString()}施設`;dl.appendChild(o)});
-  meta.groups.forEach(g=>$('group').add(new Option(`${g.name} (${g.count.toLocaleString()})`,g.name)));
-  updateQuickButtons();
+function reset(){
+  $("q").value="";$("deptText").value="";$("group").value="";$("ageMin").value="";$("sort").value="name";$("homeDetail").value="";$("careDetail").value="";$("current").checked=true;homeOnly=false;careOnly=false;pinsOn=true;activeTypes=new Set([0,1,2]);document.querySelectorAll(".typebtn").forEach(b=>b.classList.add("active"));updateQuick();render();
 }
-init();
-$('pref').onchange=e=>loadPref(e.target.value);$('prefGo').onclick=()=>loadPref($('pref').value);$('q').oninput=render;$('deptText').oninput=render;$('group').onchange=render;$('ageMin').onchange=render;$('sort').onchange=render;$('current').onchange=render;
-$('regionalCare').onchange=()=>{if($('regionalCare').value)regionalOnly=true;updateQuickButtons();render()};$('homeCare').onchange=()=>{if($('homeCare').value)homeOnly=true;updateQuickButtons();render()};
-$('toggleHome').onclick=()=>{homeOnly=!homeOnly;if(!homeOnly)$('homeCare').value='';updateQuickButtons();render()};$('toggleRegional').onclick=()=>{regionalOnly=!regionalOnly;if(!regionalOnly)$('regionalCare').value='';updateQuickButtons();render()};$('togglePins').onclick=()=>{pinMode=pinMode==='cluster'?'individual':'cluster';updateQuickButtons();drawPins(shown)};
-document.querySelectorAll('.typebtn').forEach(b=>b.onclick=()=>{b.classList.toggle('active');b.classList.contains('active')?activeTypes.add(b.dataset.type):activeTypes.delete(b.dataset.type);render()});$('resetFilters').onclick=resetFilters;
-$('mobileToggle').onclick=()=>$('side').classList.toggle('open');map.on('click',()=>{if(innerWidth<=760)$('side').classList.remove('open')});
+initMap();updateQuick();
+$("pref").onchange=e=>loadPref(e.target.value);$("prefGo").onclick=()=>loadPref($("pref").value);
+["q","deptText"].forEach(id=>$(id).oninput=render);["group","ageMin","sort","current","homeDetail","careDetail"].forEach(id=>$(id).onchange=render);
+$("toggleHome").onclick=()=>{homeOnly=!homeOnly;if(!homeOnly)$("homeDetail").value="";updateQuick();render()};
+$("toggleCare").onclick=()=>{careOnly=!careOnly;if(!careOnly)$("careDetail").value="";updateQuick();render()};
+$("togglePins").onclick=()=>{pinsOn=!pinsOn;updateQuick();drawMap()};
+document.querySelectorAll(".typebtn").forEach(b=>b.onclick=()=>{b.classList.toggle("active");const t=+b.dataset.type;b.classList.contains("active")?activeTypes.add(t):activeTypes.delete(t);render()});
+$("reset").onclick=reset;$("mobile").onclick=()=>$("side").classList.toggle("open");
+const qp=new URLSearchParams(location.search).get("pref");if(qp&&PREF_META[qp]){$("pref").value=qp;loadPref(qp)}
 </script>
-</body></html>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// If Leaflet loads after the main script, initialize it now. Dropdown/list do not depend on Leaflet.
+if(!mapReady&&typeof L!=="undefined"){initMap();if(data.length){const b=L.latLngBounds(data.map(x=>[x.lat,x.lng]));map.fitBounds(b.pad(.05));drawMap()}}
+</script>
+</body>
+</html>
