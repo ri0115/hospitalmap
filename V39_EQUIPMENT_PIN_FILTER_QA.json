@@ -1,0 +1,68 @@
+{
+  "version": "v39",
+  "feature": "MRI/CT ownership pin badges + equipment facility filter",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "equipment_filter": {
+    "options": [
+      [
+        "all",
+        "画像装置：すべて"
+      ],
+      [
+        "any",
+        "CTまたはMRI保有"
+      ],
+      [
+        "both",
+        "CT＋MRI 両方保有"
+      ],
+      [
+        "mri",
+        "MRI保有"
+      ],
+      [
+        "ct",
+        "CT保有"
+      ],
+      [
+        "mri_only",
+        "MRIのみ"
+      ],
+      [
+        "ct_only",
+        "CTのみ"
+      ]
+    ],
+    "expected_modes_missing": [],
+    "logic_modes_missing": [],
+    "event_bound": true
+  },
+  "pin_badges": {
+    "MRI": "M",
+    "CT": "C",
+    "both": "M+C",
+    "unbadged_note_present": true
+  },
+  "equipment_safe_matches": {
+    "any": 7239,
+    "both": 3714,
+    "mri_only": 183,
+    "ct_only": 3342,
+    "orphan_keys": 0
+  },
+  "facility_total": 97393,
+  "csv": {
+    "headers": 58,
+    "values": 58,
+    "parity": true,
+    "facility_equipment_columns": 4
+  },
+  "main_metrics_missing_defs": [],
+  "specialty_missing_defs": [],
+  "ranking_unhandled": [],
+  "selects_unbound": []
+}

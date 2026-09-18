@@ -1,0 +1,17 @@
+{
+  "version": "v44",
+  "medical_info_ids_in_queue": 2335,
+  "corrected_urls_generated": 2335,
+  "web_pages_audited_successfully": 44,
+  "new_CT_positive_confirmations": 25,
+  "CT_count_confirmed_in_batch": 24,
+  "MRI_activity_positive_in_batch": 7,
+  "CT_activity_positive_in_batch": 5,
+  "principle": "撮影実績と装置保有を分離。MRI撮影実績のみではMピンにしない。",
+  "qa": {
+    "javascript": "PASS",
+    "duplicate_ids": [],
+    "missing_dom_refs": [],
+    "missing_local_scripts": []
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "version": "v40",
+  "html_parse": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_refs": [],
+  "missing_local_scripts": [],
+  "equipment_filter_options": [
+    [
+      "all",
+      "画像装置：すべて"
+    ],
+    [
+      "any",
+      "CT/MRI保有（確認済み）"
+    ],
+    [
+      "both",
+      "CT＋MRI 両方（確認済み）"
+    ],
+    [
+      "mri",
+      "MRI保有（確認済み）"
+    ],
+    [
+      "ct",
+      "CT保有（確認済み）"
+    ],
+    [
+      "mri_only",
+      "MRIあり・CT報告なし"
+    ],
+    [
+      "ct_only",
+      "CTあり・MRI報告なし"
+    ]
+  ],
+  "coverage_warning": true,
+  "source_audit_section": true,
+  "audit_csv": true,
+  "audit_json": true
+}

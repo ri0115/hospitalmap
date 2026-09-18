@@ -1,0 +1,26 @@
+{
+  "version": "v41",
+  "scope": "facility list scroll/overlay + facility regional-context wording",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "facility_list": {
+    "dedicated_flex_pane": true,
+    "overflow_y_auto": true,
+    "min_height_zero_on_list": true,
+    "desktop_minimum_height": true,
+    "expand_overlay_available": true,
+    "expand_button_bound": true,
+    "escape_closes_overlay": true
+  },
+  "facility_region_context": {
+    "heading_changed": true,
+    "not_facility_rating_note": true,
+    "relative_value_explanation": true,
+    "mri_ct_order_explained": true,
+    "activity_profile_plain_language": true,
+    "supply_quality_plain_language": true
+  }
+}

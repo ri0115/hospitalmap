@@ -1,0 +1,23 @@
+{
+  "version": "v46",
+  "target_with_medical_info_ID": 2335,
+  "completed": 117,
+  "retry": 17,
+  "unattempted": 2201,
+  "completed_pct": 5.01,
+  "attempted_pct": 5.74,
+  "this_checkpoint": {
+    "retry_rescued": 4,
+    "new_facilities_attempted": 40,
+    "new_facilities_completed": 28,
+    "new_facilities_retry": 12,
+    "new_CT_positive_confirmations": 13
+  },
+  "principle": "CT/MRI設備の肯定確認のみピンに反映。0台・未掲載・撮影実績のみは保有と断定しない。",
+  "qa": {
+    "javascript": "PASS",
+    "duplicate_ids": [],
+    "missing_dom_refs": [],
+    "missing_local_scripts": []
+  }
+}

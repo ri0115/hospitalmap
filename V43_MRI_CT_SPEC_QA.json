@@ -1,0 +1,39 @@
+{
+  "version": "v43",
+  "scope": "MRI field strength / CT detector-row filters + detailed standard enrichment",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_refs": [],
+  "missing_local_scripts": [],
+  "equipment_records": 8972,
+  "spec_filter_options": [
+    "all",
+    "mri3t",
+    "mri15_3",
+    "mri_under15",
+    "ct128",
+    "ct64plus",
+    "ct64_127",
+    "ct16_63",
+    "ct_under16"
+  ],
+  "spec_filter_missing_logic": [],
+  "unbound_selects": [],
+  "csv": {
+    "headers": 66,
+    "values": 66,
+    "parity": true
+  },
+  "spec_confirmed_facility_counts": {
+    "mri3t": 963,
+    "mri15_3": 3410,
+    "mri_under15": 587,
+    "ct128": 39,
+    "ct64plus": 3079,
+    "ct64_127": 41,
+    "ct16_63": 5638,
+    "ct_under16": 478
+  },
+  "detailed_standard_enrichment_records": 473
+}

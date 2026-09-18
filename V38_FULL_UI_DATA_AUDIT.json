@@ -1,0 +1,65 @@
+{
+  "version": "v38",
+  "scope": "direct pin-to-chart + full UI/code/data-link audit",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "metrics": {
+    "main": 88,
+    "missing_defs": []
+  },
+  "specialty": {
+    "options": 58,
+    "missing_defs": [],
+    "missing_map_metrics": []
+  },
+  "ranking": {
+    "options": 20,
+    "unhandled": []
+  },
+  "controls": {
+    "buttons": 27,
+    "unbound_buttons": [],
+    "selects": 10,
+    "unbound_selects": []
+  },
+  "regions": 1880,
+  "prefectures": 47,
+  "facilities": 97393,
+  "facility_region_missing": 0,
+  "bad_coordinates": 0,
+  "seven_digit_ids_reused_across_prefectures": 6144,
+  "equipment_safe_matches_v37": 7139,
+  "equipment_safe_matches_v38": 7239,
+  "equipment_key": "prefecture_code:7digit_facility_id",
+  "csv": {
+    "headers": 54,
+    "values": 54,
+    "parity": true
+  },
+  "pin_behavior": {
+    "click_or_tap": "opens facility chart directly",
+    "desktop_hover": "facility tooltip",
+    "mobile_hit_target_px": 44,
+    "legacy_popup_removed": true
+  },
+  "layout_render_audit": {
+    "desktop_1440x1000": {
+      "horizontal_overflow": 0,
+      "detail_core_grid": "4 columns"
+    },
+    "mobile_390x844": {
+      "horizontal_overflow": 0,
+      "detail_core_grid": "2 x 2"
+    },
+    "modal_panels_checked": [
+      "region detail",
+      "ranking",
+      "specialty",
+      "sources",
+      "facility chart"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "v42",
+  "cm_prefectures_scanned": 40,
+  "cm_total_facilities": 11798,
+  "cm_no_bed_facilities": 4900,
+  "cm_no_bed_missing_from_old_equipment_master": 4872,
+  "new_no_bed_positive_confirmations_added": 1733,
+  "new_detail_breakdown": {
+    "CT_confirmed_MRI_not_confirmed": 1384,
+    "MRI_confirmed_CT_not_confirmed": 159,
+    "both_confirmed": 190
+  },
+  "remaining_no_bed_unresolved": 3139,
+  "remaining_with_medical_info_net_ID": 2335,
+  "remaining_needing_ID_rematch": 804,
+  "equipment_records_after_supplement": 8972,
+  "CT_positive_confirmed_facilities": 8630,
+  "MRI_positive_confirmed_facilities": 4246,
+  "CT_and_MRI_positive_confirmed_facilities": 3904,
+  "qa": {
+    "javascript": "PASS",
+    "duplicate_ids": [],
+    "missing_dom_refs": [],
+    "missing_local_scripts": []
+  },
+  "medical_info_ID_second_pass_added": 38
+}

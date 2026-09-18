@@ -1,0 +1,21 @@
+{
+  "version": "v45",
+  "medical_info_ID_target": 2335,
+  "audited_before": 44,
+  "new_attempted": 50,
+  "new_readable_completed": 41,
+  "new_internal_errors_retry": 9,
+  "new_CT_positive_confirmations": 27,
+  "new_CT_exact_count_1": 26,
+  "total_completed": 85,
+  "total_retry": 9,
+  "total_unattempted": 2241,
+  "progress_completed_pct": 3.64,
+  "progress_attempted_pct": 4.03,
+  "qa": {
+    "javascript": "PASS",
+    "duplicate_ids": [],
+    "missing_dom_refs": [],
+    "missing_local_scripts": []
+  }
+}
