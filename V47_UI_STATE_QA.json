@@ -1,0 +1,26 @@
+{
+  "version": "v47",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "checks": {
+    "home_gap_state_variable": true,
+    "home_gap_previous_state": true,
+    "home_gap_toggle": true,
+    "home_gap_active_text": true,
+    "home_gap_restore_metric": true,
+    "home_gap_restore_filter": true,
+    "home_gap_aria": true,
+    "list_stable_home": true,
+    "list_body_portal": true,
+    "list_restore": true,
+    "list_placeholder": true,
+    "list_restore_button": true,
+    "list_persistent_render": true,
+    "list_overlay_css": true,
+    "mobile_restore": true
+  },
+  "all_target_checks_pass": true
+}
