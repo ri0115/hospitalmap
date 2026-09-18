@@ -1,0 +1,22 @@
+{
+  "version": "v33",
+  "equipment_master_rows": 7569,
+  "safe_facility_matches": 7139,
+  "excluded_name_mismatch_matches": 1582,
+  "duplicate_ids": 0,
+  "missing_local_scripts": [],
+  "facility_fields": [
+    "MRI総台数",
+    "MRI 3T以上",
+    "MRI 1.5-3T",
+    "MRI 1.5T未満",
+    "CT総台数",
+    "CT 64列以上",
+    "CT 16-63列",
+    "CT 16列未満",
+    "施設基準最新開始日",
+    "更新シグナル",
+    "CT/MRI年間撮影件数"
+  ],
+  "manufacturer_model_install_year": "not available in source; not inferred"
+}

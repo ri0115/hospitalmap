@@ -1,0 +1,14 @@
+{
+  "version": "v30",
+  "source": "医療情報ネット 2026-06-01 病院施設票",
+  "hospital_facilities_total": 7715,
+  "hospital_facilities_region_matched": 7681,
+  "hospital_facilities_region_match_rate": 0.9955930006480881,
+  "regions_total": 1880,
+  "regions_with_hospital_bed_type_data": 1422,
+  "regions_without_direct_hospital_code_match": 458,
+  "national_general_beds": 849993.0,
+  "national_longterm_beds": 249144.0,
+  "national_psychiatric_beds": 297590.0,
+  "note": "一般・療養・精神病床は病床種別の実数。高度急性期・急性期・回復期・慢性期の機能別実病床数ではない。"
+}

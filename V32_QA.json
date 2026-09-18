@@ -1,0 +1,14 @@
+{
+  "version": "v32",
+  "regions": 1880,
+  "duplicate_ids": 0,
+  "metric_missing_definitions": 0,
+  "ortho_profile_axes": [
+    "整形外科密度",
+    "MRI密度",
+    "手術活動",
+    "一般病床"
+  ],
+  "composite_score": false,
+  "regions_full_profile": 1422
+}

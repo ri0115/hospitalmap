@@ -1,0 +1,27 @@
+{
+  "version": "v34",
+  "purpose": "検索・分析導線を4つの入口へ再整理",
+  "entry_points": [
+    "地域を探す",
+    "施設を探す",
+    "診療科から見る",
+    "需給・ランキングを見る"
+  ],
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "entry_panels_ok": {
+    "Region": true,
+    "Facility": true,
+    "Specialty": true,
+    "Ranking": true
+  },
+  "javascript_syntax": "PASS (node --check)",
+  "data_logic_changed": false,
+  "notes": [
+    "都道府県・市町村選択は共通スコープとして常時表示",
+    "各入口で必要な操作だけ表示",
+    "既存の地域詳細・施設カルテ・診療科分析・ランキング機能は維持",
+    "入口選択はsessionStorageで同一ブラウザ内に保持"
+  ]
+}

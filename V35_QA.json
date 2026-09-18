@@ -1,0 +1,26 @@
+{
+  "version": "v35",
+  "stage": "公開前最終監査・軽量化・スマホ最適化",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": 0,
+  "missing_dom_references": 0,
+  "missing_local_scripts": 0,
+  "metric_definition_missing": 0,
+  "regions": 1880,
+  "region_schema_fields_before": 302,
+  "region_schema_fields_deployed": 165,
+  "regions_js_before_bytes": 20513336,
+  "regions_js_v35_bytes": 10704472,
+  "regions_js_reduction_pct": 47.8,
+  "data_logic_policy": "既存表示・分析で参照しない旧/中間列のみ配信用JSから除外。表示ロジック・主要指標は維持。",
+  "mobile_hardening": [
+    "100dvh対応",
+    "44px以上のメニューボタン",
+    "主要入力/ボタンのタップ高42px以上",
+    "モーダルをスマホ下部シート化",
+    "safe-area対応",
+    "スクロール領域overscroll対策"
+  ],
+  "github_ready": true
+}

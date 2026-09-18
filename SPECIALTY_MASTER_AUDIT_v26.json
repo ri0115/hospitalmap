@@ -1,0 +1,1366 @@
+{
+  "version": "v26",
+  "raw_unique_labels": 1952,
+  "mapped_unique_labels": 1503,
+  "unmapped_unique_labels": 449,
+  "usage_coverage_pct": 99.1595,
+  "canonical_groups": 58,
+  "newly_mapped_unique_labels": 118,
+  "newly_mapped_usage": 408,
+  "principle": "ambiguous/noise labels remain UNRESOLVED; no forced mapping",
+  "top_unresolved": [
+    {
+      "label": "他",
+      "facility_count": 1882
+    },
+    {
+      "label": "性",
+      "facility_count": 125
+    },
+    {
+      "label": "【主",
+      "facility_count": 44
+    },
+    {
+      "label": "心臓",
+      "facility_count": 38
+    },
+    {
+      "label": "介護",
+      "facility_count": 34
+    },
+    {
+      "label": "その他",
+      "facility_count": 24
+    },
+    {
+      "label": "い",
+      "facility_count": 21
+    },
+    {
+      "label": "一般",
+      "facility_count": 21
+    },
+    {
+      "label": "1",
+      "facility_count": 18
+    },
+    {
+      "label": "女ひ",
+      "facility_count": 17
+    },
+    {
+      "label": "乳内",
+      "facility_count": 11
+    },
+    {
+      "label": "6",
+      "facility_count": 7
+    },
+    {
+      "label": "思春期内科",
+      "facility_count": 6
+    },
+    {
+      "label": "腎外",
+      "facility_count": 6
+    },
+    {
+      "label": "（新）小",
+      "facility_count": 6
+    },
+    {
+      "label": "50",
+      "facility_count": 5
+    },
+    {
+      "label": "60",
+      "facility_count": 5
+    },
+    {
+      "label": "新内",
+      "facility_count": 5
+    },
+    {
+      "label": "化内",
+      "facility_count": 4
+    },
+    {
+      "label": "（消化器",
+      "facility_count": 4
+    },
+    {
+      "label": "３１０４０１",
+      "facility_count": 4
+    },
+    {
+      "label": "8",
+      "facility_count": 3
+    },
+    {
+      "label": "こう内",
+      "facility_count": 3
+    },
+    {
+      "label": "こ内",
+      "facility_count": 3
+    },
+    {
+      "label": "ひ（不妊治療）",
+      "facility_count": 3
+    },
+    {
+      "label": "内科（消化器",
+      "facility_count": 3
+    },
+    {
+      "label": "女性診療科",
+      "facility_count": 3
+    },
+    {
+      "label": "特定",
+      "facility_count": 3
+    },
+    {
+      "label": "理診療",
+      "facility_count": 3
+    },
+    {
+      "label": "脊外",
+      "facility_count": 3
+    },
+    {
+      "label": "血管内",
+      "facility_count": 3
+    },
+    {
+      "label": "集中治療科",
+      "facility_count": 3
+    },
+    {
+      "label": "13",
+      "facility_count": 2
+    },
+    {
+      "label": "17",
+      "facility_count": 2
+    },
+    {
+      "label": "18",
+      "facility_count": 2
+    },
+    {
+      "label": "30",
+      "facility_count": 2
+    },
+    {
+      "label": "32",
+      "facility_count": 2
+    },
+    {
+      "label": "4",
+      "facility_count": 2
+    },
+    {
+      "label": "54",
+      "facility_count": 2
+    },
+    {
+      "label": "9",
+      "facility_count": 2
+    },
+    {
+      "label": "ひ（人透）",
+      "facility_count": 2
+    },
+    {
+      "label": "アレルギー疾患）",
+      "facility_count": 2
+    },
+    {
+      "label": "不妊外",
+      "facility_count": 2
+    },
+    {
+      "label": "不妊治療",
+      "facility_count": 2
+    },
+    {
+      "label": "不妊治療）",
+      "facility_count": 2
+    },
+    {
+      "label": "乳外】",
+      "facility_count": 2
+    },
+    {
+      "label": "人内",
+      "facility_count": 2
+    },
+    {
+      "label": "在宅診療科",
+      "facility_count": 2
+    },
+    {
+      "label": "大外",
+      "facility_count": 2
+    },
+    {
+      "label": "女外",
+      "facility_count": 2
+    },
+    {
+      "label": "心小",
+      "facility_count": 2
+    },
+    {
+      "label": "心療",
+      "facility_count": 2
+    },
+    {
+      "label": "心精",
+      "facility_count": 2
+    },
+    {
+      "label": "心臓リハ",
+      "facility_count": 2
+    },
+    {
+      "label": "新生児",
+      "facility_count": 2
+    },
+    {
+      "label": "新生児内",
+      "facility_count": 2
+    },
+    {
+      "label": "漢小",
+      "facility_count": 2
+    },
+    {
+      "label": "漢皮",
+      "facility_count": 2
+    },
+    {
+      "label": "漢精",
+      "facility_count": 2
+    },
+    {
+      "label": "物忘れ外来",
+      "facility_count": 2
+    },
+    {
+      "label": "生殖婦",
+      "facility_count": 2
+    },
+    {
+      "label": "産婦（不妊治療）",
+      "facility_count": 2
+    },
+    {
+      "label": "疼外",
+      "facility_count": 2
+    },
+    {
+      "label": "発達小児",
+      "facility_count": 2
+    },
+    {
+      "label": "皮アレ",
+      "facility_count": 2
+    },
+    {
+      "label": "皮フ科",
+      "facility_count": 2
+    },
+    {
+      "label": "皮外",
+      "facility_count": 2
+    },
+    {
+      "label": "神小",
+      "facility_count": 2
+    },
+    {
+      "label": "精神（神経）科",
+      "facility_count": 2
+    },
+    {
+      "label": "緩ケア",
+      "facility_count": 2
+    },
+    {
+      "label": "緩ケア外",
+      "facility_count": 2
+    },
+    {
+      "label": "老年",
+      "facility_count": 2
+    },
+    {
+      "label": "老年科",
+      "facility_count": 2
+    },
+    {
+      "label": "耳鼻科",
+      "facility_count": 2
+    },
+    {
+      "label": "肛門",
+      "facility_count": 2
+    },
+    {
+      "label": "肝臓",
+      "facility_count": 2
+    },
+    {
+      "label": "脳卒中科",
+      "facility_count": 2
+    },
+    {
+      "label": "脳小",
+      "facility_count": 2
+    },
+    {
+      "label": "腎ひ",
+      "facility_count": 2
+    },
+    {
+      "label": "膠原病科",
+      "facility_count": 2
+    },
+    {
+      "label": "膵内",
+      "facility_count": 2
+    },
+    {
+      "label": "膵外",
+      "facility_count": 2
+    },
+    {
+      "label": "血液透析",
+      "facility_count": 2
+    },
+    {
+      "label": "血液透析科",
+      "facility_count": 2
+    },
+    {
+      "label": "訪問診療科",
+      "facility_count": 2
+    },
+    {
+      "label": "遺伝子診療科",
+      "facility_count": 2
+    },
+    {
+      "label": "食外",
+      "facility_count": 2
+    },
+    {
+      "label": "骨軟部腫瘍科",
+      "facility_count": 2
+    },
+    {
+      "label": "麻（ペイン）",
+      "facility_count": 2
+    },
+    {
+      "label": "（気管食道",
+      "facility_count": 2
+    },
+    {
+      "label": "（脳）小",
+      "facility_count": 2
+    },
+    {
+      "label": "023",
+      "facility_count": 1
+    },
+    {
+      "label": "024",
+      "facility_count": 1
+    },
+    {
+      "label": "026",
+      "facility_count": 1
+    },
+    {
+      "label": "030",
+      "facility_count": 1
+    },
+    {
+      "label": "034",
+      "facility_count": 1
+    },
+    {
+      "label": "036",
+      "facility_count": 1
+    },
+    {
+      "label": "052",
+      "facility_count": 1
+    },
+    {
+      "label": "053",
+      "facility_count": 1
+    },
+    {
+      "label": "066",
+      "facility_count": 1
+    },
+    {
+      "label": "083",
+      "facility_count": 1
+    },
+    {
+      "label": "10",
+      "facility_count": 1
+    },
+    {
+      "label": "100",
+      "facility_count": 1
+    },
+    {
+      "label": "101",
+      "facility_count": 1
+    },
+    {
+      "label": "102",
+      "facility_count": 1
+    },
+    {
+      "label": "110",
+      "facility_count": 1
+    },
+    {
+      "label": "12",
+      "facility_count": 1
+    },
+    {
+      "label": "14",
+      "facility_count": 1
+    },
+    {
+      "label": "15",
+      "facility_count": 1
+    },
+    {
+      "label": "153",
+      "facility_count": 1
+    },
+    {
+      "label": "157",
+      "facility_count": 1
+    },
+    {
+      "label": "178",
+      "facility_count": 1
+    },
+    {
+      "label": "182",
+      "facility_count": 1
+    },
+    {
+      "label": "21",
+      "facility_count": 1
+    },
+    {
+      "label": "3",
+      "facility_count": 1
+    },
+    {
+      "label": "31",
+      "facility_count": 1
+    },
+    {
+      "label": "325",
+      "facility_count": 1
+    },
+    {
+      "label": "39",
+      "facility_count": 1
+    },
+    {
+      "label": "40",
+      "facility_count": 1
+    },
+    {
+      "label": "42",
+      "facility_count": 1
+    }
+  ],
+  "new_mappings": [
+    {
+      "label": "分・糖内",
+      "facility_count": 15,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "小児内分泌内科",
+      "facility_count": 15,
+      "canonical_keys": [
+        "pediatrics",
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "心リハ",
+      "facility_count": 11,
+      "canonical_keys": [
+        "rehabilitation"
+      ]
+    },
+    {
+      "label": "内視鏡科",
+      "facility_count": 10,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "老心内",
+      "facility_count": 9,
+      "canonical_keys": [
+        "geriatrics",
+        "psychosomatic"
+      ]
+    },
+    {
+      "label": "消化器内科・消化器外科",
+      "facility_count": 8,
+      "canonical_keys": [
+        "gastroenterology",
+        "gi_surgery"
+      ]
+    },
+    {
+      "label": "睡精",
+      "facility_count": 8,
+      "canonical_keys": [
+        "sleep_medicine",
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "脂内",
+      "facility_count": 8,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "消内（内視鏡）",
+      "facility_count": 6,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "精神腫瘍科",
+      "facility_count": 6,
+      "canonical_keys": [
+        "psychiatry",
+        "oncology"
+      ]
+    },
+    {
+      "label": "鏡内",
+      "facility_count": 6,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "大腸肛外",
+      "facility_count": 5,
+      "canonical_keys": [
+        "colorectal_anal_surgery"
+      ]
+    },
+    {
+      "label": "思精",
+      "facility_count": 5,
+      "canonical_keys": [
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "感染症科",
+      "facility_count": 5,
+      "canonical_keys": [
+        "infectious"
+      ]
+    },
+    {
+      "label": "消内】",
+      "facility_count": 5,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "産婦（生殖医療）",
+      "facility_count": 5,
+      "canonical_keys": [
+        "obgyn"
+      ]
+    },
+    {
+      "label": "移外",
+      "facility_count": 5,
+      "canonical_keys": [
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "緩和医療科",
+      "facility_count": 5,
+      "canonical_keys": [
+        "palliative"
+      ]
+    },
+    {
+      "label": "緩外",
+      "facility_count": 5,
+      "canonical_keys": [
+        "palliative",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "腫外",
+      "facility_count": 5,
+      "canonical_keys": [
+        "oncology",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "腫瘍外",
+      "facility_count": 5,
+      "canonical_keys": [
+        "oncology",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "透外",
+      "facility_count": 5,
+      "canonical_keys": [
+        "nephrology",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "乳腺",
+      "facility_count": 4,
+      "canonical_keys": [
+        "breast_surgery"
+      ]
+    },
+    {
+      "label": "乳腺内分泌外",
+      "facility_count": 4,
+      "canonical_keys": [
+        "breast_surgery",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "内泌外",
+      "facility_count": 4,
+      "canonical_keys": [
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "内泌糖内",
+      "facility_count": 4,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "内科（消化器）",
+      "facility_count": 4,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "大腸・肛外",
+      "facility_count": 4,
+      "canonical_keys": [
+        "colorectal_anal_surgery"
+      ]
+    },
+    {
+      "label": "大腸・肛門科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "colorectal_anal_surgery"
+      ]
+    },
+    {
+      "label": "婦（生）",
+      "facility_count": 4,
+      "canonical_keys": [
+        "obgyn"
+      ]
+    },
+    {
+      "label": "小児内分泌科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "pediatrics",
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "小児糖尿病内科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "pediatrics",
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "小整形",
+      "facility_count": 4,
+      "canonical_keys": [
+        "pediatrics",
+        "orthopedics"
+      ]
+    },
+    {
+      "label": "循環器",
+      "facility_count": 4,
+      "canonical_keys": [
+        "cardiology"
+      ]
+    },
+    {
+      "label": "心臓外",
+      "facility_count": 4,
+      "canonical_keys": [
+        "cardiovascular_surgery"
+      ]
+    },
+    {
+      "label": "感染症",
+      "facility_count": 4,
+      "canonical_keys": [
+        "infectious"
+      ]
+    },
+    {
+      "label": "放射線腫瘍科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "radiology_therapy",
+        "oncology"
+      ]
+    },
+    {
+      "label": "消化器外科・消化器内科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "gi_surgery",
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "神経眼科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "ophthalmology",
+        "neurology"
+      ]
+    },
+    {
+      "label": "総診",
+      "facility_count": 4,
+      "canonical_keys": [
+        "general_practice"
+      ]
+    },
+    {
+      "label": "肛門内",
+      "facility_count": 4,
+      "canonical_keys": [
+        "internal_general"
+      ]
+    },
+    {
+      "label": "肝外",
+      "facility_count": 4,
+      "canonical_keys": [
+        "gi_surgery"
+      ]
+    },
+    {
+      "label": "腎泌尿器外科",
+      "facility_count": 4,
+      "canonical_keys": [
+        "urology"
+      ]
+    },
+    {
+      "label": "②消内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "ペ外",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pain",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "乳・内泌外",
+      "facility_count": 3,
+      "canonical_keys": [
+        "breast_surgery",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "内分泌",
+      "facility_count": 3,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "内分泌・代謝科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "内泌・糖内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "内科（透析）",
+      "facility_count": 3,
+      "canonical_keys": [
+        "nephrology"
+      ]
+    },
+    {
+      "label": "分外",
+      "facility_count": 3,
+      "canonical_keys": [
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "大腸内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "大腸肛門科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "colorectal_anal_surgery"
+      ]
+    },
+    {
+      "label": "女性内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "womens_medicine"
+      ]
+    },
+    {
+      "label": "小リウ",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pediatrics",
+        "rheumatology"
+      ]
+    },
+    {
+      "label": "小児心療科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pediatrics",
+        "psychosomatic"
+      ]
+    },
+    {
+      "label": "小児皮ふ科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pediatric_dermatology"
+      ]
+    },
+    {
+      "label": "小児血液・腫瘍内科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pediatrics",
+        "hematology",
+        "oncology"
+      ]
+    },
+    {
+      "label": "小精",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pediatrics",
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "新生児科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "pediatrics"
+      ]
+    },
+    {
+      "label": "消内外",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gastroenterology",
+        "gi_surgery"
+      ]
+    },
+    {
+      "label": "消化器",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "甲内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "甲状内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "睡眠障害科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "sleep_medicine"
+      ]
+    },
+    {
+      "label": "精神経",
+      "facility_count": 3,
+      "canonical_keys": [
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "糖",
+      "facility_count": 3,
+      "canonical_keys": [
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "緩和医療内科",
+      "facility_count": 3,
+      "canonical_keys": [
+        "palliative"
+      ]
+    },
+    {
+      "label": "肝・胆・膵内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "肝・胆・膵外",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gi_surgery"
+      ]
+    },
+    {
+      "label": "腫瘍",
+      "facility_count": 3,
+      "canonical_keys": [
+        "oncology"
+      ]
+    },
+    {
+      "label": "腫精",
+      "facility_count": 3,
+      "canonical_keys": [
+        "oncology",
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "薬内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "internal_general"
+      ]
+    },
+    {
+      "label": "血・化内",
+      "facility_count": 3,
+      "canonical_keys": [
+        "hematology"
+      ]
+    },
+    {
+      "label": "血液",
+      "facility_count": 3,
+      "canonical_keys": [
+        "hematology"
+      ]
+    },
+    {
+      "label": "食道外",
+      "facility_count": 3,
+      "canonical_keys": [
+        "gi_surgery"
+      ]
+    },
+    {
+      "label": "ぺ内",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pain"
+      ]
+    },
+    {
+      "label": "アレ内",
+      "facility_count": 2,
+      "canonical_keys": [
+        "allergy",
+        "internal_general"
+      ]
+    },
+    {
+      "label": "ペイン整",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pain",
+        "orthopedics"
+      ]
+    },
+    {
+      "label": "内科（循環器",
+      "facility_count": 2,
+      "canonical_keys": [
+        "cardiology"
+      ]
+    },
+    {
+      "label": "内視",
+      "facility_count": 2,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "内視鏡",
+      "facility_count": 2,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "内視鏡）",
+      "facility_count": 2,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "内（ペイン）",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pain",
+        "internal_general"
+      ]
+    },
+    {
+      "label": "呼・アレ",
+      "facility_count": 2,
+      "canonical_keys": [
+        "respiratory",
+        "allergy"
+      ]
+    },
+    {
+      "label": "呼・ア内",
+      "facility_count": 2,
+      "canonical_keys": [
+        "respiratory",
+        "allergy"
+      ]
+    },
+    {
+      "label": "大腸・肛門",
+      "facility_count": 2,
+      "canonical_keys": [
+        "colorectal_anal_surgery"
+      ]
+    },
+    {
+      "label": "婦人腫瘍科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "obgyn",
+        "oncology"
+      ]
+    },
+    {
+      "label": "小ア",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatric_allergy"
+      ]
+    },
+    {
+      "label": "小児アレ",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatric_allergy"
+      ]
+    },
+    {
+      "label": "小児・新生児科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatrics"
+      ]
+    },
+    {
+      "label": "小児内分泌・代謝内科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatrics",
+        "diabetes_metabolic"
+      ]
+    },
+    {
+      "label": "小児感染症内科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatrics",
+        "infectious"
+      ]
+    },
+    {
+      "label": "小児皮",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatric_dermatology"
+      ]
+    },
+    {
+      "label": "小児血液内科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatrics",
+        "hematology"
+      ]
+    },
+    {
+      "label": "小内",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatrics"
+      ]
+    },
+    {
+      "label": "小心外",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatric_surgery",
+        "cardiovascular_surgery"
+      ]
+    },
+    {
+      "label": "小神",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatric_neurology"
+      ]
+    },
+    {
+      "label": "小脳外",
+      "facility_count": 2,
+      "canonical_keys": [
+        "pediatrics",
+        "neurosurgery"
+      ]
+    },
+    {
+      "label": "循環器科内科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "cardiology"
+      ]
+    },
+    {
+      "label": "消化器科（胃腸科）",
+      "facility_count": 2,
+      "canonical_keys": [
+        "gastroenterology"
+      ]
+    },
+    {
+      "label": "腎・泌尿器外科",
+      "facility_count": 2,
+      "canonical_keys": [
+        "urology"
+      ]
+    },
+    {
+      "label": "乳腺・内分泌外",
+      "facility_count": 1,
+      "canonical_keys": [
+        "breast_surgery",
+        "general_surgery"
+      ]
+    },
+    {
+      "label": "乳腺腫瘍外",
+      "facility_count": 1,
+      "canonical_keys": [
+        "breast_surgery",
+        "oncology"
+      ]
+    },
+    {
+      "label": "乳腺）",
+      "facility_count": 1,
+      "canonical_keys": [
+        "breast_surgery"
+      ]
+    },
+    {
+      "label": "外科（胃腸・整形）",
+      "facility_count": 1,
+      "canonical_keys": [
+        "general_surgery",
+        "gastroenterology",
+        "orthopedics"
+      ]
+    },
+    {
+      "label": "女性乳腺内科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "womens_medicine",
+        "internal_general"
+      ]
+    },
+    {
+      "label": "心療・精神科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "psychosomatic",
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "心療精神科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "psychosomatic",
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "放射線",
+      "facility_count": 1,
+      "canonical_keys": [
+        "radiology"
+      ]
+    },
+    {
+      "label": "放射線・核医学科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "radiology"
+      ]
+    },
+    {
+      "label": "放射線診療科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "radiology"
+      ]
+    },
+    {
+      "label": "泌尿器外科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "urology"
+      ]
+    },
+    {
+      "label": "眼形成眼窩外科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "ophthalmology",
+        "plastic_surgery"
+      ]
+    },
+    {
+      "label": "睡眠障害精神",
+      "facility_count": 1,
+      "canonical_keys": [
+        "sleep_medicine",
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "神経・精神",
+      "facility_count": 1,
+      "canonical_keys": [
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "精神保健科",
+      "facility_count": 1,
+      "canonical_keys": [
+        "psychiatry"
+      ]
+    },
+    {
+      "label": "（乳腺",
+      "facility_count": 1,
+      "canonical_keys": [
+        "breast_surgery"
+      ]
+    }
+  ]
+}

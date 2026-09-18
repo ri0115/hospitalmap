@@ -1,0 +1,14 @@
+{
+  "version": "v29",
+  "html_parse": "PASS",
+  "duplicate_ids": [],
+  "javascript_id_refs_missing": [],
+  "local_script_files_missing": [],
+  "metric_option_count": 83,
+  "metric_definition_count": 84,
+  "metric_options_without_definition": [],
+  "visible_english_analysis_terms_remaining": [],
+  "javascript_syntax": "PASS (node --check index/index_v29 inline + regions_v29.js)",
+  "csv_export_column_check": "PASS (43 headers / 43 values; prevalidated)",
+  "japanese_ui_policy": "画面上は日本語を優先。MRI / CT / DPC / CSV / URL / ID / CODH / Geoshape / TopoJSON 等の標準略語・固有名詞のみ維持。"
+}

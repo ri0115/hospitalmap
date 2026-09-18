@@ -1,0 +1,20 @@
+{
+  "version": "v31",
+  "regions": 1880,
+  "population_under_10000": 556,
+  "population_under_30000": 1001,
+  "metric_options": 87,
+  "metric_missing_definitions": 0,
+  "duplicate_ids": 0,
+  "csv_columns": 54,
+  "csv_values": 54,
+  "population_filters": [
+    0,
+    10000,
+    30000,
+    50000,
+    100000
+  ],
+  "ui_language": "日本語優先",
+  "note": "診療科密度は人口10万人あたりを維持。その他の主要供給・活動指標は原則人口1万人あたりへ変更。"
+}

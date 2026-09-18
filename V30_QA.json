@@ -1,0 +1,10 @@
+{
+  "version": "v30",
+  "metric_options": 86,
+  "metric_missing_definitions": 0,
+  "duplicate_ids": 0,
+  "csv_columns": 50,
+  "csv_values": 50,
+  "js_syntax": "passed",
+  "bed_type_source_match_rate": 0.9955930006480881
+}

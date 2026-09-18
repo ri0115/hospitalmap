@@ -1,0 +1,13 @@
+{
+  "version": "v28",
+  "regions": 1880,
+  "activity_missing_regions": 479,
+  "equipment_missing_regions": 479,
+  "bed_function_partial_or_missing_regions": 873,
+  "current_supply_coverage_below_90pct": 643,
+  "score_change_abs_gt_0_25": 91,
+  "score_change_abs_gt_0_50": 8,
+  "max_abs_score_change": 0.8777316740803223,
+  "rule": "STRUCTURE 40%, ACTIVITY 30%, EQUIPMENT 15%, BED FUNCTION 15%. Missing layers are excluded and remaining available base weights are renormalized. Coverage is reported separately using source-level completeness fractions.",
+  "important": "Missing ACTIVITY/EQUIPMENT are no longer treated as -1 low supply."
+}
