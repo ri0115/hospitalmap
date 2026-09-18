@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>全国病院マップ v47｜地域医療需給</title>
+<title>全国病院マップ v49｜地域医療需給</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--paper:#f3f2ee;--panel:#fbfaf7;--ink:#171817;--muted:#71756f;--line:#d7d6cf;--accent:#263a43;--blue:#0057d9;--orange:#f05a28;--magenta:#d01888;--home:#655879;--care:#657952}
@@ -200,7 +200,7 @@ button{touch-action:manipulation}
 /* v36 modal/select interaction fixes */
 .specialtyControls{grid-template-columns:minmax(220px,1.4fr) 1fr 1fr}
 .specialtyApplyBtn{background:#242521!important;color:#fff!important;border-color:#242521!important}
-.rankControls{grid-template-columns:1.35fr 1fr auto}
+.rankControls{grid-template-columns:1.35fr .85fr 1fr auto}
 .rankControls #rankApplyBtn{min-width:128px}
 .modalActionStatus{font-size:8px;color:#6e716b;margin-top:5px}
 @media(max-width:780px){
@@ -352,15 +352,219 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
 @media(max-width:1100px) and (min-width:781px){body>.facilityListPane.expanded{left:360px!important;width:min(400px,calc(100vw - 390px))!important}}
 @media(max-width:780px){.facilityListHome{min-height:180px}.facilityListExpandedPlaceholder{display:none!important}}
 
+
+/* v48 demand/supply clarity + independent ranking */
+.entryNav{grid-template-columns:repeat(3,1fr)}
+.supplyDemandGuide{
+  margin:8px 0 10px;padding:9px 10px;border:1px solid #d7d7d0;background:#f6f6f2;
+  display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:8.5px;line-height:1.45;color:#5e625d
+}
+.supplyDemandGuide>div{padding:6px 7px;background:#fff;border:1px solid #e2e2dc}
+.supplyDemandGuide b{display:block;color:#2c3537;font-size:9px;margin-bottom:2px}
+.supplyDemandGuide span{display:block}
+.supplyDemandGuide p{grid-column:1/-1;margin:0;padding-top:3px}
+.rankingDockBtn{
+  position:absolute;z-index:810;right:12px;top:86px;
+  border:1px solid #aeb4b2;background:rgba(251,250,247,.96);color:#263a43;
+  border-radius:5px;padding:8px 10px;font-size:9px;font-weight:800;cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.10)
+}
+.rankingDockBtn:hover{background:#fff;border-color:#727a78}
+.rankSummary{font-size:10px;font-weight:800;color:#263a43;padding:8px 10px;background:#f2f3ef;border:1px solid #d5d7d1;margin:8px 0}
+@media(max-width:780px){
+  .entryNav{grid-template-columns:1fr}
+  .supplyDemandGuide{grid-template-columns:1fr}
+  .supplyDemandGuide p{grid-column:1}
+  .rankingDockBtn{top:86px;right:10px;min-height:40px;font-size:10px}
+}
+
+
+/* v48 final: demand/supply clarity + dual-sided ranking */
+.signalFilterNote{font-size:8.2px;line-height:1.45;color:#6f716c;background:#f5f4ef;border:1px solid #e1dfd7;border-radius:6px;padding:7px 8px;margin:-1px 0 8px}
+.rankControls{grid-template-columns:1fr 1fr auto}
+.rankDual{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 12px 14px;min-height:0;overflow:hidden}
+.rankColumn{border:1px solid #d8d8d1;background:#fff;display:flex;flex-direction:column;min-height:0}
+.rankColumnHead{display:flex;justify-content:space-between;align-items:baseline;padding:8px 10px;background:#f2f3ef;border-bottom:1px solid #ddd;font-size:9px}
+.rankColumnHead b{font-size:10px}.rankColumnHead span{font-size:8px;color:#73766f}
+.rankColumn .rankList{padding:0 8px 8px;max-height:48vh;overflow:auto}
+@media(max-width:780px){
+  .rankControls{grid-template-columns:1fr}
+  .rankDual{grid-template-columns:1fr;overflow:auto}
+  .rankColumn .rankList{max-height:34vh}
+}
+
+.mobileListHint{display:none}
+@media(max-width:780px){.mobileListHint{display:inline;font-size:7.5px;color:#7a7d77;font-weight:400}}
+
+/* v49 mobile drawer layout: reduce nested-scroll competition and preserve facility list */
+@media(max-width:780px){
+  .side{
+    display:flex!important;
+    flex-direction:column!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow:hidden!important;
+    padding-bottom:env(safe-area-inset-bottom);
+    background:rgba(251,250,247,.995)
+  }
+
+  /* Header is intentionally compact on phones. */
+  .head{
+    flex:0 0 auto;
+    padding:max(8px,env(safe-area-inset-top)) 54px 7px 10px!important
+  }
+  .head .eyebrow{font-size:7px;letter-spacing:.11em}
+  .head .title{font-size:17px!important;line-height:1.05;margin-top:2px}
+  .head .sub{display:none!important}
+  .headSourceBtn{
+    margin-top:5px!important;min-height:30px!important;padding:4px 8px!important;
+    font-size:8px!important
+  }
+  .sideClose{
+    right:8px!important;top:max(8px,env(safe-area-inset-top))!important;
+    width:36px!important;height:36px!important;font-size:18px!important
+  }
+
+  /* Upper controls scroll independently, but cannot consume most of the drawer. */
+  .controls{
+    flex:0 1 auto!important;
+    max-height:40dvh!important;
+    min-height:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:6px 8px!important;
+    gap:5px!important;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable
+  }
+  .controlKicker{display:none!important}
+
+  /* Three entry choices remain on one row; the previous vertical stack wasted ~130px. */
+  .entryNav{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:4px!important;
+    position:sticky;
+    top:-6px;
+    z-index:8;
+    background:rgba(251,250,247,.98);
+    padding:4px 0 3px;
+    margin:0
+  }
+  .entryBtn{
+    min-height:46px!important;
+    padding:6px 5px!important;
+    gap:4px!important;
+    border-radius:7px!important;
+    align-items:center!important
+  }
+  .entryBtn>b{font-size:7px!important;opacity:.62}
+  .entryBtn span{font-size:9px!important;line-height:1.18!important}
+  .entryBtn small{display:none!important}
+  .panelHead{margin-bottom:4px}
+  .panelHead span{display:none!important}
+
+  /* Explanatory cards are condensed, not removed. */
+  .supplyDemandGuide{
+    grid-template-columns:1fr 1fr!important;
+    gap:4px!important;
+    margin:5px 0 6px!important;
+    padding:5px!important;
+    font-size:7.7px!important;
+    line-height:1.35!important
+  }
+  .supplyDemandGuide>div{padding:5px!important}
+  .supplyDemandGuide b{font-size:8px!important}
+  .supplyDemandGuide p{
+    grid-column:1/-1!important;
+    font-size:7.4px!important;
+    line-height:1.35!important;
+    padding-top:2px!important
+  }
+  .metricSourceCard{padding:6px 7px!important;margin:0 0 5px!important}
+  .metricSourceCard p{display:none!important}
+  .metricSourceTop{margin-bottom:2px}
+  .metricSourceTop button{min-height:30px!important;font-size:8px!important}
+  .signalFilterNote{
+    max-height:29px;overflow:hidden;
+    font-size:7.4px!important;line-height:1.3!important;
+    padding:5px 6px!important;margin:-1px 0 5px!important
+  }
+
+  select,input,.btn,.typebtn,.export,.rankBtn,.specialtyBtn,.homeSurveyBtn{
+    min-height:38px!important
+  }
+  .quick{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .quick .btn{font-size:7.7px!important;padding:5px 2px!important}
+  .entryActions{grid-template-columns:1fr 1fr!important;gap:4px!important;margin-top:5px!important}
+  .entryActions>*:last-child:nth-child(odd){grid-column:1/-1}
+  .compactNote{display:none!important}
+
+  /* Regional summary is compact so the facility list always has useful height. */
+  .scope{
+    flex:0 0 auto!important;
+    max-height:18dvh!important;
+    overflow:auto!important;
+    padding:6px 8px!important
+  }
+  .scopeTitle{font-size:9px!important;margin-bottom:4px!important}
+  .metric{min-height:39px!important;padding:4px 5px!important}
+  .metric b{font-size:13px!important}
+  .metric span{font-size:7.5px!important}
+  .signal{
+    max-height:38px;overflow:hidden;
+    margin-top:4px!important;padding:5px 6px!important;
+    font-size:7.7px!important;line-height:1.35!important
+  }
+
+  /* The bottom list gets the remaining height instead of being squeezed away. */
+  .facilityListHome{
+    flex:1 1 0!important;
+    min-height:27dvh!important;
+    overflow:hidden!important
+  }
+  .facilityListHome>.facilityListPane{
+    min-height:0!important;
+    height:100%!important
+  }
+  .facilityListPane{min-height:0!important}
+  .listhead{
+    flex:0 0 auto;
+    padding:7px 9px!important;
+    min-height:36px
+  }
+  .list{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    overflow-y:auto!important;
+    padding-bottom:max(14px,env(safe-area-inset-bottom))!important
+  }
+
+  /* Facility search needs list space more than the regional summary. */
+  .side[data-entry-mode="facility"] .scope{display:none!important}
+  .side[data-entry-mode="facility"] .controls{max-height:50dvh!important}
+  .side[data-entry-mode="facility"] .facilityListHome{min-height:38dvh!important}
+
+  /* Specialty mode is short; give the list most of the remainder. */
+  .side[data-entry-mode="specialty"] .controls{max-height:30dvh!important}
+  .side[data-entry-mode="specialty"] .facilityListHome{min-height:38dvh!important}
+
+  /* Ranking button should not compete with the open drawer. */
+  .side.open ~ .mapwrap .rankingDockBtn{opacity:.35;pointer-events:none}
+
+  /* Prevent accidental horizontal overflow from long labels. */
+  .side,.controls,.scope,.facilityListHome,.entryPanel{max-width:100%;min-width:0}
+  .entryBtn span,.panelHint,.equipmentCoverageWarn,.equipmentPinLegend{overflow-wrap:anywhere}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="side" id="side">
   <div class="head">
-    <div class="eyebrow">全国医療供給マップ · v47</div>
+    <div class="eyebrow">全国医療供給マップ · v49</div>
     <div class="title">全国病院マップ</div>
-    <div class="sub">都道府県 → 市町村・区 → 医療機関<br>現在の医療供給を地域単位で可視化</div>
+    <div class="sub">都道府県 → 市町村・区 → 医療機関<br>人口背景（需要側）と医療資源・活動（供給側）を地域単位で比較</div>
     <button type="button" class="headSourceBtn" id="headSourceBtn">データの大本・定義</button>
     <button type="button" class="sideClose" id="sideClose" aria-label="メニューを閉じる">×</button>
   </div>
@@ -417,104 +621,120 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
       <select id="region"><option value="">市町村 / 区：すべて</option></select>
     </div>
     <div class="entryNav" role="tablist" aria-label="分析の入口">
-      <button class="entryBtn active" id="entryRegion" data-entry="region" role="tab" aria-selected="true"><b>01</b><span>地域を探す<small>需給・人口・病床を地図で比較</small></span></button>
+      <button class="entryBtn active" id="entryRegion" data-entry="region" role="tab" aria-selected="true"><b>01</b><span>地域の需要・供給を見る<small>人口・高齢化と医療資源を比較</small></span></button>
       <button class="entryBtn" id="entryFacility" data-entry="facility" role="tab" aria-selected="false"><b>02</b><span>施設を探す<small>施設名・診療科・MRI/CT</small></span></button>
-      <button class="entryBtn" id="entrySpecialty" data-entry="specialty" role="tab" aria-selected="false"><b>03</b><span>診療科から見る<small>診療科密度と施設構成</small></span></button>
-      <button class="entryBtn" id="entryRanking" data-entry="ranking" role="tab" aria-selected="false"><b>04</b><span>需給・ランキング<small>地域差を並べて確認</small></span></button>
+      <button class="entryBtn" id="entrySpecialty" data-entry="specialty" role="tab" aria-selected="false"><b>03</b><span>診療科から見る<small>診療科密度と地域背景</small></span></button>
     </div>
 
     <div class="entryPanel active" id="panelRegion" data-panel="region">
-      <div class="panelHead"><b>地域を探す</b><span>表示指標と地域シグナルを選択</span></div>
+      <div class="panelHead"><b>地域の需要・供給を見る</b><span>需要側の背景と供給側の指標を切り替え</span></div>
       <select id="metric">
-      <option value="current_supply_v3_beta">現在供給 3.0｜総合</option>
-      <option value="structure_supply_beta">構造供給｜施設・病床・在宅</option>
-      <option value="activity_supply_beta">医療活動｜総合</option>
-      <option value="activity_surgery_beta">医療活動｜手術型</option>
-      <option value="activity_emergency_beta">医療活動｜救急型</option>
-      <option value="activity_inpatient_beta">医療活動｜入院型（DPC患者）</option>
-      <option value="equipment_supply_beta">画像診断装置｜MRI・CT</option>
-      <option value="bed_function_supply_beta">病床機能｜急性期・回復期等</option>
-      <option value="hospital_general_beds_per10k">病床種別｜一般病床 / 1万人</option>
-      <option value="hospital_longterm_beds_per10k">病床種別｜療養病床 / 1万人</option>
-      <option value="hospital_psychiatric_beds_per10k">病床種別｜精神病床 / 1万人</option>
-      <option value="pop2025">総人口｜2025</option>
-      <option value="age65_share_2025">65歳以上割合｜2025</option>
-      <option value="facilities_per_10k">医療機関数 / 1万人</option>
-      <option value="hospitals_per_10k">病院数 / 1万人</option>
-      <option value="beds_per_1000">病床数 / 1,000人</option>
-      <option value="homecare_per_10k_65">在宅系 / 65歳以上1万人</option>
-      <option value="homecare_per_10k_75">在宅系 / 75歳以上1万人</option>
-      <option value="regional_care_per_10k_65">地域包括 / 65歳以上1万人</option>
-      <option value="activity_operations_per10k">手術件数 / 1万人</option>
-      <option value="activity_ambulance_per10k">救急車受入 / 1万人</option>
-      <option value="activity_patients_per10k">DPC患者 / 1万人</option>
-      <option value="equipment_mri_per10k">MRI / 1万人</option>
-      <option value="equipment_ct_per10k">CT / 1万人</option>
-      <option value="acute_bed_supply_deviation">急性期系病床供給偏差</option>
-      <option value="community_care_hospital_count_per100k">地域包括ケア機能病院 / 10万人</option>
-      <option value="recovery_hospital_count_per100k">回復期機能病院 / 10万人</option>
-      <option value="chronic_hospital_count_per100k">慢性期機能病院 / 10万人</option>
-      <option value="internal_general_per_100k">内科（総合） / 10万人</option>
-      <option value="cardiology_per_100k">循環器内科 / 10万人</option>
-      <option value="gastroenterology_per_100k">消化器内科 / 10万人</option>
-      <option value="respiratory_per_100k">呼吸器内科 / 10万人</option>
-      <option value="nephrology_per_100k">腎臓内科 / 10万人</option>
-      <option value="diabetes_metabolic_per_100k">糖尿病・代謝内科 / 10万人</option>
-      <option value="neurology_per_100k">脳神経内科 / 10万人</option>
-      <option value="hematology_per_100k">血液内科 / 10万人</option>
-      <option value="general_practice_per_100k">総合診療科 / 10万人</option>
-      <option value="oncology_per_100k">腫瘍内科 / 10万人</option>
-      <option value="infectious_per_100k">感染症内科 / 10万人</option>
-      <option value="rheumatology_per_100k">リウマチ・膠原病 / 10万人</option>
-      <option value="allergy_per_100k">アレルギー / 10万人</option>
-      <option value="palliative_per_100k">緩和ケア / 10万人</option>
-      <option value="geriatrics_per_100k">老年内科 / 10万人</option>
-      <option value="sleep_medicine_per_100k">睡眠医療 / 10万人</option>
-      <option value="womens_medicine_per_100k">女性内科 / 10万人</option>
-      <option value="cosmetic_medicine_per_100k">美容内科 / 10万人</option>
-      <option value="kampo_per_100k">漢方・和漢 / 10万人</option>
-      <option value="general_surgery_per_100k">外科 / 10万人</option>
-      <option value="gi_surgery_per_100k">消化器外科 / 10万人</option>
-      <option value="resp_surgery_per_100k">呼吸器外科 / 10万人</option>
-      <option value="cardiovascular_surgery_per_100k">心臓血管外科 / 10万人</option>
-      <option value="neurosurgery_per_100k">脳神経外科 / 10万人</option>
-      <option value="breast_surgery_per_100k">乳腺外科 / 10万人</option>
-      <option value="pediatric_surgery_per_100k">小児外科 / 10万人</option>
-      <option value="colorectal_anal_surgery_per_100k">肛門・大腸外科 / 10万人</option>
-      <option value="head_neck_surgery_per_100k">頭頸部外科 / 10万人</option>
-      <option value="plastic_surgery_per_100k">形成外科 / 10万人</option>
-      <option value="cosmetic_surgery_per_100k">美容外科 / 10万人</option>
-      <option value="pediatric_cardiology_per_100k">小児循環器 / 10万人</option>
-      <option value="pediatric_neurology_per_100k">小児神経 / 10万人</option>
-      <option value="pediatric_nephrology_per_100k">小児腎臓 / 10万人</option>
-      <option value="pediatric_allergy_per_100k">小児アレルギー / 10万人</option>
-      <option value="pediatric_dermatology_per_100k">小児皮膚科 / 10万人</option>
-      <option value="pediatric_ophthalmology_per_100k">小児眼科 / 10万人</option>
-      <option value="pediatric_ent_per_100k">小児耳鼻咽喉科 / 10万人</option>
-      <option value="pediatric_urology_per_100k">小児泌尿器科 / 10万人</option>
-      <option value="rehabilitation_per_100k">リハビリテーション科 / 10万人</option>
-      <option value="cosmetic_dermatology_per_100k">美容皮膚科 / 10万人</option>
-      <option value="sexual_medicine_per_100k">性感染症・性病科 / 10万人</option>
-      <option value="psychiatry_per_100k">精神科 / 10万人</option>
-      <option value="psychosomatic_per_100k">心療内科 / 10万人</option>
-      <option value="anesthesiology_per_100k">麻酔科 / 10万人</option>
-      <option value="emergency_per_100k">救急科 / 10万人</option>
-      <option value="pain_per_100k">ペインクリニック / 10万人</option>
-      <option value="radiology_per_100k">放射線科 / 10万人</option>
-      <option value="radiology_diagnostic_per_100k">放射線診断科 / 10万人</option>
-      <option value="radiology_therapy_per_100k">放射線治療科 / 10万人</option>
-      <option value="pathology_per_100k">病理診断科 / 10万人</option>
-      <option value="lab_medicine_per_100k">臨床検査科 / 10万人</option>
-      <option value="ortho_per_100k">整形外科 / 10万人</option>
-      <option value="pediatrics_per_100k">小児科 / 10万人</option>
-      <option value="obgyn_per_100k">産婦人科系 / 10万人</option>
-      <option value="ophthalmology_per_100k">眼科 / 10万人</option>
-      <option value="ent_per_100k">耳鼻咽喉科 / 10万人</option>
-      <option value="dermatology_per_100k">皮膚科 / 10万人</option>
-      <option value="urology_per_100k">泌尿器科 / 10万人</option>
-      <option value="homecare_16km_coverage_ratio">在宅16kmカバー率</option>
-      <option value="homecare_gap_beta">在宅カバー空白β</option>
+      <optgroup label="需要側の背景｜人口・高齢化">
+        <option value="pop2025">総人口｜2025</option>
+        <option value="age65_share_2025">65歳以上割合｜2025</option>
+      </optgroup>
+      <optgroup label="供給側｜総合・医療資源">
+        <option value="current_supply_v3_beta">医療供給の総合指数｜相対値</option>
+        <option value="structure_supply_beta">医療資源の配置｜施設・病床・在宅</option>
+        <option value="facilities_per_10k">医療機関数 / 1万人</option>
+        <option value="hospitals_per_10k">病院数 / 1万人</option>
+        <option value="beds_per_1000">病床数 / 1,000人</option>
+        <option value="homecare_per_10k_65">在宅系 / 65歳以上1万人</option>
+        <option value="homecare_per_10k_75">在宅系 / 75歳以上1万人</option>
+        <option value="regional_care_per_10k_65">地域包括 / 65歳以上1万人</option>
+      </optgroup>
+      <optgroup label="供給側｜医療活動">
+        <option value="activity_supply_beta">医療活動量｜総合</option>
+        <option value="activity_surgery_beta">医療活動量｜手術</option>
+        <option value="activity_emergency_beta">医療活動量｜救急</option>
+        <option value="activity_inpatient_beta">医療活動量｜入院（DPC患者）</option>
+        <option value="activity_operations_per10k">手術件数 / 1万人</option>
+        <option value="activity_ambulance_per10k">救急車受入 / 1万人</option>
+        <option value="activity_patients_per10k">DPC患者 / 1万人</option>
+      </optgroup>
+      <optgroup label="供給側｜MRI・CT・病床">
+        <option value="equipment_supply_beta">MRI・CT供給｜相対値</option>
+        <option value="equipment_mri_per10k">MRI / 1万人</option>
+        <option value="equipment_ct_per10k">CT / 1万人</option>
+        <option value="bed_function_supply_beta">病床機能の供給｜相対値</option>
+        <option value="acute_bed_supply_deviation">急性期系病床の相対供給</option>
+        <option value="hospital_general_beds_per10k">病床種別｜一般病床 / 1万人</option>
+        <option value="hospital_longterm_beds_per10k">病床種別｜療養病床 / 1万人</option>
+        <option value="hospital_psychiatric_beds_per10k">病床種別｜精神病床 / 1万人</option>
+        <option value="community_care_hospital_count_per100k">地域包括ケア機能病院 / 10万人</option>
+        <option value="recovery_hospital_count_per100k">回復期機能病院 / 10万人</option>
+        <option value="chronic_hospital_count_per100k">慢性期機能病院 / 10万人</option>
+      </optgroup>
+      <optgroup label="診療科密度｜人口10万人あたり">
+        <option value="internal_general_per_100k">内科（総合） / 10万人</option>
+        <option value="cardiology_per_100k">循環器内科 / 10万人</option>
+        <option value="gastroenterology_per_100k">消化器内科 / 10万人</option>
+        <option value="respiratory_per_100k">呼吸器内科 / 10万人</option>
+        <option value="nephrology_per_100k">腎臓内科 / 10万人</option>
+        <option value="diabetes_metabolic_per_100k">糖尿病・代謝内科 / 10万人</option>
+        <option value="neurology_per_100k">脳神経内科 / 10万人</option>
+        <option value="hematology_per_100k">血液内科 / 10万人</option>
+        <option value="general_practice_per_100k">総合診療科 / 10万人</option>
+        <option value="oncology_per_100k">腫瘍内科 / 10万人</option>
+        <option value="infectious_per_100k">感染症内科 / 10万人</option>
+        <option value="rheumatology_per_100k">リウマチ・膠原病 / 10万人</option>
+        <option value="allergy_per_100k">アレルギー / 10万人</option>
+        <option value="palliative_per_100k">緩和ケア / 10万人</option>
+        <option value="geriatrics_per_100k">老年内科 / 10万人</option>
+        <option value="sleep_medicine_per_100k">睡眠医療 / 10万人</option>
+        <option value="womens_medicine_per_100k">女性内科 / 10万人</option>
+        <option value="cosmetic_medicine_per_100k">美容内科 / 10万人</option>
+        <option value="kampo_per_100k">漢方・和漢 / 10万人</option>
+        <option value="general_surgery_per_100k">外科 / 10万人</option>
+        <option value="gi_surgery_per_100k">消化器外科 / 10万人</option>
+        <option value="resp_surgery_per_100k">呼吸器外科 / 10万人</option>
+        <option value="cardiovascular_surgery_per_100k">心臓血管外科 / 10万人</option>
+        <option value="neurosurgery_per_100k">脳神経外科 / 10万人</option>
+        <option value="breast_surgery_per_100k">乳腺外科 / 10万人</option>
+        <option value="pediatric_surgery_per_100k">小児外科 / 10万人</option>
+        <option value="colorectal_anal_surgery_per_100k">肛門・大腸外科 / 10万人</option>
+        <option value="head_neck_surgery_per_100k">頭頸部外科 / 10万人</option>
+        <option value="plastic_surgery_per_100k">形成外科 / 10万人</option>
+        <option value="cosmetic_surgery_per_100k">美容外科 / 10万人</option>
+        <option value="pediatric_cardiology_per_100k">小児循環器 / 10万人</option>
+        <option value="pediatric_neurology_per_100k">小児神経 / 10万人</option>
+        <option value="pediatric_nephrology_per_100k">小児腎臓 / 10万人</option>
+        <option value="pediatric_allergy_per_100k">小児アレルギー / 10万人</option>
+        <option value="pediatric_dermatology_per_100k">小児皮膚科 / 10万人</option>
+        <option value="pediatric_ophthalmology_per_100k">小児眼科 / 10万人</option>
+        <option value="pediatric_ent_per_100k">小児耳鼻咽喉科 / 10万人</option>
+        <option value="pediatric_urology_per_100k">小児泌尿器科 / 10万人</option>
+        <option value="rehabilitation_per_100k">リハビリテーション科 / 10万人</option>
+        <option value="cosmetic_dermatology_per_100k">美容皮膚科 / 10万人</option>
+        <option value="sexual_medicine_per_100k">性感染症・性病科 / 10万人</option>
+        <option value="psychiatry_per_100k">精神科 / 10万人</option>
+        <option value="psychosomatic_per_100k">心療内科 / 10万人</option>
+        <option value="anesthesiology_per_100k">麻酔科 / 10万人</option>
+        <option value="emergency_per_100k">救急科 / 10万人</option>
+        <option value="pain_per_100k">ペインクリニック / 10万人</option>
+        <option value="radiology_per_100k">放射線科 / 10万人</option>
+        <option value="radiology_diagnostic_per_100k">放射線診断科 / 10万人</option>
+        <option value="radiology_therapy_per_100k">放射線治療科 / 10万人</option>
+        <option value="pathology_per_100k">病理診断科 / 10万人</option>
+        <option value="lab_medicine_per_100k">臨床検査科 / 10万人</option>
+        <option value="ortho_per_100k">整形外科 / 10万人</option>
+        <option value="pediatrics_per_100k">小児科 / 10万人</option>
+        <option value="obgyn_per_100k">産婦人科系 / 10万人</option>
+        <option value="ophthalmology_per_100k">眼科 / 10万人</option>
+        <option value="ent_per_100k">耳鼻咽喉科 / 10万人</option>
+        <option value="dermatology_per_100k">皮膚科 / 10万人</option>
+        <option value="urology_per_100k">泌尿器科 / 10万人</option>
+      </optgroup>
+      <optgroup label="在宅エリア｜空間カバー">
+        <option value="homecare_16km_coverage_ratio">在宅16kmカバー率</option>
+        <option value="homecare_gap_beta">在宅カバー空白指数</option>
+      </optgroup>
     </select>
+    <div class="supplyDemandGuide">
+      <div><b>需要側の背景</b><span>総人口・高齢化など、医療ニーズの大きさに関係する人口背景です。需要件数そのものの予測ではありません。</span></div>
+      <div><b>供給側</b><span>医療機関・病床・在宅・医療活動・MRI/CTなど、地域で確認できる医療資源と活動量です。</span></div>
+      <p><b>「医療供給の総合指数」</b>は供給側の複数データを統合した相対比較値です。0を比較基準とし、マイナスは相対的に低め、プラスは相対的に高め。医療需要との差（需給ギャップ）や公的な不足判定そのものではありません。</p>
+    </div>
       <div class="metricSourceCard" id="metricSourceCard">
         <div class="metricSourceTop"><span>この指標の大本</span><button type="button" id="metricSourceMore">出典・定義を見る</button></div>
         <b id="metricSourceTitle">—</b>
@@ -528,9 +748,9 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
       <option value="100000">人口10万人以上</option>
     </select>
       <select id="regionFilter">
-      <option value="">地域シグナル：すべて</option>
-      <option value="current_low">現在供給が低め</option>
-      <option value="structure_low">構造供給が低め</option>
+      <option value="">供給不足シグナル：すべて</option>
+      <option value="current_low">医療供給の総合指数が低め</option>
+      <option value="structure_low">医療資源の配置が低め</option>
       <option value="activity_low">医療活動総合が低め</option>
       <option value="activity_surgery_low">手術活動が低め</option>
       <option value="activity_emergency_low">救急活動が低め</option>
@@ -542,6 +762,7 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
       <option value="home_gap_large">在宅16kmカバー空白大</option>
       <option value="home_gap_any">在宅16km未カバーあり</option>
     </select>
+      <div class="signalFilterNote">ここは「低い・不足側」を地図上で探すための補助フィルターです。高い側・低い側の両方を比べる場合は、地図右上の「地域比較ランキング」を使います。</div>
       <div class="quick">
         <button id="toggleArea" class="btn on">地域面 表示</button>
         <button id="togglePins" class="btn on">ピン 表示</button>
@@ -611,14 +832,7 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
       <button id="specialtyBtn" class="specialtyBtn primaryAction">診療科分析を開く</button>
       <div class="panelHint">整形外科を含む各診療科について、人口10万人あたり密度、病院・診療所構成、MRI・CTの地域背景を確認できます。</div>
     </div>
-
-    <div class="entryPanel" id="panelRanking" data-panel="ranking">
-      <div class="panelHead"><b>需給・ランキングを見る</b><span>地域間の差を同じ基準で比較</span></div>
-      <button id="rankingBtn" class="rankBtn primaryAction">地域ランキングを開く</button>
-      <div class="panelHint">現在供給、医療活動、画像診断装置、病床機能、在宅、整形外科密度などを並べ替えできます。小人口地域はランキング内の人口フィルターで除外できます。</div>
-    </div>
-
-    <div class="note compactNote">各指標は探索用です。公的な医療過疎判定ではありません。人口1万人未満は「参考値」、3万人未満は「注意」として扱います。</div>
+    <div class="note compactNote">需要側の背景は人口・高齢化、供給側は医療機関・病床・在宅・活動・MRI/CTなどです。相対指標は探索用で、公的な不足判定ではありません。</div>
   </div>
   <div class="scope">
     <div class="scopeTitle" id="scopeTitle">全国｜地域を選択してください</div>
@@ -630,12 +844,12 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
       <div class="metric"><b id="sBeds">—</b><span>病床 / 1,000人</span></div>
       <div class="metric"><b id="sHome">—</b><span>在宅 / 65+ 1万人</span></div>
     </div>
-    <div class="signal" id="signal"><strong>地域シグナル</strong><br>都道府県または市町村を選択すると表示します。</div>
+    <div class="signal" id="signal"><strong>地域の需要・供給</strong><br>都道府県または市町村を選択すると、人口背景と医療供給を表示します。</div>
   </div>
   <div class="facilityListHome" id="facilityListHome">
     <div class="facilityListPane" id="facilityListPane">
       <div class="listhead">
-        <span><b>医療機関一覧</b> <span id="listNote">—</span></span>
+        <span><b>医療機関一覧</b> <span id="listNote">—</span><small class="mobileListHint">｜下をスクロール</small></span>
         <button type="button" class="listExpandBtn" id="listExpandBtn" aria-expanded="false">一覧を拡大</button>
       </div>
       <div class="list" id="list"><div class="empty">都道府県を選択してください。</div></div>
@@ -651,8 +865,9 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
   <button class="mobile" id="mobile">メニュー</button>
   <div id="map"></div>
   <div class="homeLegend" id="homeLegend"><span class="homeSwatch"></span><b>在宅エリア調査</b><br>在宅系施設から半径16km<br>診療報酬上の原則範囲（直線距離）<br>※概略座標施設は除外</div>
-  <div class="mapnote" id="mapnote"><b>地域分析 v47</b><br>都道府県を選ぶと市町村 / 区を面表示します。<br><span>施設ピンをタップ → カルテ</span></div>
+  <div class="mapnote" id="mapnote"><b>地域分析 v49</b><br>都道府県を選ぶと市町村 / 区を面表示します。<br><span>施設ピンをタップ → カルテ</span></div>
   <div class="legend" id="legend"></div>
+<button class="rankingDockBtn" id="rankingDockBtn" type="button">地域比較ランキング</button>
 <button class="sourceBtn" id="sourceBtn" aria-label="出典一覧">出典・定義</button></main>
 </div>
 
@@ -736,23 +951,23 @@ const METRIC={
   hospital_longterm_beds_per10k:{label:"療養病床 / 1万人",fmt:v=>n1(v),seq:true},
   hospital_psychiatric_beds_per10k:{label:"精神病床 / 1万人",fmt:v=>n1(v),seq:true},
   homecare_per_10k_75:{label:"在宅系 / 75歳以上1万人",fmt:v=>n1(v),seq:true},
-  current_supply_v3_beta:{label:"現在供給 3.0",fmt:v=>signed(v,2),div:true},
-  bed_function_supply_beta:{label:"病床機能供給β",fmt:v=>signed(v,2),div:true},
+  current_supply_v3_beta:{label:"医療供給の総合指数",fmt:v=>signed(v,2),div:true},
+  bed_function_supply_beta:{label:"病床機能の供給",fmt:v=>signed(v,2),div:true},
   hospital_general_beds_per100k:{label:"一般病床 / 10万人",fmt:v=>n1(v),seq:true},
   hospital_longterm_beds_per100k:{label:"療養病床 / 10万人",fmt:v=>n1(v),seq:true},
   hospital_psychiatric_beds_per100k:{label:"精神病床 / 10万人",fmt:v=>n1(v),seq:true},
 
-  acute_bed_supply_deviation:{label:"急性期系病床供給偏差",fmt:v=>signed(v,2),div:true},
+  acute_bed_supply_deviation:{label:"急性期系病床の相対供給",fmt:v=>signed(v,2),div:true},
   community_care_hospital_count_per100k:{label:"地域包括ケア病院 / 10万人",fmt:v=>n1(v),seq:true},
   recovery_hospital_count_per100k:{label:"回復期病院 / 10万人",fmt:v=>n1(v),seq:true},
   chronic_hospital_count_per100k:{label:"慢性期病院 / 10万人",fmt:v=>n1(v),seq:true},
 
-  structure_supply_beta:{label:"構造供給｜施設・病床・在宅",fmt:v=>signed(v,2),div:true},
-  activity_supply_beta:{label:"医療活動｜総合",fmt:v=>signed(v,2),div:true},
-  activity_surgery_beta:{label:"医療活動｜手術型",fmt:v=>signed(v,2),div:true},
-  activity_emergency_beta:{label:"医療活動｜救急型",fmt:v=>signed(v,2),div:true},
-  activity_inpatient_beta:{label:"医療活動｜入院型",fmt:v=>signed(v,2),div:true},
-  equipment_supply_beta:{label:"画像診断装置｜MRI・CT",fmt:v=>signed(v,2),div:true},
+  structure_supply_beta:{label:"医療資源の配置",fmt:v=>signed(v,2),div:true},
+  activity_supply_beta:{label:"医療活動量｜総合",fmt:v=>signed(v,2),div:true},
+  activity_surgery_beta:{label:"手術活動",fmt:v=>signed(v,2),div:true},
+  activity_emergency_beta:{label:"救急活動",fmt:v=>signed(v,2),div:true},
+  activity_inpatient_beta:{label:"入院活動",fmt:v=>signed(v,2),div:true},
+  equipment_supply_beta:{label:"MRI・CT供給",fmt:v=>signed(v,2),div:true},
   activity_operations_per100k:{label:"手術件数 / 10万人",fmt:v=>n1(v),seq:true},
   activity_ambulance_per100k:{label:"救急車受入 / 10万人",fmt:v=>n1(v),seq:true},
   activity_patients_per100k:{label:"DPC患者 / 10万人",fmt:v=>n1(v),seq:true},
@@ -783,7 +998,7 @@ const METRIC={
   dermatology_per_100k:{label:"皮膚科 / 10万人",fmt:v=>n1(v),seq:true},
   urology_per_100k:{label:"泌尿器科 / 10万人",fmt:v=>n1(v),seq:true},
   homecare_16km_coverage_ratio:{label:"在宅16kmカバー率",fmt:v=>pct(v,0),seq:true},
-  homecare_gap_beta:{label:"在宅カバー空白β",fmt:v=>n1(v),seq:true}
+  homecare_gap_beta:{label:"在宅カバー空白指数",fmt:v=>n1(v),seq:true}
 };
 function num(v){return v==null?"—":Math.round(v).toLocaleString()}
 function n1(v){return v==null?"—":Number(v).toFixed(1)}
@@ -851,7 +1066,7 @@ function updateScope(){
   $("sHosp").textContent=a?num(a.hospital):"—";$("sBeds").textContent=a?n1(a.beds_per_1000):"—";$("sHome").textContent=a?n1(a.homecare_per_10k_65):"—";
   if(r){
     const special=r.population_quality==="ESTIMATED_CURRENT_WARD_SPLIT"?"<br><small>※浜松市は市全体推計を現行3区構成比で按分</small>":r.region_code==="07999"?"<br><small>※人口推計は浜通り13市町村の合算単位</small>":"";
-    $("signal").innerHTML=`<strong>${esc(r.profile_summary||r.bed_function_supply_label||"現在供給")}</strong><br>現在供給 3.0 ${signed(r.current_supply_v3_beta)}（全国パーセンタイル ${r.pctl_current_supply??"—"} / データ充足率 ${pct(r.current_supply_v3_coverage,0)}）<br>構造 ${signed(r.structure_supply_beta)} / 医療活動 ${signed(r.activity_supply_beta)} / 装置 ${signed(r.equipment_supply_beta)} / 病床機能 ${signed(r.bed_function_supply_beta)}<br><small>活動内訳：手術 ${signed(r.activity_surgery_beta)} / 救急 ${signed(r.activity_emergency_beta)} / 入院 ${signed(r.activity_inpatient_beta)}</small>`;
+    $("signal").innerHTML=`<strong>${esc(r.profile_summary||r.bed_function_supply_label||"医療供給の概況")}</strong><br>医療供給の総合指数 ${signed(r.current_supply_v3_beta)}（0=比較基準 / 全国パーセンタイル ${r.pctl_current_supply??"—"} / データ取得 ${pct(r.current_supply_v3_coverage,0)}）<br>内訳：医療資源 ${signed(r.structure_supply_beta)} / 医療活動 ${signed(r.activity_supply_beta)} / MRI・CT ${signed(r.equipment_supply_beta)} / 病床機能 ${signed(r.bed_function_supply_beta)}<br><small>活動内訳：手術 ${signed(r.activity_surgery_beta)} / 救急 ${signed(r.activity_emergency_beta)} / 入院 ${signed(r.activity_inpatient_beta)}。マイナス=相対的に低め、プラス=相対的に高め。</small>`;
   }else if(a){
     $("signal").innerHTML=`<strong>${PREF_META[prefCode].name}</strong><br>医療機関 ${num(a.facility_total)} / 人口10万人あたり ${n1(a.facilities_per_100k)}`;
   }else $("signal").innerHTML="<strong>地域シグナル</strong><br>都道府県または市町村を選択すると表示します。";
@@ -859,14 +1074,26 @@ function updateScope(){
 
 const seqColors=["#f0eee7","#d9ded6","#b9cbbf","#8dae9e","#5f897d","#315f59"];
 const divColors=["#b84c35","#d9825f","#e7c2aa","#e9e6dc","#b8ced3","#75a5b1","#356e7d"];
+function metricDataAvailable(r,key){
+  if(!r||!validNum(r[key]))return false;
+  if(key==="activity_operations_per10k"||key==="activity_operations_per100k")return Number(r.activity_surgery_beta_coverage||0)>0;
+  if(key==="activity_ambulance_per10k"||key==="activity_ambulance_per100k")return Number(r.activity_emergency_beta_coverage||0)>0;
+  if(key==="activity_patients_per10k"||key==="activity_patients_per100k")return Number(r.activity_inpatient_beta_coverage||0)>0;
+  if(key==="equipment_mri_per10k"||key==="equipment_mri_per100k"||key==="equipment_ct_per10k"||key==="equipment_ct_per100k")return Number(r.equipment_data_coverage||0)>0;
+  if(key.startsWith("hospital_general_beds_")||key.startsWith("hospital_longterm_beds_")||key.startsWith("hospital_psychiatric_beds_"))return Number(r.hospital_bed_type_data_coverage||0)>0;
+  return true;
+}
+function metricDisplay(r,key){
+  return metricDataAvailable(r,key)?METRIC[key].fmt(r[key]):"未取得";
+}
 function metricDomain(key){
-  const vals=Object.values(REGION).map(r=>r[key]).filter(validNum).map(Number);
+  const vals=Object.values(REGION).filter(r=>metricDataAvailable(r,key)).map(r=>Number(r[key]));
   if(METRIC[key].div)return null;
   return [qtile(vals,.1),qtile(vals,.3),qtile(vals,.5),qtile(vals,.7),qtile(vals,.9)];
 }
 function fillFor(r,key){
   const minPop=Number($("mapPopulationFilter")?.value||0); if(r&&minPop&&Number(r.pop2025||0)<minPop)return "#e8e7e1";
-  if(!r||!validNum(r[key]))return "#d8d8d1";
+  if(!metricDataAvailable(r,key))return "#d8d8d1";
   const v=+r[key],m=METRIC[key];
   if(m.div){
     let cuts;
@@ -885,7 +1112,7 @@ function updateLegend(){
   if(["current_supply_v3_beta","bed_function_supply_beta","structure_supply_beta","equipment_supply_beta","acute_bed_supply_deviation"].includes(key)){left="供給密度低め";right="供給密度高め";}
   if(["activity_supply_beta","activity_surgery_beta","activity_emergency_beta","activity_inpatient_beta"].includes(key)){left="活動量低め";right="活動量高め";}
   const rf=$("regionFilter")?.selectedOptions?.[0]?.textContent||"";
-  $("legend").innerHTML=`<div class="legendTitle">${m.label}</div><div class="scale">${cols.map(c=>`<i style="background:${c}"></i>`).join("")}</div><div class="legendRows"><span>${left}</span><span>${right}</span></div>${rf&&$("regionFilter").value?`<div style="margin-top:6px;font-weight:700">${esc(rf)}</div>`:""}<div style="margin-top:6px;color:#777">面塗り：市町村 / 政令市は区<br>淡色：現在の地域シグナル条件外</div><div class="legendEquip"><span><i class="equipMark mri">M</i>MRI</span><span><i class="equipMark ct">C</i>CT</span><small>施設ピン右上</small></div>`;
+  $("legend").innerHTML=`<div class="legendTitle">${m.label}</div><div class="scale">${cols.map(c=>`<i style="background:${c}"></i>`).join("")}</div><div class="legendRows"><span>${left}</span><span>${right}</span></div>${rf&&$("regionFilter").value?`<div style="margin-top:6px;font-weight:700">${esc(rf)}</div>`:""}<div style="margin-top:6px;color:#777">面塗り：市町村 / 政令市は区<br>淡色：現在の供給不足シグナル条件外<br>灰色：この指標の元データ未取得</div><div class="legendEquip"><span><i class="equipMark mri">M</i>MRI</span><span><i class="equipMark ct">C</i>CT</span><small>施設ピン右上</small></div>`;
 }
 
 async function ensureBoundaries(){
@@ -897,7 +1124,7 @@ async function ensureBoundaries(){
     const topo=await res.json();
     const obj=topo.objects.city||topo.objects[Object.keys(topo.objects)[0]];
     boundaryFeatures=topojson.feature(topo,obj).features;
-    $("mapnote").innerHTML="<b>地域分析 v47</b><br>市町村 / 区をクリックすると施設まで絞り込みます。";
+    $("mapnote").innerHTML="<b>地域分析 v49</b><br>市町村 / 区をクリックすると施設まで絞り込みます。";
     return true;
   }catch(e){
     $("mapnote").innerHTML="<b>行政界を読み込めませんでした</b><br>施設ピン・市町村選択・人口集計は利用できます。";
@@ -938,7 +1165,7 @@ function renderRegions(){
     const sc=extractShapeCode(f),rc=regionForShape(sc),r=REGION[rc]; if(!r)continue;
     const selected=regionCode===rc, matched=regionMatchesFilter(r);
     const layer=L.geoJSON(f,{style:{color:selected?"#151817":matched?"#fff":"#d7d7d1",weight:selected?2.4:matched?.8:.45,fillColor:matched?fillFor(r,metric):"#ecece7",fillOpacity:matched?.72:.14}});
-    layer.bindTooltip(`<div class="region-tooltip"><b>${esc(r.area_name)}</b><br>${METRIC[metric].label}：${METRIC[metric].fmt(r[metric])}<br>人口 ${num(r.pop2025)} / 医療機関 ${num(r.facility_total)}<br>現在供給 3.0 ${signed(r.current_supply_v3_beta)}<br>構造 ${signed(r.structure_supply_beta)} / 医療活動 ${signed(r.activity_supply_beta)}<br>手術 ${signed(r.activity_surgery_beta)} / 救急 ${signed(r.activity_emergency_beta)} / 入院 ${signed(r.activity_inpatient_beta)}<br>装置 ${signed(r.equipment_supply_beta)} / 病床機能 ${signed(r.bed_function_supply_beta)}</div>`,{sticky:true});
+    layer.bindTooltip(`<div class="region-tooltip"><b>${esc(r.area_name)}</b><br>${METRIC[metric].label}：${metricDisplay(r,metric)}<br>人口 ${num(r.pop2025)} / 医療機関 ${num(r.facility_total)}<br>医療供給の総合指数 ${signed(r.current_supply_v3_beta)}<br>医療資源 ${signed(r.structure_supply_beta)} / 医療活動 ${signed(r.activity_supply_beta)}<br>手術 ${signed(r.activity_surgery_beta)} / 救急 ${signed(r.activity_emergency_beta)} / 入院 ${signed(r.activity_inpatient_beta)}<br>装置 ${signed(r.equipment_supply_beta)} / 病床機能 ${signed(r.bed_function_supply_beta)}</div>`,{sticky:true});
     layer.on("click",()=>selectRegion(rc,true));
     layer.addTo(regionLayer);
     (regionLeaflets[rc]??=[]).push(layer);
@@ -1084,7 +1311,7 @@ function openFacilityChart(x){
   $("fcDesignated").textContent=fmtDate8(x.designated); $("fcId").textContent=x.id||"—";
   $("fcDepartments").innerHTML=x.departments.length?x.departments.map(d=>`<span>${esc(d)}</span>`).join(""):"<span>標榜情報なし</span>";
   const hs=homeLabels(x); $("fcHome").textContent=hs.length?hs.join(" / "):"該当情報なし"; $("fcCare").textContent=x.care?"あり":"なし"; $("fcQc").textContent=COORD_NAMES[x.qc]||"補完座標";
-  $("fcSupply").textContent=metricText(r.current_supply_v3_beta); $("fcSupplyCov").textContent=`指標データ取得 ${pct(r.current_supply_v3_coverage,0)}（品質：${r.current_supply_v3_data_quality||"—"}）`; $("fcActivity").textContent=metricText(r.activity_supply_beta); $("fcActivityProfile").textContent=activityProfileText(r.activity_profile_label); $("fcBedFunction").textContent=metricText(r.bed_function_supply_beta);
+  $("fcSupply").textContent=metricText(r.current_supply_v3_beta); $("fcSupplyCov").textContent=`供給指標データ取得 ${pct(r.current_supply_v3_coverage,0)}（品質：${r.current_supply_v3_data_quality||"—"}）`; $("fcActivity").textContent=metricText(r.activity_supply_beta); $("fcActivityProfile").textContent=activityProfileText(r.activity_profile_label); $("fcBedFunction").textContent=metricText(r.bed_function_supply_beta);
   $("fcSurgBeta").textContent=signed(r.activity_surgery_beta); $("fcEmergBeta").textContent=signed(r.activity_emergency_beta); $("fcInpatientBeta").textContent=signed(r.activity_inpatient_beta);
   $("fcEquipment").textContent=`${metricText(r.equipment_mri_total,0)} / ${metricText(r.equipment_ct_total,0)}`;
   $("fcOps").textContent=metricText(r.activity_operations_per10k); $("fcAmb").textContent=metricText(r.activity_ambulance_per10k); $("fcDpc").textContent=metricText(r.activity_patients_per10k);
@@ -1213,7 +1440,7 @@ function autoPref(){
 }
 function exportCsv(){
   const rows=sortFacilities(shown),r=regionCode?REGION[regionCode]:null;
-  const heads=["都道府県","市町村・区","医療機関コード","施設名","施設種別","住所","電話","病床数","診療科","在宅","地域包括","保険指定年月日","座標品質","緯度","経度","人口2025","65歳以上人口","75歳以上人口","人口あたり指標の表示","現在供給3.0","現在供給データ充足率","構造供給β","医療活動総合β","手術型β","救急型β","入院型β","画像診断装置β","病床機能β","手術/1万人","救急車受入/1万人","DPC患者/1万人","MRI台数","CT台数","MRI/1万人","CT/1万人","整形外科/10万人","小児科/10万人","産婦人科系/10万人","在宅16kmカバー率","在宅カバー空白β","在宅カバー判定","一般病床","療養病床","精神病床","病院病床合計","一般病床/1万人","療養病床/1万人","精神病床/1万人","病床機能供給β","急性期病床/10万人","急性期系病床供給偏差","地域包括ケア機能病院数","回復期機能病院数","慢性期機能病院数","施設MRI台数","施設CT台数","施設画像装置","施設装置照合","MRI 3T以上","MRI 1.5-3T","MRI 1.5T未満","CT 128列以上","CT 64列以上","CT 16-63列","CT 16列未満","装置情報ソース"];
+  const heads=["都道府県","市町村・区","医療機関コード","施設名","施設種別","住所","電話","病床数","診療科","在宅","地域包括","保険指定年月日","座標品質","緯度","経度","人口2025","65歳以上人口","75歳以上人口","人口あたり指標の表示","医療供給の総合指数","供給指数データ取得率","医療資源の配置（相対値）","医療活動量（相対値）","手術活動（相対値）","救急活動（相対値）","入院活動（相対値）","MRI・CT供給（相対値）","病床機能の供給（相対値）","手術/1万人","救急車受入/1万人","DPC患者/1万人","MRI台数","CT台数","MRI/1万人","CT/1万人","整形外科/10万人","小児科/10万人","産婦人科系/10万人","在宅16kmカバー率","在宅カバー空白指数","在宅カバー判定","一般病床","療養病床","精神病床","病院病床合計","一般病床/1万人","療養病床/1万人","精神病床/1万人","病床機能の供給","急性期病床/10万人","急性期系病床供給偏差","地域包括ケア機能病院数","回復期機能病院数","慢性期機能病院数","施設MRI台数","施設CT台数","施設画像装置","施設装置照合","MRI 3T以上","MRI 1.5-3T","MRI 1.5T未満","CT 128列以上","CT 64列以上","CT 16-63列","CT 16列未満","装置情報ソース"];
   const q=v=>`"${String(v??"").replaceAll('"','""')}"`;
   let s="\ufeff"+heads.map(q).join(",")+"\r\n";
   for(const x of rows){const rr=REGION[x.region]||r,ee=equipmentForFacility(x),ef=equipmentFlags(x),sf=equipmentSpecFlags(x),eqLabel=ee?(ef.hasMRI&&ef.hasCT?"MRI+CT":ef.hasMRI?"MRI確認・CT未確認":ef.hasCT?"CT確認・MRI未確認":"装置種別未確認"):"未照合";s+=[PREF_META[prefCode]?.name||"",rr?.area_name||"",x.id,x.name,TYPE_NAMES[x.type],x.address,x.phone,x.beds,x.departments.join(" / "),homeLabels(x).join(" / "),x.care?"あり":"",x.designated||"",COORD_NAMES[x.qc]||"",x.lat,x.lng,rr?.pop2025??"",rr?.age65_2025??"",rr?.age75_2025??"",rr?.population_rate_reliability??"",rr?.current_supply_v3_beta??"",rr?.current_supply_v3_coverage??"",rr?.structure_supply_beta??"",rr?.activity_supply_beta??"",rr?.activity_surgery_beta??"",rr?.activity_emergency_beta??"",rr?.activity_inpatient_beta??"",rr?.equipment_supply_beta??"",rr?.bed_function_supply_beta??"",rr?.activity_operations_per10k??"",rr?.activity_ambulance_per10k??"",rr?.activity_patients_per10k??"",rr?.equipment_mri_total??"",rr?.equipment_ct_total??"",rr?.equipment_mri_per10k??"",rr?.equipment_ct_per10k??"",rr?.ortho_per_100k??"",rr?.pediatrics_per_100k??"",rr?.obgyn_per_100k??"",rr?.homecare_16km_coverage_ratio??"",rr?.homecare_gap_beta??"",rr?.homecare_gap_label??"",rr?.hospital_general_beds??"",rr?.hospital_longterm_beds??"",rr?.hospital_psychiatric_beds??"",rr?.hospital_reported_total_beds??"",rr?.hospital_general_beds_per10k??"",rr?.hospital_longterm_beds_per10k??"",rr?.hospital_psychiatric_beds_per10k??"",rr?.bed_function_supply_beta??"",rr?.acute_beds_per_100k??"",rr?.acute_bed_supply_deviation??"",rr?.community_care_hospital_count??"",rr?.recovery_hospital_count??"",rr?.chronic_hospital_count??"",ee?.mri??"",ee?.ct??"",eqLabel,ee?"安全照合":"未照合",sf.mri3t?"確認":"",sf.mri15_3?"確認":"",sf.mri_under15?"確認":"",sf.ct128?"確認":"",sf.ct64plus?"確認":"",sf.ct16_63?"確認":"",sf.ct_under16?"確認":"",ee?.equipment_source??""].map(q).join(",")+"\r\n";}
@@ -1263,7 +1490,7 @@ function renderRegionDetail(){
   $("detailSub").textContent=`人口 ${num(r.pop2025)} / 医療機関 ${num(r.facility_total)} / ${r.region_type||""}`;
 
   $("dSupply").textContent=signed(r.current_supply_v3_beta);
-  $("dSupplyLabel").textContent=`全国パーセンタイル ${r.pctl_current_supply??"—"} / データ充足率 ${pct(r.current_supply_v3_coverage,0)}`;
+  $("dSupplyLabel").textContent=`0=比較基準 / 全国P ${r.pctl_current_supply??"—"} / データ取得 ${pct(r.current_supply_v3_coverage,0)}`;
   $("dStructure").textContent=signed(r.structure_supply_beta);
   $("dActivity").textContent=signed(r.activity_supply_beta);
   $("dEquipment").textContent=signed(r.equipment_supply_beta);
@@ -1288,9 +1515,9 @@ function renderRegionDetail(){
   $("dBeddedMix").textContent=r.bedded_clinic_share==null?"—":`${num(r.bedded_clinic)} (${pct(r.bedded_clinic_share,1)})`;
   $("dClinicMix").textContent=r.clinic_share==null?"—":`${num(r.clinic)} (${pct(r.clinic_share,1)})`;
   $("dOrthoProfileDensity").textContent=n1(r.ortho_per_100k);
-  $("dMRIProfileDensity").textContent=n1(r.equipment_mri_per10k);
-  $("dSurgeryProfileDensity").textContent=n1(r.activity_operations_per10k);
-  $("dGeneralBedProfileDensity").textContent=n1(r.hospital_general_beds_per10k);
+  $("dMRIProfileDensity").textContent=metricDataAvailable(r,"equipment_mri_per10k")?n1(r.equipment_mri_per10k):"未取得";
+  $("dSurgeryProfileDensity").textContent=metricDataAvailable(r,"activity_operations_per10k")?n1(r.activity_operations_per10k):"未取得";
+  $("dGeneralBedProfileDensity").textContent=metricDataAvailable(r,"hospital_general_beds_per10k")?n1(r.hospital_general_beds_per10k):"未取得";
 
   $("dPop25").textContent=num(r.pop2025);
   $("d65").textContent=`${num(r.age65_2025)} (${pct(r.age65_share_2025,1)})`;
@@ -1316,16 +1543,16 @@ function renderRegionDetail(){
   $("dActSurgBeta").textContent=signed(r.activity_surgery_beta); $("dActSurgP").textContent=r.pctl_activity_surgery==null?"全国パーセンタイル —":`全国パーセンタイル ${Number(r.pctl_activity_surgery).toFixed(0)}`; $("dActSurgCov").textContent=`データ充足率 ${pct(r.activity_surgery_beta_coverage,0)}`;
   $("dActEmergBeta").textContent=signed(r.activity_emergency_beta); $("dActEmergP").textContent=r.pctl_activity_emergency==null?"全国パーセンタイル —":`全国パーセンタイル ${Number(r.pctl_activity_emergency).toFixed(0)}`; $("dActEmergCov").textContent=`データ充足率 ${pct(r.activity_emergency_beta_coverage,0)}`;
   $("dActInpatientBeta").textContent=signed(r.activity_inpatient_beta); $("dActInpatientP").textContent=r.pctl_activity_inpatient==null?"全国パーセンタイル —":`全国パーセンタイル ${Number(r.pctl_activity_inpatient).toFixed(0)}`; $("dActInpatientCov").textContent=`データ充足率 ${pct(r.activity_inpatient_beta_coverage,0)}`;
-  $("dOps").textContent=r.activity_operations_per10k==null?"—":n1(r.activity_operations_per10k);
-  $("dAmb").textContent=r.activity_ambulance_per10k==null?"—":n1(r.activity_ambulance_per10k);
-  $("dPatients").textContent=r.activity_patients_per10k==null?"—":n1(r.activity_patients_per10k);
+  $("dOps").textContent=metricDataAvailable(r,"activity_operations_per10k")?n1(r.activity_operations_per10k):"未取得";
+  $("dAmb").textContent=metricDataAvailable(r,"activity_ambulance_per10k")?n1(r.activity_ambulance_per10k):"未取得";
+  $("dPatients").textContent=metricDataAvailable(r,"activity_patients_per10k")?n1(r.activity_patients_per10k):"未取得";
   $("dActivityCov").textContent=pct(r.activity_data_coverage,0);
 
   $("dEquipmentBeta").textContent=signed(r.equipment_supply_beta);
   $("dMRI").textContent=num(r.equipment_mri_total);
   $("dCT").textContent=num(r.equipment_ct_total);
-  $("dMRIDens").textContent=n1(r.equipment_mri_per10k);
-  $("dCTDens").textContent=n1(r.equipment_ct_per10k);
+  $("dMRIDens").textContent=metricDataAvailable(r,"equipment_mri_per10k")?n1(r.equipment_mri_per10k):"未取得";
+  $("dCTDens").textContent=metricDataAvailable(r,"equipment_ct_per10k")?n1(r.equipment_ct_per10k):"未取得";
   $("dEquipCov").textContent=pct(r.equipment_data_coverage,0);
 
   $("dGeneralBeds").textContent=r.hospital_general_beds==null?"—":`${num(r.hospital_general_beds)} (${n1(r.hospital_general_beds_per10k)}/1万人)`;
@@ -1349,50 +1576,64 @@ function renderRegionDetail(){
   $("detailModal").classList.add("open");
 }
 
+const RANK_METRICS={
+  current_supply_v3_beta:{label:"医療供給の総合指数",fmt:v=>signed(v)},
+  structure_supply_beta:{label:"医療資源の配置",fmt:v=>signed(v)},
+  activity_supply_beta:{label:"医療活動量｜総合",fmt:v=>signed(v)},
+  activity_surgery_beta:{label:"手術活動",fmt:v=>signed(v)},
+  activity_emergency_beta:{label:"救急活動",fmt:v=>signed(v)},
+  activity_inpatient_beta:{label:"入院活動",fmt:v=>signed(v)},
+  equipment_supply_beta:{label:"MRI・CT供給",fmt:v=>signed(v)},
+  bed_function_supply_beta:{label:"病床機能の供給",fmt:v=>signed(v)},
+  acute_bed_supply_deviation:{label:"急性期系病床の相対供給",fmt:v=>signed(v)},
+  facilities_per_10k:{label:"医療機関 / 1万人",fmt:v=>n1(v)},
+  hospitals_per_10k:{label:"病院 / 1万人",fmt:v=>n1(v)},
+  beds_per_1000:{label:"病床 / 1,000人",fmt:v=>n1(v)},
+  homecare_per_10k_65:{label:"在宅系 / 65歳以上1万人",fmt:v=>n1(v)},
+  homecare_16km_coverage_ratio:{label:"在宅16kmカバー率",fmt:v=>pct(v,0)},
+  homecare_gap_beta:{label:"在宅カバー空白",fmt:v=>n1(v)},
+  activity_operations_per10k:{label:"手術件数 / 1万人",fmt:v=>n1(v)},
+  activity_ambulance_per10k:{label:"救急車受入 / 1万人",fmt:v=>n1(v)},
+  activity_patients_per10k:{label:"DPC患者 / 1万人",fmt:v=>n1(v)},
+  equipment_mri_per10k:{label:"MRI / 1万人",fmt:v=>n1(v)},
+  equipment_ct_per10k:{label:"CT / 1万人",fmt:v=>n1(v)},
+  hospital_general_beds_per10k:{label:"一般病床 / 1万人",fmt:v=>n1(v)},
+  ortho_per_100k:{label:"整形外科 / 10万人",fmt:v=>n1(v)},
+  pediatrics_per_100k:{label:"小児科 / 10万人",fmt:v=>n1(v)},
+  obgyn_per_100k:{label:"産婦人科系 / 10万人",fmt:v=>n1(v)},
+  pop2025:{label:"総人口",fmt:v=>num(v)},
+  age65_share_2025:{label:"65歳以上割合",fmt:v=>pct(v,1)}
+};
 function rankConfig(){
-  const m=$("rankMetric").value;
-  if(m==="currentLow")return {field:"current_supply_v3_beta",dir:1,label:"現在供給 3.0",fmt:v=>signed(v)};
-  if(m==="currentHigh")return {field:"current_supply_v3_beta",dir:-1,label:"現在供給 3.0",fmt:v=>signed(v)};
-  if(m==="structureLow")return {field:"structure_supply_beta",dir:1,label:"構造供給",fmt:v=>signed(v)};
-  if(m==="activityHigh")return {field:"activity_supply_beta",dir:-1,label:"医療活動総合",fmt:v=>signed(v)};
-  if(m==="activityLow")return {field:"activity_supply_beta",dir:1,label:"医療活動総合",fmt:v=>signed(v)};
-  if(m==="surgeryHigh")return {field:"activity_surgery_beta",dir:-1,label:"手術型活動",fmt:v=>signed(v)};
-  if(m==="surgeryLow")return {field:"activity_surgery_beta",dir:1,label:"手術型活動",fmt:v=>signed(v)};
-  if(m==="emergencyHigh")return {field:"activity_emergency_beta",dir:-1,label:"救急型活動",fmt:v=>signed(v)};
-  if(m==="emergencyLow")return {field:"activity_emergency_beta",dir:1,label:"救急型活動",fmt:v=>signed(v)};
-  if(m==="inpatientHigh")return {field:"activity_inpatient_beta",dir:-1,label:"入院型活動",fmt:v=>signed(v)};
-  if(m==="inpatientLow")return {field:"activity_inpatient_beta",dir:1,label:"入院型活動",fmt:v=>signed(v)};
-  if(m==="equipmentHigh")return {field:"equipment_supply_beta",dir:-1,label:"画像診断装置",fmt:v=>signed(v)};
-  if(m==="equipmentLow")return {field:"equipment_supply_beta",dir:1,label:"画像診断装置",fmt:v=>signed(v)};
-  if(m==="bedFunctionLow")return {field:"bed_function_supply_beta",dir:1,label:"病床機能供給β",fmt:v=>signed(v)};
-  if(m==="acuteBedLow")return {field:"acute_bed_supply_deviation",dir:1,label:"急性期系病床供給偏差",fmt:v=>signed(v)};
-  if(m==="homeLow")return {calc:r=>{
-    const med=r.peer_median_homecare_per_10k_65;
-    return med&&r.homecare_per_10k_65!=null?r.homecare_per_10k_65/med-1:null
-  },dir:1,label:"在宅供給偏差",fmt:v=>pct(v)};
-  if(m==="orthoLow")return {field:"ortho_per_100k",dir:1,label:"整形外科 / 10万人",fmt:v=>n1(v)};
-  if(m==="pedsLow")return {field:"pediatrics_per_100k",dir:1,label:"小児科 / 10万人",fmt:v=>n1(v)};
-  if(m==="homeGap")return {field:"homecare_gap_beta",dir:-1,label:"在宅カバー空白β",fmt:v=>n1(v)};
-  return {field:"homecare_16km_coverage_ratio",dir:1,label:"在宅16kmカバー率",fmt:v=>pct(v,0)};
+  const field=$("rankMetric").value;
+  const cfg=RANK_METRICS[field]||RANK_METRICS.current_supply_v3_beta;
+  return {...cfg,field};
+}
+function rankRowElement(x,i,cfg){
+  const d=document.createElement("div");d.className="rankRow";
+  d.innerHTML=`<div class="rankNo">${i+1}</div><div class="rankName"><b>${esc(x.r.prefecture)}｜${esc(x.r.area_name)}</b><span>人口 ${num(x.r.pop2025)} ・ 医療機関 ${num(x.r.facility_total)}</span></div><div class="rankVal">${cfg.fmt(x.v)}</div>`;
+  d.onclick=async()=>{
+    $("rankModal").classList.remove("open");
+    const p=prefOfRegion(x.code);
+    if(p&&p!==prefCode)await loadPref(p,true);
+    selectRegion(x.code,true);
+  };
+  return d;
 }
 function renderRanking(){
   const cfg=rankConfig(),minPop=+$("rankPopulation").value||0;
-  let a=Object.entries(REGION).map(([code,r])=>{
-    const v=cfg.calc?cfg.calc(r):r[cfg.field];return {code,r,v};
-  }).filter(x=>x.r.pop2025>=minPop&&validNum(x.v));
-  a.sort((x,y)=>cfg.dir*(x.v-y.v));
-  const el=$("rankList");el.innerHTML="";
-  a.slice(0,50).forEach((x,i)=>{
-    const d=document.createElement("div");d.className="rankRow";
-    d.innerHTML=`<div class="rankNo">${i+1}</div><div class="rankName"><b>${esc(x.r.prefecture)}｜${esc(x.r.area_name)}</b><span>人口 ${num(x.r.pop2025)} ・ 医療機関 ${num(x.r.facility_total)}</span></div><div class="rankVal">${cfg.fmt(x.v)}</div>`;
-    d.onclick=async()=>{
-      $("rankModal").classList.remove("open");
-      const p=prefOfRegion(x.code);
-      if(p&&p!==prefCode)await loadPref(p,true);
-      selectRegion(x.code,true);
-    };
-    el.appendChild(d);
-  });
+  const a=Object.entries(REGION).map(([code,r])=>({code,r,v:r[cfg.field]}))
+    .filter(x=>x.r.pop2025>=minPop&&metricDataAvailable(x.r,cfg.field));
+  const high=[...a].sort((x,y)=>y.v-x.v);
+  const low=[...a].sort((x,y)=>x.v-y.v);
+  const n=Math.min(25,a.length);
+  if($("rankSummary"))$("rankSummary").textContent=`${cfg.label}｜高い側・低い側を同時表示｜有効データ ${a.length.toLocaleString()}地域（欠測は順位から除外）`;
+  if($("rankHighCount"))$("rankHighCount").textContent=`上位 ${n}`;
+  if($("rankLowCount"))$("rankLowCount").textContent=`下位 ${n}`;
+  const hi=$("rankListHigh"),lo=$("rankListLow");
+  hi.innerHTML="";lo.innerHTML="";
+  high.slice(0,n).forEach((x,i)=>hi.appendChild(rankRowElement(x,i,cfg)));
+  low.slice(0,n).forEach((x,i)=>lo.appendChild(rankRowElement(x,i,cfg)));
 }
 
 map=L.map("map",{preferCanvas:true,zoomControl:true}).setView([37.2,137.3],5);
@@ -1402,7 +1643,7 @@ regionLayer.addTo(map);pinLayer.addTo(map);homeAreaLayer.addTo(map);updateLegend
 
 
 const SOURCE_META={
-  composite:{title:"複数公開データの統合指標",text:"構造供給40%・医療活動30%・MRI/CT 15%・病床機能15%を基本重みとして統合。欠測レイヤーは除外して重みを再配分します。"},
+  composite:{title:"複数公開データを統合した供給側の相対指標",text:"医療資源40%・医療活動30%・MRI/CT 15%・病床機能15%を基本重みとして統合。欠測レイヤーは除外して重みを再配分します。"},
   structure:{title:"保険医療機関情報・医療情報ネット・地方厚生局",text:"施設数・病床・在宅系施設基準などを地域集計し、人口構成を考慮して比較しています。"},
   activity:{title:"病床機能報告・DPC退院患者調査等",text:"手術、救急車受入、DPC患者数を地域集計し、人口あたりで比較しています。"},
   equipment:{title:"病床機能報告等のMRI・CT台数",text:"地域内のMRI・CT保有（確認済み）台数を集計した指標です。施設別の装置区分とは別データです。"},
@@ -1437,24 +1678,17 @@ function updateMetricSource(){
   if($("metricSourceTitle"))$("metricSourceTitle").textContent=s.title;
   if($("metricSourceText"))$("metricSourceText").textContent=s.text;
 }
-const RANK_SOURCE_METRIC={
-  currentLow:"current_supply_v3_beta",currentHigh:"current_supply_v3_beta",structureLow:"structure_supply_beta",
-  activityHigh:"activity_supply_beta",activityLow:"activity_supply_beta",surgeryHigh:"activity_surgery_beta",surgeryLow:"activity_surgery_beta",
-  emergencyHigh:"activity_emergency_beta",emergencyLow:"activity_emergency_beta",inpatientHigh:"activity_inpatient_beta",inpatientLow:"activity_inpatient_beta",
-  equipmentHigh:"equipment_supply_beta",equipmentLow:"equipment_supply_beta",bedFunctionLow:"bed_function_supply_beta",
-  acuteBedLow:"acute_bed_supply_deviation",homeLow:"homecare_per_10k_65",orthoLow:"ortho_per_100k",pedsLow:"pediatrics_per_100k",
-  homeGap:"homecare_gap_beta",homeCoverageLow:"homecare_16km_coverage_ratio"
-};
 function updateRankSource(){
-  const key=RANK_SOURCE_METRIC[$("rankMetric")?.value]||"current_supply_v3_beta";
+  const key=$("rankMetric")?.value||"current_supply_v3_beta";
   const s=sourceForMetric(key);
   if($("rankSourceTitle"))$("rankSourceTitle").textContent=s.title;
   if($("rankSourceText"))$("rankSourceText").textContent=s.text;
 }
 
-const ENTRY_IDS=["region","facility","specialty","ranking"];
+const ENTRY_IDS=["region","facility","specialty"];
 function setEntryMode(mode){
   if(!ENTRY_IDS.includes(mode))mode="region";
+  $("side")?.setAttribute("data-entry-mode",mode);
   ENTRY_IDS.forEach(k=>{
     const b=$("entry"+k[0].toUpperCase()+k.slice(1));
     const p=$("panel"+k[0].toUpperCase()+k.slice(1));
@@ -1467,7 +1701,6 @@ document.querySelectorAll(".entryBtn").forEach(b=>b.onclick=()=>{
   const mode=b.dataset.entry; setEntryMode(mode);
   if(mode==="facility")setTimeout(()=>$("q")?.focus(),60);
   if(mode==="specialty")setTimeout(()=>$("specialtyBtn")?.focus(),60);
-  if(mode==="ranking")setTimeout(()=>$("rankingBtn")?.focus(),60);
 });
 try{setEntryMode(sessionStorage.getItem("hospitalMapEntry")||"region")}catch(e){setEntryMode("region")}
 updateMetricSource();
@@ -1492,7 +1725,7 @@ $("homeSurveyBtn").onclick=()=>{
   $("homeSurveyBtn").textContent=`在宅エリア調査 ${homeSurveyOn?"表示":"非表示"}`;
   drawHomeAreas();
 };
-$("rankingBtn").onclick=()=>{renderRanking();updateRankSource();$("rankModal")?.classList.add("open")};
+$("rankingDockBtn").onclick=()=>{renderRanking();updateRankSource();$("rankModal")?.classList.add("open")};
 $("specialtyBtn").onclick=openSpecialtyAnalysis;
 $("regionDetailBtn").onclick=renderRegionDetail;
 $("csv").onclick=exportCsv;
@@ -1605,16 +1838,16 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
           <h3>地域の医療供給コンテキスト</h3>
           <table class="specialtyTable">
             <tr><td>人口 2025</td><td id="spPop">—</td></tr>
-            <tr><td>現在供給 3.0</td><td id="spCurrent">—</td></tr>
-            <tr><td>医療活動β</td><td id="spActivity">—</td></tr>
-            <tr><td>病床機能β</td><td id="spBedFunction">—</td></tr>
+            <tr><td>医療供給の総合指数</td><td id="spCurrent">—</td></tr>
+            <tr><td>医療活動量（相対値）</td><td id="spActivity">—</td></tr>
+            <tr><td>病床機能の供給（相対値）</td><td id="spBedFunction">—</td></tr>
             <tr><td>MRI台数</td><td id="spMRI">—</td></tr>
             <tr><td>CT台数</td><td id="spCT">—</td></tr>
           </table>
         </section>
 
         <section class="specialtySec">
-          <h3>施設構成</h3>
+          <h3>選択した診療科の施設構成</h3>
           <table class="specialtyTable">
             <tr><td>病院</td><td id="spHospShare">—</td></tr>
             <tr><td>有床診療所</td><td id="spBedded">—</td></tr>
@@ -1709,22 +1942,22 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
     </div>
     <div class="detailBody">
       <div class="coreGrid">
-        <div class="coreCard"><div class="k">現在供給 3.0</div><div class="v" id="dSupply">—</div><div class="l" id="dSupplyLabel">現在の総合供給</div></div>
-        <div class="coreCard"><div class="k">構造供給</div><div class="v" id="dStructure">—</div><div class="l">施設・病床・在宅</div></div>
+        <div class="coreCard"><div class="k">医療供給の総合指数</div><div class="v" id="dSupply">—</div><div class="l" id="dSupplyLabel">0基準の相対値</div></div>
+        <div class="coreCard"><div class="k">医療資源の配置</div><div class="v" id="dStructure">—</div><div class="l">施設・病床・在宅</div></div>
         <div class="coreCard"><div class="k">医療活動</div><div class="v" id="dActivity">—</div><div class="l">手術・救急・入院</div></div>
         <div class="coreCard"><div class="k">画像診断装置</div><div class="v" id="dEquipment">—</div><div class="l">MRI・CT</div></div>
       </div>
 
       <div class="profileBox">
-        <div class="profileHead"><h3>現在供給プロファイル</h3><span>全国1,880地域内の相対位置</span></div>
+        <div class="profileHead"><h3>医療供給プロファイル</h3><span>全国1,880地域内の相対位置</span></div>
         <div class="profileSummary" id="profileSummary">—</div>
         <div class="profileRow"><div class="profileName">総合</div><div class="profileTrack"><div class="profileFill" id="barTotal"></div></div><div class="profileVal" id="pTotal">—</div></div>
-        <div class="profileRow"><div class="profileName">構造供給</div><div class="profileTrack"><div class="profileFill" id="barStructure"></div></div><div class="profileVal" id="pStructure">—</div></div>
+        <div class="profileRow"><div class="profileName">医療資源</div><div class="profileTrack"><div class="profileFill" id="barStructure"></div></div><div class="profileVal" id="pStructure">—</div></div>
         <div class="profileRow"><div class="profileName">医療活動</div><div class="profileTrack"><div class="profileFill" id="barActivity"></div></div><div class="profileVal" id="pActivity">—</div></div>
         <div class="profileRow"><div class="profileName">画像装置</div><div class="profileTrack"><div class="profileFill" id="barEquipment"></div></div><div class="profileVal" id="pEquipment">—</div></div>
         <div class="profileRow"><div class="profileName">病床機能</div><div class="profileTrack"><div class="profileFill" id="barBedFunction"></div></div><div class="profileVal" id="pBedFunction">—</div></div>
         <div class="profileScale"><span>相対的に低い</span><span>50</span><span>相対的に高い</span></div>
-        <div class="profileNote">全国パーセンタイルは良し悪しの評価ではなく、現在供給指標が全国の地域分布のどこに位置するかを示します。</div>
+        <div class="profileNote">全国パーセンタイルは良し悪しの評価ではなく、医療供給指標が全国の地域分布のどこに位置するかを示します。需要不足量や診療の質を評価するものではありません。</div>
       </div>
 
       <div class="profileBox">
@@ -1736,7 +1969,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
         <div class="profileRow"><div class="profileName">一般病床</div><div class="profileTrack"><div class="profileFill" id="barGeneralBeds"></div></div><div class="profileVal" id="pGeneralBeds">—</div></div>
         <div class="profileScale"><span>相対的に低い</span><span>50</span><span>相対的に高い</span></div>
         <div class="detailGrid" style="margin-top:12px">
-          <section class="detailSec"><h3>施設構成</h3><table class="detailTable">
+          <section class="detailSec"><h3>地域内の全医療施設構成</h3><table class="detailTable">
             <tr><td>病院</td><td id="dHospMix">—</td></tr>
             <tr><td>有床診療所</td><td id="dBeddedMix">—</td></tr>
             <tr><td>診療所</td><td id="dClinicMix">—</td></tr>
@@ -1748,21 +1981,21 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
             <tr><td>一般病床 / 1万人</td><td id="dGeneralBedProfileDensity">—</td></tr>
           </table></section>
         </div>
-        <div class="profileNote">単一の総合点にはせず、整形外科診療に関連する供給構造を複数軸で表示します。パーセンタイルは良し悪しではなく全国分布上の位置です。</div>
+        <div class="profileNote">単一の総合点にはせず、整形外科診療に関連する供給構造を複数軸で表示します。左の施設構成は整形外科施設だけではなく、地域内の全医療施設の構成です。パーセンタイルは良し悪しではなく全国分布上の位置です。</div>
       </div>
 
       <div class="activityAxisBox">
         <div class="activityAxisHead"><div><h3>医療活動プロファイル</h3><span>総合値を手術・救急・入院の3軸に分解</span></div><b id="dActivityProfile">—</b></div>
         <div class="activityAxisGrid">
-          <div class="activityAxisCard"><div class="k">手術型</div><div class="v" id="dActSurgBeta">—</div><div class="s" id="dActSurgP">全国順位 —</div><div class="s" id="dActSurgCov">データ充足率 —</div></div>
-          <div class="activityAxisCard"><div class="k">救急型</div><div class="v" id="dActEmergBeta">—</div><div class="s" id="dActEmergP">全国順位 —</div><div class="s" id="dActEmergCov">データ充足率 —</div></div>
-          <div class="activityAxisCard"><div class="k">入院型</div><div class="v" id="dActInpatientBeta">—</div><div class="s" id="dActInpatientP">全国順位 —</div><div class="s" id="dActInpatientCov">データ充足率 —</div></div>
+          <div class="activityAxisCard"><div class="k">手術活動</div><div class="v" id="dActSurgBeta">—</div><div class="s" id="dActSurgP">全国パーセンタイル —</div><div class="s" id="dActSurgCov">データ充足率 —</div></div>
+          <div class="activityAxisCard"><div class="k">救急活動</div><div class="v" id="dActEmergBeta">—</div><div class="s" id="dActEmergP">全国パーセンタイル —</div><div class="s" id="dActEmergCov">データ充足率 —</div></div>
+          <div class="activityAxisCard"><div class="k">入院活動</div><div class="v" id="dActInpatientBeta">—</div><div class="s" id="dActInpatientP">全国パーセンタイル —</div><div class="s" id="dActInpatientCov">データ充足率 —</div></div>
         </div>
-        <div class="activityAxisNote">各βは、人口あたりの観測値を人口・高齢化率が近い類似地域の中央値と比較した相対値です。画面上の実数比較は1万人あたりを基本表示にしています。欠測要素は低供給とみなさず、取得済み要素のみで医療活動総合値を再計算します。</div>
+        <div class="activityAxisNote">各相対値は、人口あたりの観測値を人口・高齢化率が近い類似地域の中央値と比較した値です。画面上の実数比較は1万人あたりを基本表示にしています。欠測要素は低供給とみなさず、取得済み要素のみで医療活動総合値を再計算します。</div>
       </div>
       <div class="detailGrid">
         <section class="detailSec">
-          <h3>人口構造</h3>
+          <h3>需要側の背景｜人口構造</h3>
           <table class="detailTable">
             <tr><td>人口 2025</td><td id="dPop25">—</td></tr>
             <tr><td>65歳以上</td><td id="d65">—</td></tr>
@@ -1771,7 +2004,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
           </table>
         </section>
         <section class="detailSec">
-          <h3>現在の医療供給</h3>
+          <h3>供給側｜医療資源</h3>
           <table class="detailTable">
             <tr><td>医療機関数</td><td id="dFac">—</td></tr>
             <tr><td>医療機関 / 1万人</td><td id="dFacRate">—</td></tr>
@@ -1793,9 +2026,9 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
           </table>
         </section>
         <section class="detailSec">
-          <h3>医療活動 / 1万人</h3>
+          <h3>供給側｜医療活動 / 1万人</h3>
           <table class="detailTable">
-            <tr><td>医療活動総合β</td><td id="dActivityBeta">—</td></tr>
+            <tr><td>医療活動量の相対値</td><td id="dActivityBeta">—</td></tr>
             <tr><td>手術件数</td><td id="dOps">—</td></tr>
             <tr><td>救急車受入</td><td id="dAmb">—</td></tr>
             <tr><td>DPC患者</td><td id="dPatients">—</td></tr>
@@ -1803,9 +2036,9 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
           </table>
         </section>
         <section class="detailSec">
-          <h3>画像診断装置</h3>
+          <h3>供給側｜MRI・CT</h3>
           <table class="detailTable">
-            <tr><td>画像診断装置供給β</td><td id="dEquipmentBeta">—</td></tr>
+            <tr><td>MRI・CT供給の相対値</td><td id="dEquipmentBeta">—</td></tr>
             <tr><td>MRI台数</td><td id="dMRI">—</td></tr>
             <tr><td>CT台数</td><td id="dCT">—</td></tr>
             <tr><td>MRI / 1万人</td><td id="dMRIDens">—</td></tr>
@@ -1822,9 +2055,9 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
             <tr><td>精神病床（実数）</td><td id="dPsychBeds">—</td></tr>
             <tr><td>病院病床 合計（届出値）</td><td id="dReportedBeds">—</td></tr>
             <tr><td>病床種別データ充足</td><td id="dBedTypeCov">—</td></tr>
-            <tr><td>病床機能供給β</td><td id="dBedFuncBeta">—</td></tr>
+            <tr><td>病床機能の供給</td><td id="dBedFuncBeta">—</td></tr>
             <tr><td>急性期系病床 / 10万人（既存指標）</td><td id="dAcuteBeds">—</td></tr>
-            <tr><td>急性期系病床供給偏差</td><td id="dAcuteDev">—</td></tr>
+            <tr><td>急性期系病床の相対供給</td><td id="dAcuteDev">—</td></tr>
             <tr><td>地域包括ケア機能あり病院</td><td id="dCommunityHosp">—</td></tr>
             <tr><td>回復期機能あり病院</td><td id="dRecoveryHosp">—</td></tr>
             <tr><td>慢性期機能あり病院</td><td id="dChronicHosp">—</td></tr>
@@ -1838,13 +2071,13 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
           <h3>在宅アクセス</h3>
           <table class="detailTable">
             <tr><td>16kmカバー率</td><td id="dHomeCov">—</td></tr>
-            <tr><td>カバー空白β</td><td id="dHomeGap">—</td></tr>
+            <tr><td>カバー空白指数</td><td id="dHomeGap">—</td></tr>
             <tr><td>判定</td><td id="dHomeGapLabel">—</td></tr>
             <tr><td>サンプル地点数</td><td id="dSample">—</td></tr>
           </table>
         </section>
       </div>
-      <div class="detailFoot">現在供給 3.0は構造供給40%・医療活動30%・画像診断装置15%・病床機能15%を基本重みとし、欠測レイヤーは「低供給」とみなさず除外して、利用可能な基本重みで再配分します。医療活動の内訳も、手術35%・救急30%・入院35%を基本とし、欠測要素は除外して再配分します。データ充足率は各レイヤーの情報量を基本重みで加重した参考値です。β指標とパーセンタイルは現在の地域間比較用で、公的な医療過疎指定ではありません。</div>
+      <div class="detailFoot">医療供給の総合指数は医療資源の配置40%・医療活動30%・画像診断装置15%・病床機能15%を基本重みとし、欠測レイヤーは「低供給」とみなさず除外して、利用可能な基本重みで再配分します。医療活動の内訳も、手術35%・救急30%・入院35%を基本とし、欠測要素は除外して再配分します。データ充足率は各レイヤーの情報量を基本重みで加重した参考値です。相対指標とパーセンタイルは現在の地域間比較用で、公的な医療過疎指定ではありません。</div>
     </div>
   </div>
 </div>
@@ -1853,33 +2086,49 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
   <div class="rankPanel">
     <div class="rankHead">
       <div>
-        <h2 id="rankTitle">地域ランキング</h2>
-        <p>人口構造と医療供給を組み合わせた探索用ランキング。クリックすると地図へ移動します。</p>
+        <h2 id="rankTitle">地域比較ランキング</h2>
+        <p>地域指標を「高い・多い順」「低い・少ない順」の両側から比較します。クリックすると地図へ移動します。</p>
       </div>
       <button class="rankClose" id="rankClose" type="button">閉じる</button>
     </div>
     <div class="rankControls">
       <select id="rankMetric">
-        <option value="currentLow">現在供給 3.0｜低い順</option>
-        <option value="currentHigh">現在供給 3.0｜高い順</option>
-        <option value="structureLow">構造供給｜低い順</option>
-        <option value="activityHigh">医療活動総合｜高い順</option>
-        <option value="activityLow">医療活動総合｜低い順</option>
-        <option value="surgeryHigh">手術型活動｜高い順</option>
-        <option value="surgeryLow">手術型活動｜低い順</option>
-        <option value="emergencyHigh">救急型活動｜高い順</option>
-        <option value="emergencyLow">救急型活動｜低い順</option>
-        <option value="inpatientHigh">入院型活動｜高い順</option>
-        <option value="inpatientLow">入院型活動｜低い順</option>
-        <option value="equipmentHigh">画像診断装置｜高い順</option>
-        <option value="equipmentLow">画像診断装置｜低い順</option>
-        <option value="bedFunctionLow">病床機能供給β｜低い順</option>
-        <option value="acuteBedLow">急性期系病床供給偏差｜低い順</option>
-        <option value="homeLow">在宅供給｜類似地域より低い順</option>
-        <option value="orthoLow">整形外科密度｜少ない順</option>
-        <option value="pedsLow">小児科密度｜少ない順</option>
-        <option value="homeGap">在宅カバー空白β｜高い順</option>
-        <option value="homeCoverageLow">在宅16kmカバー率｜低い順</option>
+        <optgroup label="需要側の背景">
+          <option value="pop2025">総人口</option>
+          <option value="age65_share_2025">65歳以上割合</option>
+        </optgroup>
+        <optgroup label="供給側｜総合・資源">
+          <option value="current_supply_v3_beta">医療供給の総合指数</option>
+          <option value="structure_supply_beta">医療資源の配置</option>
+          <option value="facilities_per_10k">医療機関 / 1万人</option>
+          <option value="hospitals_per_10k">病院 / 1万人</option>
+          <option value="beds_per_1000">病床 / 1,000人</option>
+          <option value="homecare_per_10k_65">在宅系 / 65歳以上1万人</option>
+          <option value="homecare_16km_coverage_ratio">在宅16kmカバー率</option>
+          <option value="homecare_gap_beta">在宅カバー空白</option>
+        </optgroup>
+        <optgroup label="供給側｜医療活動">
+          <option value="activity_supply_beta">医療活動量｜総合</option>
+          <option value="activity_surgery_beta">手術活動</option>
+          <option value="activity_emergency_beta">救急活動</option>
+          <option value="activity_inpatient_beta">入院活動</option>
+          <option value="activity_operations_per10k">手術件数 / 1万人</option>
+          <option value="activity_ambulance_per10k">救急車受入 / 1万人</option>
+          <option value="activity_patients_per10k">DPC患者 / 1万人</option>
+        </optgroup>
+        <optgroup label="供給側｜MRI・CT・病床">
+          <option value="equipment_supply_beta">MRI・CT供給｜相対値</option>
+          <option value="equipment_mri_per10k">MRI / 1万人</option>
+          <option value="equipment_ct_per10k">CT / 1万人</option>
+          <option value="bed_function_supply_beta">病床機能の供給</option>
+          <option value="acute_bed_supply_deviation">急性期系病床の相対供給</option>
+          <option value="hospital_general_beds_per10k">一般病床 / 1万人</option>
+        </optgroup>
+        <optgroup label="診療科">
+          <option value="ortho_per_100k">整形外科 / 10万人</option>
+          <option value="pediatrics_per_100k">小児科 / 10万人</option>
+          <option value="obgyn_per_100k">産婦人科系 / 10万人</option>
+        </optgroup>
       </select>
       <select id="rankPopulation">
         <option value="0">人口規模：すべて</option>
@@ -1890,11 +2139,21 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
       </select>
       <button id="rankApplyBtn" class="rankBtn" type="button">選択条件で更新</button>
     </div>
+    <div class="rankSummary" id="rankSummary">—</div>
     <div class="rankSource" id="rankSource">
       <span>大本</span><b id="rankSourceTitle">—</b><p id="rankSourceText">—</p>
     </div>
-    <div class="rankList" id="rankList"></div>
-    <div class="rankNote">ランキングは営業機会や公的な医療過疎指定を意味しません。小人口地域では人口あたり指標が大きく振れやすいため、人口規模フィルターを併用してください。</div>
+    <div class="rankDual">
+      <section class="rankColumn">
+        <div class="rankColumnHead"><b>高い・多い側</b><span id="rankHighCount">—</span></div>
+        <div class="rankList" id="rankListHigh"></div>
+      </section>
+      <section class="rankColumn">
+        <div class="rankColumnHead"><b>低い・少ない側</b><span id="rankLowCount">—</span></div>
+        <div class="rankList" id="rankListLow"></div>
+      </section>
+    </div>
+    <div class="rankNote">各指標の「高い・多い側」と「低い・少ない側」を同時に表示します。これは数値の両端を並べた比較で、「良い地域／悪い地域」の順位ではありません。高いことが望ましいとは限らない指標（高齢化率など）もあるため、値の意味を確認して使ってください。小人口地域では人口あたり指標が大きく振れやすいため、人口規模フィルターを併用してください。</div>
   </div>
 </div>
 
@@ -1903,7 +2162,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
     <div class="sourceHead">
       <div>
         <h2 id="sourceTitle">出典・指標定義</h2>
-        <p>全国病院マップで使用している主な公開データと、現在の医療供給を比較する独自指標の算出方法です。</p>
+        <p>全国病院マップで使用している主な公開データと、需要側の人口背景と、現在の医療供給を比較する独自指標の算出方法です。</p>
       </div>
       <button class="sourceClose" id="sourceClose" type="button">閉じる</button>
     </div>
@@ -1911,8 +2170,14 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
     <section class="sourceSec">
       <h3>公開版データ注記 <span class="sourceTag">公開注記</span></h3>
       <p>本サイトは地域医療資源を探索・比較するための可視化です。施設情報、病床、診療科、MRI・CT、医療活動などは複数の公開データを統合しており、基準日・収録範囲・欠測の有無が指標ごとに異なります。</p>
-      <p>「現在供給」等のβ・パーセンタイルは本サイト内の比較用指標で、公的な医療過疎判定、施設評価、診療の質評価を示すものではありません。小人口地域では人口あたり指標が大きく振れるため、人口規模フィルターを併用してください。</p>
+      <p>「医療供給の総合指数」等の相対値・パーセンタイルは本サイト内の比較用指標で、公的な医療過疎判定、施設評価、診療の質評価を示すものではありません。小人口地域では人口あたり指標が大きく振れるため、人口規模フィルターを併用してください。</p>
       <p>MRI・CTの施設別情報は安全に照合できた施設のみ表示し、メーカー・機種・実導入年は確定ソースがない限り推測していません。</p>
+    </section>
+
+    <section class="sourceSec">
+      <h3>医療情報ネットID・URL監査 <span class="sourceTag">v48</span></h3>
+      <p>C・M届出から医療情報ネットへ照合した2,335施設について、2026-06-01診療所オープンデータのID・正式名称・住所・座標を再突合しました。2,325施設は安全に使用できる状態まで確認し、16施設は同名別施設等の誤IDを修正しています。</p>
+      <p>10施設は既存IDが別施設を指す疑いが強く、新IDを一次データから安全に確定できなかったため、誤結合防止を優先してIDを除外し再照合待ちとしました。</p>
     </section>
 
     <section class="sourceSec">
@@ -1934,7 +2199,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
         <div><b>病床機能</b><span>病床機能報告等。地域包括ケア・回復期・慢性期は機能を持つ病院数を用いる項目があります。</span></div>
         <div><b>地域MRI・CT</b><span>病床機能報告等の装置台数</span></div>
         <div><b>施設別MRI・CT区分</b><span>病床機能報告等を基礎にした装置マスター。病院・有床診療所中心で、無床診療所は全国網羅ではありません。</span></div>
-        <div><b>現在供給 3.0</b><span>上記の構造・活動・装置・病床機能を本サイト内で統合した比較指標</span></div>
+        <div><b>医療供給の総合指数</b><span>医療資源・医療活動・MRI/CT・病床機能を本サイト内で統合した供給側の相対比較指標。0が比較基準で、需要不足量そのものではありません。</span></div>
       </div>
     </section>
 
@@ -1953,7 +2218,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
 
     <section class="sourceSec">
       <h3>整形外科・画像診療プロファイル <span class="sourceTag">複合表示</span></h3>
-      <p>整形外科密度、MRI密度、手術活動、一般病床、病院・有床診療所・診療所の施設構成を同じ画面で比較します。4指標は全国1,880地域内のパーセンタイルとして表示しますが、総合点への合成や優劣判定は行いません。</p>
+      <p>整形外科密度、MRI密度、手術活動、一般病床を同じ画面で比較します。併記する病院・有床診療所・診療所の施設構成は、整形外科施設だけではなく地域内の全医療施設を母数とします。4指標は全国1,880地域内のパーセンタイルとして表示しますが、総合点への合成や優劣判定は行いません。</p>
     </section>
 
     <section class="sourceSec">
@@ -2007,19 +2272,19 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
       <p>往診料および在宅患者訪問診療料では、保険医療機関と患家との距離は原則16km以内とされます。16kmを超えても、当該医療機関からの往診・訪問診療を必要とする特別な理由がある場合は例外的に算定可能です。</p>
       <p>本サイトの「在宅エリア調査」は、在宅系施設基準を持つ施設を中心に<strong>直線距離半径16km</strong>の参考円を表示します。実際の訪問可能範囲・道路距離・診療提供実績・患者受入可否を示すものではありません。</p>
       <p><strong>在宅16kmカバー率</strong>：各地域に存在する高精度座標の医療施設をサンプル点とし、その地点が在宅系施設基準を持つ施設の半径16km圏に入る割合です。人口分布そのものの面積カバー率ではありません。</p>
-      <p><strong>在宅カバー空白β</strong>：未カバー率70%＋75歳以上人口規模の全国順位30%で構成した探索用指標です。「高齢者が多く、かつ16km圏外の医療施設地点が多い地域」を見つけるためのβ版です。</p>
+      <p><strong>在宅カバー空白指数</strong>：未カバー率70%＋75歳以上人口規模の全国順位30%で構成した探索用指標です。「高齢者が多く、かつ16km圏外の医療施設地点が多い地域」を見つけるための探索指標です。</p>
       <p><a href="https://www.mhlw.go.jp/content/001322769.pdf" target="_blank" rel="noopener">厚生労働省｜保険診療の理解のために（在宅医療）</a></p>
       <p><a href="https://www.mhlw.go.jp/content/12404000/001184902.pdf" target="_blank" rel="noopener">厚生労働省｜訪問診療、往診等における16kmの取扱い</a></p>
     </section>
 
     <section class="sourceSec">
       <h3>独自分析指標 <span class="sourceTag">探索指標</span></h3>
-      <p><strong>現在供給 3.0</strong>：構造供給（施設・病床・在宅）40%、医療活動30%、画像診断装置（MRI/CT）15%、病床機能15%を基本重みとして合成します。欠測レイヤーは0や低供給として扱わず、そのレイヤーを除外して利用可能な基本重みへ再配分します。</p>
+      <p><strong>医療供給の総合指数</strong>：医療資源の配置（施設・病床・在宅）40%、医療活動30%、画像診断装置（MRI/CT）15%、病床機能15%を基本重みとして合成します。欠測レイヤーは0や低供給として扱わず、そのレイヤーを除外して利用可能な基本重みへ再配分します。</p>
       <p><strong>医療活動</strong>：厚生労働省の病床機能報告・DPC退院患者調査等を病院別に統合し、市区町村単位で集計した観測値です。手術・救急車受入・DPC患者数を人口10万人あたりに換算し、人口・高齢化率が近い類似地域中央値からの偏差を算出します。総合値は手術35%、救急30%、入院（DPC患者）35%を基本とし、欠測要素は低供給とみなさず除外して重みを再配分します。</p>
       <p><strong>医療活動3軸</strong>：「手術型」「救急型」「入院型」は上記3要素を個別に表示した探索用プロファイルです。各βは類似地域中央値からの相対偏差を-1〜+2の範囲に収めて表示し、全国パーセンタイルとデータ充足率を併記します。</p>
       <p><strong>画像診断装置</strong>：病床機能報告等から得たMRI・CT台数を市区町村単位で集計し、人口10万人あたり供給を類似地域と比較します。</p>
       
-      <p><strong>病床機能供給β</strong>：急性期系病床供給偏差50%、地域包括ケア機能を持つ病院密度20%、回復期機能を持つ病院密度15%、慢性期機能を持つ病院密度15%を合成しています。欠測要素は0扱いせず、利用可能な重みで再配分します。</p>
+      <p><strong>病床機能の供給</strong>：急性期系病床の相対供給50%、地域包括ケア機能を持つ病院密度20%、回復期機能を持つ病院密度15%、慢性期機能を持つ病院密度15%を合成しています。欠測要素は0扱いせず、利用可能な重みで再配分します。</p>
       <p><strong>病院機能の注意</strong>：地域包括ケア・回復期・慢性期は、病床機能報告等を基に各病院が持つ機能ラベルの施設数を地域集計したものです。各機能の病床数そのものではありません。</p>
       
       
@@ -2032,7 +2297,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
       <p><strong>MRI / CTとの併記</strong>：診療科分析画面のMRI・CTは地域全体の装置保有状況であり、その診療科専用装置数ではありません。</p>
 
       <p><strong>診療科別密度</strong>：各地域の該当診療科を標榜する医療機関数を2025年総人口10万人あたりに換算しています。地域間比較のための密度指標で、医師数や診療実績を表すものではありません。</p>
-      <p><strong>地域シグナルフィルター</strong>：「現在供給が低め」「医療活動が低め」等は探索用の閾値で、行政上の医療過疎地域指定ではありません。</p>
+      <p><strong>地域シグナルフィルター</strong>：「医療供給の総合指数が低め」「医療活動が低め」等は探索用の閾値で、行政上の医療過疎地域指定ではありません。</p>
       <p>これらは探索用の独自指標であり、厚生労働省等が定める「医療過疎」「医療過多」「必要病床数」の公式判定ではありません。</p>
     </section>
 
@@ -2046,7 +2311,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
       </ul>
     </section>
 
-    <div class="sourceFoot">最終統合基準：2026年9月。v47は現在の医療供給分析、医療活動3軸、診療科分析、施設別MRI・CT表示に対応しています。公開元データの改訂に伴い、件数や分類は更新される場合があります。</div>
+    <div class="sourceFoot">最終統合基準：2026年9月。v48は現在の医療供給分析、医療活動3軸、診療科分析、施設別MRI・CT表示に対応しています。公開元データの改訂に伴い、件数や分類は更新される場合があります。</div>
   </div>
 </div>
 
@@ -2111,6 +2376,7 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
   byId("rankClose")?.addEventListener("click",()=>closeClass("rankModal"));
   byId("rankMetric")?.addEventListener("change",()=>{renderRanking();updateRankSource()});
   byId("rankPopulation")?.addEventListener("change",()=>{renderRanking();updateRankSource()});
+  byId("rankMetric")?.addEventListener("change",()=>{updateRankSource();renderRanking()});
   byId("rankApplyBtn")?.addEventListener("click",()=>{renderRanking();updateRankSource()});
 
   // 背景タップで閉じる
