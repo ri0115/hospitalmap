@@ -1,0 +1,54 @@
+{
+  "version": "v37",
+  "scope": "各指標の出典可視化 + 全体UI横断監査",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "section_balance": {
+    "open": 31,
+    "close": 31
+  },
+  "main_metrics": {
+    "count": 88,
+    "missing_definitions": [],
+    "provenance_unmapped": []
+  },
+  "specialty": {
+    "options": 58,
+    "missing_definitions": [],
+    "map_metrics_missing": []
+  },
+  "ranking": {
+    "options": 20,
+    "unhandled": []
+  },
+  "controls": {
+    "buttons": 27,
+    "unbound_buttons": [],
+    "selects": 10,
+    "unbound_selects": []
+  },
+  "provenance_ui": [
+    "選択中の地図指標直下に『この指標の大本』を常時表示",
+    "サイドバー上部に『データの大本・定義』を常設",
+    "ランキング選択指標にも出典を連動表示",
+    "診療科分析に標榜診療科＋IPSS人口の出典を表示",
+    "出典モーダル冒頭に10カテゴリの早見表を追加"
+  ],
+  "ui_fixes": [
+    "スマホでサイドメニューを地図オーバーレイより前面化",
+    "スマホの地域詳細4カードを2×2へ変更",
+    "主要モーダルヘッダーをsticky化",
+    "閉じるボタンのスマホタップ領域を44px以上に拡大",
+    "スマホの小さい注記文字を9px基準へ引き上げ",
+    "重複した地図上の出典ボタンを非表示化"
+  ],
+  "viewport_audit": {
+    "desktop_1440x1000": "side/map/5 modal panels horizontal overflow 0",
+    "mobile_390x844": "side/map/5 modal panels horizontal overflow 0",
+    "mobile_core_grid": "2 columns",
+    "mobile_source_matrix": "1 column"
+  }
+}

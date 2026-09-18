@@ -1,0 +1,41 @@
+{
+  "version": "v36",
+  "issue": "モーダルのイベント登録順序とプルダウン反映不良の横断修正",
+  "html_parse": "PASS",
+  "javascript_syntax": "PASS",
+  "duplicate_ids": [],
+  "missing_dom_references": [],
+  "missing_local_scripts": [],
+  "section_balance": {
+    "open": 30,
+    "close": 30,
+    "pass": true
+  },
+  "unsafe_pre_dom_event_bindings": [],
+  "post_dom_binder_after_all_modals": true,
+  "main_metric_options": 88,
+  "main_metric_missing_definitions": [],
+  "specialty_options": 58,
+  "specialty_missing_definitions": [],
+  "specialty_map_metrics_missing_from_main_dropdown": [],
+  "ranking_options": 20,
+  "ranking_unhandled_options": [],
+  "explicit_action_buttons": [
+    "specialtyApplyBtn",
+    "rankApplyBtn"
+  ],
+  "interaction_test": {
+    "source_open_close": "PASS",
+    "specialty_select_change": "PASS",
+    "specialty_apply": "PASS",
+    "specialty_map_apply_and_close": "PASS",
+    "ranking_metric_change": "PASS",
+    "ranking_population_change": "PASS",
+    "ranking_apply": "PASS",
+    "ranking_close": "PASS",
+    "region_detail_close": "PASS",
+    "facility_drawer_close": "PASS",
+    "backdrop_close": "PASS",
+    "escape_close_all": "PASS"
+  }
+}
