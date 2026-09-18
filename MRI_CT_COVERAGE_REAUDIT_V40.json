@@ -1,0 +1,28 @@
+{
+  "version": "v40",
+  "coverage_audit_scope": "40 prefectures (08-47; Hokkaido/Tohoku 01-07 not yet included in local aggregate)",
+  "cm_standard_unique_facilities": 11798,
+  "current_equipment_master_overlap": 6001,
+  "current_equipment_master_overlap_rate_pct": 50.9,
+  "by_map_type": {
+    "病院": {
+      "cm_standard": 5913,
+      "in_current_master": 5108,
+      "missing_from_current_master": 805,
+      "overlap_rate_pct": 86.4
+    },
+    "有床診療所": {
+      "cm_standard": 985,
+      "in_current_master": 865,
+      "missing_from_current_master": 120,
+      "overlap_rate_pct": 87.8
+    },
+    "無床診療所": {
+      "cm_standard": 4900,
+      "in_current_master": 28,
+      "missing_from_current_master": 4872,
+      "overlap_rate_pct": 0.6
+    }
+  },
+  "interpretation": "M/C pin badges are confirmed subset, not comprehensive ownership universe. C・M standard indicates CT or MRI eligibility but does not by itself distinguish modality."
+}

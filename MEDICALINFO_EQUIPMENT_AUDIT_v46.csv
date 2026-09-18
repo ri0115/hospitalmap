@@ -1,0 +1,135 @@
+﻿pref_code,facility_code,facility_name,ct_count_medicalinfo,ctannual_medicalinfo,mriannual_medicalinfo,audit_result,medical_info_net_ID,medical_info_kikanCd,medical_info_url,checked_date
+08,0110197,茨城県メディカルセンター,1.0,,,CT保有台数確認,0822080000038,2080000038,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2080000038&kikanKbn=2&prefCd=08,2026-09-18
+08,0110809,石田外科医院,,,,設備欄未確認,082208510123,208510123,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208510123&kikanKbn=2&prefCd=08,2026-09-18
+08,0112953,医療法人　笠原中央クリニック,1.0,,,CT保有台数確認,082208512853,208512853,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208512853&kikanKbn=2&prefCd=08,2026-09-18
+08,0112979,川上医院,1.0,,,CT保有台数確認,082208512433,208512433,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208512433&kikanKbn=2&prefCd=08,2026-09-18
+08,0114116,あいん常澄医院,1.0,,,CT保有台数確認,082208512912,208512912,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208512912&kikanKbn=2&prefCd=08,2026-09-18
+08,0114777,社会医療法人財団　古宿会　水戸中央クリニック,1.0,,,CT保有台数確認,082208517193,208517193,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208517193&kikanKbn=2&prefCd=08,2026-09-18
+08,0114819,田口同仁クリニック,1.0,,,CT保有台数確認,082208517614,208517614,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208517614&kikanKbn=2&prefCd=08,2026-09-18
+08,0115204,水戸心臓血管クリニック,1.0,,,CT保有台数確認,082208712565,208712565,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208712565&kikanKbn=2&prefCd=08,2026-09-18
+08,0211326,日立さくらクリニック,1.0,,,CT保有台数確認,082208551135,208551135,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208551135&kikanKbn=2&prefCd=08,2026-09-18
+08,0211813,ないとうクリニック,1.0,,,CT保有台数確認,082208551975,208551975,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208551975&kikanKbn=2&prefCd=08,2026-09-18
+08,0211946,医療法人聖麗会　聖麗メモリアル高鈴,1.0,,,CT保有台数確認,082208552363,208552363,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208552363&kikanKbn=2&prefCd=08,2026-09-18
+08,0311332,岩本クリニック,,,,設備欄あり・CT/MRI記載なし,082208591717,208591717,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208591717&kikanKbn=2&prefCd=08,2026-09-18
+08,0311639,土浦中央クリニック,1.0,,,CT保有台数確認,082208592336,208592336,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208592336&kikanKbn=2&prefCd=08,2026-09-18
+08,0311985,宮﨑クリニック,,,,設備欄未確認,082208592626,208592626,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208592626&kikanKbn=2&prefCd=08,2026-09-18
+08,0312082,岡田整形外科クリニック,,,,設備欄あり・CT/MRI記載なし,082208593085,208593085,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208593085&kikanKbn=2&prefCd=08,2026-09-18
+08,0312298,おおくぼ脳脊椎クリニック,,,,設備欄未確認,082208596158,208596158,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208596158&kikanKbn=2&prefCd=08,2026-09-18
+08,0410746,医療法人賢友会　長島外科,1.0,,,CT保有台数確認,082208651471,208651471,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208651471&kikanKbn=2&prefCd=08,2026-09-18
+08,0510669,医療法人　芹澤医院,1.0,,,CT保有台数確認,082208592495,208592495,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208592495&kikanKbn=2&prefCd=08,2026-09-18
+08,0510883,杉並クリニック,1.0,,,CT保有台数確認,082208592600,208592600,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208592600&kikanKbn=2&prefCd=08,2026-09-18
+08,0610196,医療法人社団　新井内科医院,1.0,,,CT保有台数確認,082208620260,208620260,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208620260&kikanKbn=2&prefCd=08,2026-09-18
+08,0611665,とみざわハートクリニック,,,,設備欄未確認,082208625698,208625698,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208625698&kikanKbn=2&prefCd=08,2026-09-18
+08,0611699,あけの元気館前クリニック,,,,設備欄未確認,082208781992,208781992,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208781992&kikanKbn=2&prefCd=08,2026-09-18
+08,0611772,かわしま内科クリニック,,,,設備欄未確認,082208622697,208622697,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208622697&kikanKbn=2&prefCd=08,2026-09-18
+08,0611848,てつか脳神経外科クリニック,1.0,,,CT保有台数確認,0822080003606,2080003606,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2080003606&kikanKbn=2&prefCd=08,2026-09-18
+08,0710780,医療法人同仁会　みやたクリニック,1.0,,,CT保有台数確認,082208620505,208620505,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208620505&kikanKbn=2&prefCd=08,2026-09-18
+08,0811034,中村クリニック,1.0,,,CT保有台数確認,082208581828,208581828,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208581828&kikanKbn=2&prefCd=08,2026-09-18
+08,1010263,とき田クリニック,,,,設備欄未確認,082208630436,208630436,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208630436&kikanKbn=2&prefCd=08,2026-09-18
+08,1610708,たかだ脳神経外科・内科クリニック,,,3630.0,MRI撮影実績確認・保有設備未確定,082208714745,208714745,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208714745&kikanKbn=2&prefCd=08,2026-09-18
+08,1911122,医療法人社団　語應会　オアシス脳神経クリニック,,257.0,3255.0,CT設備掲載あり（台数表記不整合）＋CT/MRI撮影実績,082208584728,208584728,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208584728&kikanKbn=2&prefCd=08,2026-09-18
+08,2014009,つくば脳神経外科・頭痛クリニック,,,6000.0,MRI撮影実績確認・保有設備未確定,082208699958,208699958,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208699958&kikanKbn=2&prefCd=08,2026-09-18
+08,2014066,すずらん整形＆ラボ,1.0,,,CT保有台数確認,0822080003638,2080003638,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2080003638&kikanKbn=2&prefCd=08,2026-09-18
+08,2014074,つくばウェルネス整形外科,,,,設備欄未確認,082208810807,208810807,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208810807&kikanKbn=2&prefCd=08,2026-09-18
+08,2111763,医療法人桜丘会　脳神経外科ブレインピアひたちなか,1.0,1425.0,4898.0,CT保有台数＋CT/MRI撮影実績,082208704319,208704319,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208704319&kikanKbn=2&prefCd=08,2026-09-18
+08,2410314,医療法人社団弘明会さとう内科・脳神経外科クリニック,,,,設備欄未確認,082208583079,208583079,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208583079&kikanKbn=2&prefCd=08,2026-09-18
+08,2610400,ののがき脳神経外科クリニック,1.0,717.0,5321.0,CT保有台数＋CT/MRI撮影実績,082208530770,208530770,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208530770&kikanKbn=2&prefCd=08,2026-09-18
+09,0112762,倉持整形外科・皮膚科美容皮膚科,1.0,,,CT保有台数確認,0922092000016,2092000016,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2092000016&kikanKbn=2&prefCd=09,2026-09-18
+09,0114982,医療法人百生会　星脳神経外科,,962.0,2290.0,CT/MRI撮影実績確認・保有設備未確定,0922092000051,2092000051,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2092000051&kikanKbn=2&prefCd=09,2026-09-18
+09,0211127,医療法人社団　廣和会　いざわ脳神経内科,,,,設備欄未確認,0922090000016,2090000016,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090000016&kikanKbn=2&prefCd=09,2026-09-18
+10,0112298,ほしの整形外科クリニック,,,,設備欄未確認,1022100001758,2100001758,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001758&kikanKbn=2&prefCd=10,2026-09-18
+10,0112470,フォレスト整形外科スポーツクリニック,,,,設備欄未確認,1022100001802,2100001802,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001802&kikanKbn=2&prefCd=10,2026-09-18
+10,0112751,みずしま脳神経内科・内科クリニック,1.0,,,CT保有台数確認,1022100001915,2100001915,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001915&kikanKbn=2&prefCd=10,2026-09-18
+10,0112769,医療法人ぐんまスポーツ整形外科,,,,設備欄未確認,1022100001867,2100001867,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001867&kikanKbn=2&prefCd=10,2026-09-18
+10,0113148,ふじまきクリニック　脳神経外科・内科,1.0,156.0,2695.0,CT保有台数＋CT/MRI撮影実績,1022100001996,2100001996,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001996&kikanKbn=2&prefCd=10,2026-09-18
+10,0113213,医療法人　しおざわ整形外科クリニック,,,,設備欄あり・CT/MRI記載なし,1022100001958,2100001958,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001958&kikanKbn=2&prefCd=10,2026-09-18
+08,0113027,さいとう内科,,,,CT設備行あり・台数表記不整合,082208512505,208512505,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208512505&kikanKbn=2&prefCd=08,2026-09-18
+08,0114371,医療法人社団千甫会高橋外科医院,1,,,CT保有台数確認,082208511250,208511250,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208511250&kikanKbn=2&prefCd=08,2026-09-18
+08,0114942,脳神経外科山田醫院,1,,,CT保有台数確認,082208515274,208515274,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208515274&kikanKbn=2&prefCd=08,2026-09-18
+08,0115576,見和中央クリニック,1,,,CT保有台数確認,082208712448,208712448,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208712448&kikanKbn=2&prefCd=08,2026-09-18
+08,0115899,黒澤腎臓内科クリニック,1,,,CT保有台数確認,082208311489,208311489,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208311489&kikanKbn=2&prefCd=08,2026-09-18
+08,0210484,日立北クリニック,1,,,CT保有台数確認,082208551063,208551063,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208551063&kikanKbn=2&prefCd=08,2026-09-18
+08,0212431,なわ内科・呼吸器クリニック,1,,,CT保有台数確認,082208555654,208555654,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208555654&kikanKbn=2&prefCd=08,2026-09-18
+08,0310029,株式会社日立製作所　土浦診療健診センタ,1,,,CT保有台数確認,082208590563,208590563,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208590563&kikanKbn=2&prefCd=08,2026-09-18
+08,0312264,土浦ベリルクリニック,1,,,CT保有台数確認,082208595438,208595438,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208595438&kikanKbn=2&prefCd=08,2026-09-18
+08,0312520,中高津クリニック,,,,設備欄未掲載・CT/MRI未確認,082208599537,208599537,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208599537&kikanKbn=2&prefCd=08,2026-09-18
+08,0312645,かすみファミリークリニック,1,,,CT保有台数確認,082208770790,208770790,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208770790&kikanKbn=2&prefCd=08,2026-09-18
+08,0510735,医療法人　回生会　藤井内科クリニック,,,,設備欄未掲載・CT/MRI未確認,082208592479,208592479,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208592479&kikanKbn=2&prefCd=08,2026-09-18
+08,0610709,下館胃腸科医院,1,,,CT保有台数確認,082208621049,208621049,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208621049&kikanKbn=2&prefCd=08,2026-09-18
+08,1010578,坂入医院,1,,,CT保有台数確認,082208791184,208791184,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208791184&kikanKbn=2&prefCd=08,2026-09-18
+08,1210277,佐竹南台菜のはなクリニック,1,,,CT保有台数確認,082208530956,208530956,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208530956&kikanKbn=2&prefCd=08,2026-09-18
+08,1210467,ひたち太田家庭医療診療所,,,,設備欄未掲載・CT/MRI未確認,082208532370,208532370,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208532370&kikanKbn=2&prefCd=08,2026-09-18
+08,1810068,吉原内科,1,,,CT保有台数確認,082208640602,208640602,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208640602&kikanKbn=2&prefCd=08,2026-09-18
+08,1911015,医療法人社団啓聖会　鳥越クリニック,,,,設備欄未掲載・CT/MRI未確認,082208582287,208582287,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208582287&kikanKbn=2&prefCd=08,2026-09-18
+08,1911049,医療法人社団　ひたちの整形外科,,,,設備欄未掲載・CT/MRI未確認,082208586559,208586559,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208586559&kikanKbn=2&prefCd=08,2026-09-18
+08,1911106,セントラル総合クリニック,,,,設備欄あり・CT/MRI記載なし,082208587859,208587859,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208587859&kikanKbn=2&prefCd=08,2026-09-18
+08,1911262,牛久神谷内科クリニック,,,,CT設備行あり・保有台数0表示（保有未確定）,082208761026,208761026,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208761026&kikanKbn=2&prefCd=08,2026-09-18
+08,2010452,柴原医院,1,,,CT保有台数確認,082208610586,208610586,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208610586&kikanKbn=2&prefCd=08,2026-09-18
+08,2011450,医療法人義恵会　こまつ内科クリニック,1,,,CT保有台数確認,082208690160,208690160,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208690160&kikanKbn=2&prefCd=08,2026-09-18
+08,2012227,みなのクリニック内科呼吸器科,1,,,CT保有台数確認,082208690867,208690867,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208690867&kikanKbn=2&prefCd=08,2026-09-18
+08,2012300,サンシャイン・クリニック,1,,,CT保有台数確認,082208691343,208691343,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208691343&kikanKbn=2&prefCd=08,2026-09-18
+08,2012862,おがわ内科,,,,設備欄未掲載・CT/MRI未確認,082208693552,208693552,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208693552&kikanKbn=2&prefCd=08,2026-09-18
+08,2012979,医療法人　竹園ファミリークリニック,1,,,CT保有台数確認,082208693712,208693712,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208693712&kikanKbn=2&prefCd=08,2026-09-18
+08,2013027,医療法人　成島クリニック,,,,RETRY_INTERNAL_ERROR,082208690287,208690287,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208690287&kikanKbn=2&prefCd=08,2026-09-18
+08,2013225,つくばハートクリニック,,,,RETRY_INTERNAL_ERROR,082208695107,208695107,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208695107&kikanKbn=2&prefCd=08,2026-09-18
+08,2013274,医療法人水清会　つくば学園クリニック,,,,設備欄未掲載・CT/MRI未確認,082208695208,208695208,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208695208&kikanKbn=2&prefCd=08,2026-09-18
+08,2013464,きくち呼吸器内科クリニック,1,,,CT保有台数確認,082208696553,208696553,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208696553&kikanKbn=2&prefCd=08,2026-09-18
+08,2013688,医療法人社団　怜弥会　さくら内科・呼吸器内科クリニック,1,,,CT保有台数確認,082208695660,208695660,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208695660&kikanKbn=2&prefCd=08,2026-09-18
+08,2013852,がじゅまるクリニックつくば,,,,設備欄未掲載・CT/MRI未確認,082208810083,208810083,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208810083&kikanKbn=2&prefCd=08,2026-09-18
+08,2111110,四方医院,,,,RETRY_INTERNAL_ERROR,082208700177,208700177,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208700177&kikanKbn=2&prefCd=08,2026-09-18
+08,2111417,医療法人社団秀峰会　つだ中央クリニック,1,,,CT保有台数確認,082208700760,208700760,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208700760&kikanKbn=2&prefCd=08,2026-09-18
+08,2111557,ひたちなか海浜クリニック,,,,RETRY_INTERNAL_ERROR,082208701969,208701969,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208701969&kikanKbn=2&prefCd=08,2026-09-18
+08,2111730,医療法人聖麗会脳神経外科聖麗メモリアルひたちなか,,,,RETRY_INTERNAL_ERROR,082208704032,208704032,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208704032&kikanKbn=2&prefCd=08,2026-09-18
+08,2111839,田中循環器内科クリニック,1,,,CT保有台数確認,082208703905,208703905,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208703905&kikanKbn=2&prefCd=08,2026-09-18
+08,2210508,医療法人松優会　松倉中央クリニック,,,,設備欄未掲載・CT/MRI未確認,082208571290,208571290,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208571290&kikanKbn=2&prefCd=08,2026-09-18
+08,2210599,アントラーズスポーツクリニック,,,,設備欄未掲載・CT/MRI未確認,082208572183,208572183,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208572183&kikanKbn=2&prefCd=08,2026-09-18
+08,2310142,医療法人社団　福寿会　飯島内科,,,,設備欄あり・CT/MRI記載なし,082208570697,208570697,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208570697&kikanKbn=2&prefCd=08,2026-09-18
+08,2310217,医療法人社団同仁会　常南医院,1,,,CT保有台数確認,082208571434,208571434,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208571434&kikanKbn=2&prefCd=08,2026-09-18
+08,2310332,潮来ハートクリニック,1,,,CT保有台数確認,082208574767,208574767,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208574767&kikanKbn=2&prefCd=08,2026-09-18
+08,2410413,医療法人　慶友会　ひがしクリニック慶友,1,,,CT保有台数確認,082208584050,208584050,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208584050&kikanKbn=2&prefCd=08,2026-09-18
+08,2410850,南守谷クリニック,,,,設備欄あり・CT/MRI記載なし,082208760058,208760058,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208760058&kikanKbn=2&prefCd=08,2026-09-18
+08,2510147,大曽根内科小児科,1,,,CT保有台数確認,082208530233,208530233,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208530233&kikanKbn=2&prefCd=08,2026-09-18
+08,1210384,太田ネフロクリニック,1,,,CT保有台数確認（再試行成功）,082208531100,208531100,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208531100&kikanKbn=2&prefCd=08,2026-09-18
+08,1210418,医療法人慈仁会　川崎クリニック,1,,,CT保有台数確認（再試行成功）,082208532439,208532439,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208532439&kikanKbn=2&prefCd=08,2026-09-18
+08,1610393,常陸クリニック,,,,設備欄あり・CT/MRI記載なし（再試行成功）,082208520559,208520559,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=208520559&kikanKbn=2&prefCd=08,2026-09-18
+08,1711621,とりで腎・泌尿器科クリニック,1,,,CT保有台数確認（再試行成功）,0822080003579,2080003579,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2080003579&kikanKbn=2&prefCd=08,2026-09-18
+09,0812387,小山ステーション脳神経外科・内科,,,,設備欄確認・CT/MRI記載なし,0922090000054,2090000054,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090000054&kikanKbn=2&prefCd=09,2026-09-18
+09,0910264,真岡中央クリニック,,,,CT設備行あり・保有台数0表示（保有未確定）,0922090009542,2090009542,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090009542&kikanKbn=2&prefCd=09,2026-09-18
+09,0910405,さとう循環器科内科クリニック,,,,RETRY_INTERNAL_ERROR,0922090100152,2090100152,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090100152&kikanKbn=2&prefCd=09,2026-09-18
+09,1010304,国際医療福祉大学クリニック,,,,RETRY_INTERNAL_ERROR,0922090006514,2090006514,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090006514&kikanKbn=2&prefCd=09,2026-09-18
+09,1210169,渡部医院,,,,RETRY_INTERNAL_ERROR,0922090008527,2090008527,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090008527&kikanKbn=2&prefCd=09,2026-09-18
+09,1210268,なすのクリニック,,,,RETRY_INTERNAL_ERROR,0922090006579,2090006579,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090006579&kikanKbn=2&prefCd=09,2026-09-18
+09,1310167,尾形クリニック那須,,,,設備欄確認・CT/MRI記載なし,0922092000494,2092000494,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2092000494&kikanKbn=2&prefCd=09,2026-09-18
+09,1610368,すずき内科・循環器科,,,,設備欄確認・CT/MRI記載なし,0922090007527,2090007527,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090007527&kikanKbn=2&prefCd=09,2026-09-18
+09,2110285,南河内診療所,,,,設備欄確認・CT/MRI記載なし,0922090007532,2090007532,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090007532&kikanKbn=2&prefCd=09,2026-09-18
+09,2110343,小口内科小児科医院,,,,設備欄確認・CT/MRI記載なし,0922090007504,2090007504,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090007504&kikanKbn=2&prefCd=09,2026-09-18
+09,2110376,やまだ整形外科内科クリニック,,,,設備欄確認・CT/MRI記載なし,0922090007603,2090007603,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090007603&kikanKbn=2&prefCd=09,2026-09-18
+09,2301983,持田医院,,,,設備欄確認・CT/MRI記載なし,0922090010595,2090010595,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090010595&kikanKbn=2&prefCd=09,2026-09-18
+09,2310216,田村医院,1,,,CT保有台数確認,0922090010584,2090010584,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090010584&kikanKbn=2&prefCd=09,2026-09-18
+09,2310273,せいいかいメディカルクリニックＯＹＡＭＡ,,,,CT設備行あり・保有台数0表示（保有未確定）,0922090007556,2090007556,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090007556&kikanKbn=2&prefCd=09,2026-09-18
+09,2310455,みずほクリニック,,,,CT設備行あり・保有台数0表示（保有未確定）,0922090010251,2090010251,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090010251&kikanKbn=2&prefCd=09,2026-09-18
+09,2310539,新島内科クリニック,,,,RETRY_INTERNAL_ERROR,0922090007549,2090007549,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090007549&kikanKbn=2&prefCd=09,2026-09-18
+09,2310737,福井セントラルクリニック,1,,,CT保有台数確認,0922090100117,2090100117,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090100117&kikanKbn=2&prefCd=09,2026-09-18
+09,2310968,ゆりなメディカルパーク,,,,CT設備行あり・保有台数0表示（保有未確定）,0922090000026,2090000026,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090000026&kikanKbn=2&prefCd=09,2026-09-18
+09,2510617,医療法人社団小沼内科胃腸科クリニック,,,,CT設備行あり・保有台数0表示（保有未確定）,0922090006556,2090006556,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2090006556&kikanKbn=2&prefCd=09,2026-09-18
+10,0103768,前橋東クリニック,,,,設備欄確認・CT/MRI記載なし,1022100000040,2100000040,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000040&kikanKbn=2&prefCd=10,2026-09-18
+10,0112652,医療法人　忠恕会　狩野脳神経外科医院,1,,,CT保有台数確認,1022100001888,2100001888,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001888&kikanKbn=2&prefCd=10,2026-09-18
+10,0112777,前橋ふえきクリニック,,,,設備欄確認・CT/MRI記載なし,1022100001919,2100001919,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001919&kikanKbn=2&prefCd=10,2026-09-18
+10,0113254,青梨子はぎわら医院,,,,設備欄確認・CT/MRI記載なし,1022100002029,2100002029,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100002029&kikanKbn=2&prefCd=10,2026-09-18
+10,0210522,医療法人　眞誠会　久保医院,,,,RETRY_INTERNAL_ERROR,1022100001083,2100001083,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001083&kikanKbn=2&prefCd=10,2026-09-18
+10,0211041,伊勢崎健診プラザ,,,,RETRY_INTERNAL_ERROR,1022100001099,2100001099,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001099&kikanKbn=2&prefCd=10,2026-09-18
+10,0211066,安堀太田町クリニック,,,,RETRY_INTERNAL_ERROR,1022100001748,2100001748,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001748&kikanKbn=2&prefCd=10,2026-09-18
+10,0310272,沼田クリニック,1,,,CT保有台数確認,1022100000996,2100000996,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000996&kikanKbn=2&prefCd=10,2026-09-18
+10,0410114,医療法人　高橋会　高橋医院,,,,設備欄確認・CT/MRI記載なし,1022100000285,2100000285,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000285&kikanKbn=2&prefCd=10,2026-09-18
+10,0510145,医療法人　開成日の出会　竹内医院,1,,,CT保有台数確認,1022100000969,2100000969,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000969&kikanKbn=2&prefCd=10,2026-09-18
+10,0610333,ひらが脳神経外科,1,,,CT保有台数確認,1022100001647,2100001647,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001647&kikanKbn=2&prefCd=10,2026-09-18
+10,1003421,土屋内科医院,1,,,CT保有台数確認,1022100000508,2100000508,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000508&kikanKbn=2&prefCd=10,2026-09-18
+10,1010335,医療法人　社団　吉田会　吉田内科,1,,,CT保有台数確認,1022100000376,2100000376,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000376&kikanKbn=2&prefCd=10,2026-09-18
+10,1010756,独立行政法人　国立重度知的障害者総合施設のぞみの園診療所,1,,,CT保有台数確認,1022100000426,2100000426,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000426&kikanKbn=2&prefCd=10,2026-09-18
+10,1010855,もてき脳神経外科,1,,,CT保有台数確認,1022100000590,2100000590,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000590&kikanKbn=2&prefCd=10,2026-09-18
+10,1010863,一般財団法人榛名荘　榛名荘病院附属高崎診療所はるな脳外科,,,,RETRY_INTERNAL_ERROR,1022100000438,2100000438,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000438&kikanKbn=2&prefCd=10,2026-09-18
+10,1010871,医療法人　ラホヤ会　道又内科クリニック,,,,RETRY_INTERNAL_ERROR,1022100000377,2100000377,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000377&kikanKbn=2&prefCd=10,2026-09-18
+10,1011408,こやぎ内科,,,,設備欄確認・CT/MRI記載なし,1022100000432,2100000432,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000432&kikanKbn=2&prefCd=10,2026-09-18
+10,1011416,細谷医院,,,,設備欄確認・CT/MRI記載なし,1022100000905,2100000905,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100000905&kikanKbn=2&prefCd=10,2026-09-18
+10,1012091,稲村クリニック　アレルギー・呼吸器内科,,,,RETRY_INTERNAL_ERROR,1022100001765,2100001765,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001765&kikanKbn=2&prefCd=10,2026-09-18
+10,1012182,医療法人社団　醫侑会　小川クリニック,,,,RETRY_INTERNAL_ERROR,1022100001724,2100001724,https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2430/initialize?kikanCd=2100001724&kikanKbn=2&prefCd=10,2026-09-18

@@ -1,0 +1,9 @@
+﻿filter_key,label,confirmed_facilities
+mri3t,MRI 3T以上,963
+mri15_3,MRI 1.5T以上3T未満,3410
+mri_under15,MRI 1.5T未満,587
+ct128,CT 128列以上（詳細確認済み）,39
+ct64plus,CT 64列以上,3079
+ct64_127,CT 64〜127列（詳細確認済み）,41
+ct16_63,CT 16〜63列,5638
+ct_under16,CT 16列未満,478
