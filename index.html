@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>全国病院マップ v49｜地域医療需給</title>
+<title>全国病院マップ v50｜地域医療需給</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--paper:#f3f2ee;--panel:#fbfaf7;--ink:#171817;--muted:#71756f;--line:#d7d6cf;--accent:#263a43;--blue:#0057d9;--orange:#f05a28;--magenta:#d01888;--home:#655879;--care:#657952}
@@ -556,13 +556,90 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
   .entryBtn span,.panelHint,.equipmentCoverageWarn,.equipmentPinLegend{overflow-wrap:anywhere}
 }
 
+
+/* v50: move regional summary out of the desktop sidebar */
+.scopeHome{flex:0 0 auto}
+@media(min-width:781px){
+  .scopeHome{
+    display:none!important;
+    flex:0 0 0!important;
+    height:0!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    border:0!important
+  }
+  #mapwrap>.scope.scopeOverlay{
+    position:absolute;
+    z-index:808;
+    left:14px;
+    top:96px;
+    width:min(360px,calc(100% - 28px));
+    max-height:min(48vh,430px);
+    overflow:auto;
+    padding:10px 11px 11px!important;
+    border:1px solid #c9cbc5!important;
+    border-radius:7px;
+    background:rgba(251,250,247,.965);
+    box-shadow:0 8px 26px rgba(0,0,0,.14);
+    backdrop-filter:blur(2px);
+  }
+  #mapwrap>.scope.scopeOverlay::before{
+    content:"地域サマリー";
+    display:block;
+    margin-bottom:6px;
+    font-size:7.5px;
+    font-weight:850;
+    letter-spacing:.10em;
+    color:#747972;
+  }
+  #mapwrap>.scope.scopeOverlay .scopeTitle{
+    font-size:10px;
+    margin-bottom:6px
+  }
+  #mapwrap>.scope.scopeOverlay .metrics{
+    grid-template-columns:repeat(3,1fr)
+  }
+  #mapwrap>.scope.scopeOverlay .metric{
+    min-height:46px;
+    padding:6px 6px
+  }
+  #mapwrap>.scope.scopeOverlay .signal{
+    margin-top:6px
+  }
+}
+@media(min-width:781px) and (max-width:1000px){
+  #mapwrap>.scope.scopeOverlay{
+    width:min(260px,calc(100% - 24px));
+    left:12px;
+    top:108px;
+    padding:8px!important
+  }
+  #mapwrap>.scope.scopeOverlay .metrics{grid-template-columns:repeat(2,1fr)}
+  .mapnote{max-width:185px!important}
+}
+@media(max-width:780px){
+  .scopeHome{
+    display:block!important;
+    flex:0 0 auto!important;
+    min-height:0!important
+  }
+  .scopeHome>.scope{
+    position:static!important;
+    width:auto!important;
+    max-height:18dvh!important;
+    transform:none!important;
+    box-shadow:none!important;
+    border-radius:0!important
+  }
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="side" id="side">
   <div class="head">
-    <div class="eyebrow">全国医療供給マップ · v49</div>
+    <div class="eyebrow">全国医療供給マップ · v50</div>
     <div class="title">全国病院マップ</div>
     <div class="sub">都道府県 → 市町村・区 → 医療機関<br>人口背景（需要側）と医療資源・活動（供給側）を地域単位で比較</div>
     <button type="button" class="headSourceBtn" id="headSourceBtn">データの大本・定義</button>
@@ -834,7 +911,8 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
     </div>
     <div class="note compactNote">需要側の背景は人口・高齢化、供給側は医療機関・病床・在宅・活動・MRI/CTなどです。相対指標は探索用で、公的な不足判定ではありません。</div>
   </div>
-  <div class="scope">
+  <div class="scopeHome" id="scopeHome">
+  <div class="scope" id="scope">
     <div class="scopeTitle" id="scopeTitle">全国｜地域を選択してください</div>
     <div class="metrics">
       <div class="metric"><b id="sPop">—</b><span>人口 2025</span></div>
@@ -845,6 +923,7 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
       <div class="metric"><b id="sHome">—</b><span>在宅 / 65+ 1万人</span></div>
     </div>
     <div class="signal" id="signal"><strong>地域の需要・供給</strong><br>都道府県または市町村を選択すると、人口背景と医療供給を表示します。</div>
+  </div>
   </div>
   <div class="facilityListHome" id="facilityListHome">
     <div class="facilityListPane" id="facilityListPane">
@@ -861,11 +940,11 @@ body>.facilityListPane.expanded .card{padding:10px 5px}
     </div>
   </div>
 </aside>
-<main class="mapwrap">
+<main class="mapwrap" id="mapwrap">
   <button class="mobile" id="mobile">メニュー</button>
   <div id="map"></div>
   <div class="homeLegend" id="homeLegend"><span class="homeSwatch"></span><b>在宅エリア調査</b><br>在宅系施設から半径16km<br>診療報酬上の原則範囲（直線距離）<br>※概略座標施設は除外</div>
-  <div class="mapnote" id="mapnote"><b>地域分析 v49</b><br>都道府県を選ぶと市町村 / 区を面表示します。<br><span>施設ピンをタップ → カルテ</span></div>
+  <div class="mapnote" id="mapnote"><b>地域分析 v50</b><br>都道府県を選ぶと市町村 / 区を面表示します。<br><span>施設ピンをタップ → カルテ</span></div>
   <div class="legend" id="legend"></div>
 <button class="rankingDockBtn" id="rankingDockBtn" type="button">地域比較ランキング</button>
 <button class="sourceBtn" id="sourceBtn" aria-label="出典一覧">出典・定義</button></main>
@@ -1124,7 +1203,7 @@ async function ensureBoundaries(){
     const topo=await res.json();
     const obj=topo.objects.city||topo.objects[Object.keys(topo.objects)[0]];
     boundaryFeatures=topojson.feature(topo,obj).features;
-    $("mapnote").innerHTML="<b>地域分析 v49</b><br>市町村 / 区をクリックすると施設まで絞り込みます。";
+    $("mapnote").innerHTML="<b>地域分析 v50</b><br>市町村 / 区をクリックすると施設まで絞り込みます。";
     return true;
   }catch(e){
     $("mapnote").innerHTML="<b>行政界を読み込めませんでした</b><br>施設ピン・市町村選択・人口集計は利用できます。";
@@ -1686,6 +1765,19 @@ function updateRankSource(){
 }
 
 const ENTRY_IDS=["region","facility","specialty"];
+
+function syncScopePlacement(){
+  const scope=$("scope"),home=$("scopeHome"),mapwrap=$("mapwrap");
+  if(!scope||!home||!mapwrap)return;
+  const desktop=window.innerWidth>780;
+  if(desktop){
+    if(scope.parentElement!==mapwrap)mapwrap.appendChild(scope);
+    scope.classList.add("scopeOverlay");
+  }else{
+    scope.classList.remove("scopeOverlay");
+    if(scope.parentElement!==home)home.appendChild(scope);
+  }
+}
 function setEntryMode(mode){
   if(!ENTRY_IDS.includes(mode))mode="region";
   $("side")?.setAttribute("data-entry-mode",mode);
@@ -1703,6 +1795,7 @@ document.querySelectorAll(".entryBtn").forEach(b=>b.onclick=()=>{
   if(mode==="specialty")setTimeout(()=>$("specialtyBtn")?.focus(),60);
 });
 try{setEntryMode(sessionStorage.getItem("hospitalMapEntry")||"region")}catch(e){setEntryMode("region")}
+syncScopePlacement();
 updateMetricSource();
 updateHomeGapButton();
 
@@ -2388,7 +2481,10 @@ map.on("moveend",()=>{drawPins();drawHomeAreas();autoPref()});
   drawer?.addEventListener("click",e=>{if(e.target===drawer)closeDrawer()});
 
   // Escで全て閉じる
-  window.addEventListener("resize",()=>{if(window.innerWidth<=780&&facilityListExpanded)setFacilityListExpanded(false)});
+  window.addEventListener("resize",()=>{
+  if(window.innerWidth<=780&&facilityListExpanded)setFacilityListExpanded(false);
+  syncScopePlacement();
+});
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 })();
 </script>
